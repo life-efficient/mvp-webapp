@@ -13,14 +13,19 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 
 
 export default {
-  input: packageJSON.main,
-  output: {
-    file: 'bundle.js',
-    format: 'umd',
-    name: 'mvp-webapp',
-    indent: false,
-    sourcemap: false,
-  },
+  input,
+    output: {
+      file: packageJSON.main,
+      format: "cjs",
+      sourcemap: true
+    },
+  // output: {
+  //   file: 'bundle.js',
+  //   format: 'umd',
+  //   name: 'mvp-webapp',
+  //   indent: false,
+  //   sourcemap: false,
+  // },
   plugins: [
     nodeResolve(),
     commonjs({
