@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { font, primaryColors, shape } from "config/styles";
+import { font, primaryColors, shape } from "styles/styles";
+import { connect } from "react-redux"
 
 const Wrapper = styled.button`
   ${font}
@@ -8,6 +9,19 @@ const Wrapper = styled.button`
   ${shape}
 `;
 
-export default function Button({ text, onClick }) {
-  return <Wrapper onClick={onClick}>{text}</Wrapper>;
+const mapStateToProps = (state) => {
+  return {
+    app: state.app
+  }
 }
+
+
+var Button = (props) => {
+  return (
+    <Wrapper>
+      App name: {props.app.name}
+    </Wrapper>
+  )
+}
+
+export default Button = connect(mapStateToProps)(Button)

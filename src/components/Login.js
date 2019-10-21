@@ -1,13 +1,54 @@
+/** @jsx jsx */
 import React, { Component } from "react";
 // import "./Login.css";
 import logo from "../images/logo.png"
 import eye from "../images/see-icon.png"
-import { connect } from "react-redux"
+// import { connect } from "react-redux"
 import { Auth } from "aws-amplify"
 import { Redirect } from "react-router-dom"
 import ChangePassword from "./ChangePassword"
 import Loading from "./Loading"
 import queryString from "query-string"
+import styled from "@emotion/styled"
+import { jsx, css } from "@emotion/core"
+import { Form } from "../styles/forms"
+
+const passwordShow = css`
+    --dim: 40px;
+    width: var(--dim);
+    height: var(--dim);
+    min-height:var(--dim);
+    min-width: var(--dim);
+    margin: auto;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: center;
+    padding: 0;
+`
+const mainLogo = css`
+    --logo-dim: 40px;
+    height: var(--logo-dim);
+    width: var(--logo-dim);
+    max-height: 300px;
+    margin: 20px auto;
+`
+
+// .password-input {
+//   display: flex;
+// }
+
+// .form-error {
+//     box-shadow: none;
+//     color: red;
+// }
+
+// .get-details {
+//     box-shadow: none;
+//     font-size: 10px;
+//     text-decoration: underline;
+//     cursor: pointer;
+//     margin-bottom: 10px;
+// }
 
 export default class Login extends Component {
   constructor(props) {
@@ -26,9 +67,9 @@ export default class Login extends Component {
     };
   }
 
-  componentDidMount = () => {
-      window.analytics.page('login')
-  }
+//   componentDidMount = () => {
+//       window.analytics.page('login')
+//   }
 
   validateForm = () => {
     return this.state.username.length > 0 && this.state.password.length > 0;
@@ -116,8 +157,8 @@ export default class Login extends Component {
           <>
           {this.renderRedirect()}
             <div className="slide">
-            <div className="form-container">
-                <img src={ logo } className="main-logo" alt="" />
+            <div css={Form} className="form-container">
+                <img src={ logo } css={mainLogo} alt="" />
                 <div className="field-container long-field-title">
                     <div className="field-title ">
                         <strong>Username</strong>
@@ -131,7 +172,7 @@ export default class Login extends Component {
                     <br/>
                     <div className="password-field">
                       <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                      <img src={ eye } id="passwordShow" className="btn passwordShow" onClick={ this.showPassword } alt="" />
+                      <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
                     </div>
                   </div>
                   <div className="form-error">{this.state.error}</div>
@@ -168,7 +209,7 @@ export default class Login extends Component {
           {this.renderRedirect()}
           <div className="slide">
           <div className="form-container">
-              <img src={ logo } className="main-logo" alt="" />
+              <img src={ logo } css={mainLogo} alt="" />
               <div className="field-container long-field-title">
                   <div className="field-title ">
                       <strong>Enter your contact email</strong>

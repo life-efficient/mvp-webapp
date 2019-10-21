@@ -3,21 +3,20 @@ import React from "react"
 // import "./Loading.css"
 import styled from "@emotion/styled";
 import { jsx, css } from "@emotion/core"
-import { font, primaryColors, shape } from "config/styles";
-
-const Wrapper = styled.button`
-  ${font}
-  ${primaryColors}
-  ${shape}
-`;
+import { font, primaryColors, shape } from "styles/styles";
 
 const container = css`
     ${primaryColors}
-    border-radius: 3px;
-    padding: 10px;
-    width: 40px;
+    border-radius: 30px;
+    padding: 5px;
+    --dim: 30px;
+    width: var(--dim);
+    height: var(--dim);
     margin-top: 10px;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: ${ window.theme? window.theme.primary: null};
 `
 
 const loading = css`
