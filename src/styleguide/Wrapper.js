@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from "redux"
 // import { withTheme, ThemeProvider } from 'emotion-theming'
-import { css, Global } from '@emotion/core'
+// import { css, Global } from '@emotion/core'
 // import configureStore from '../utils/configureStore'
 
 const initialState = () => {
@@ -18,7 +18,6 @@ const store = createStore(initialState)
 export default class Wrapper extends Component {
   render() {
     return <Provider store={store}>
-
         {this.props.children}
     </Provider>
   }
