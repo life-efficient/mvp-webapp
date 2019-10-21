@@ -12,59 +12,70 @@ const minifyExtension = pathToFile => pathToFile.replace(/\.js$/, ".min.js");
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 
-export default {
-  input,
+// export default {
+//   input,
+//     output: {
+//       file: packageJSON.main,
+//       format: "cjs",
+//       sourcemap: true
+//       // sourcemap: false
+//     },
+//   // output: {
+//   //   file: 'bundle.js',
+//   //   format: 'umd',
+//   //   name: 'mvp-webapp',
+//   //   indent: false,
+//   //   sourcemap: false,
+//   // },
+//   plugins: [
+//     // nodeResolve(),
+//     babel({
+//       exclude: "node_modules/**"
+//     }),
+//     external(),
+//     resolve(),
+//     commonjs(
+//       {
+//         include: 'node_modules/**',
+//         // include: /node_modules/
+//         namedExports: {
+//         }
+//       }
+//     )
+//   ],
+// }
+
+export default [
+  // CommonJS
+  {
+    input,
     output: {
       file: packageJSON.main,
       format: "cjs",
-      // sourcemap: true
-      sourcemap: false
+      sourcemap: true
     },
-  // output: {
-  //   file: 'bundle.js',
-  //   format: 'umd',
-  //   name: 'mvp-webapp',
-  //   indent: false,
-  //   sourcemap: false,
-  // },
-  plugins: [
-    nodeResolve(),
-    commonjs({
-      include: /node_modules/, // Default: undefined
-    }),
-  ],
-}
-
-// export default [
-  // CommonJS
-  // {
-  //   input,
-  //   output: {
-  //     file: packageJSON.main,
-  //     format: "cjs",
-  //     sourcemap: true
-  //   },
-  //   plugins: [
-  //     babel({
-  //       exclude: "node_modules/**"
-  //     }),
-  //     external(),
-  //     resolve(),
-  //     commonjs(
-  //       {
-  //         include: 'node_modules/**',
-  //         // include: /node_modules/
-  //         namedExports: {
+    plugins: [
+      babel({
+        exclude: "node_modules/**"
+      }),
+      external(),
+      resolve(),
+      commonjs(
+        {
+          include: 'node_modules/**',
+          // include: /node_modules/
+          namedExports: {
             
-  //       //     'node_modules/react-is/index.js': ['isValidElementType']
-  //           // 'react-is': ['isValidElementType']
-  //         }
-  //       }
-  //   )
-  //   ],
-  //   external: ['react', 'react-dom', 'prop-types', 'styled-components'],
+        //     'node_modules/react-is/index.js': ['isValidElementType']
+            // 'react-is': ['isValidElementType']
+          }
+        }
+    )
+    ],
+    external: ['react', 'react-dom', 'prop-types', 'styled-components'],
 
-  // },
+  },
+]
   // {
   //   input,
   //   output: {
