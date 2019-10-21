@@ -32,6 +32,6 @@ module.exports = {
     "react-sample-components-library": path.resolve(__dirname, "src")
   },
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
+    // Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
   }
 };
