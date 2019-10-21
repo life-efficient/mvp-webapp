@@ -72,7 +72,7 @@ export default [
         }
     )
     ],
-    external: ['react', 'react-dom', 'prop-types', 'styled-components'],
+    external: ['react', 'react-dom', 'react-redux', 'prop-types', 'styled-components'],
 
   },
 ]
