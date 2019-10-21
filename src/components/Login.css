@@ -1,0 +1,38 @@
+#passwordShow {
+    --dim: 40px;
+    width: var(--dim);
+    height: var(--dim);
+    min-height:var(--dim);
+    min-width: var(--dim);
+    margin: auto;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: center;
+    padding: 0;
+}
+
+
+.main-logo {
+    --logo-dim: 150px;
+    height: var(--logo-dim);
+    width: var(--logo-dim);
+    max-height: 300px;
+    margin: 20px auto;
+}
+
+.password-input {
+  display: flex;
+}
+
+.form-error {
+    box-shadow: none;
+    color: red;
+}
+
+.get-details {
+    box-shadow: none;
+    font-size: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
