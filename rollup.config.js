@@ -43,7 +43,6 @@ export default [
       external(),
       resolve(),
       commonjs(),
-      image(),
       uglify(),
     ]
   },
@@ -67,7 +66,6 @@ export default [
       }),
       external(),
       resolve(),
-      image(),
       commonjs()
     ]
   },
@@ -91,7 +89,6 @@ export default [
       external(),
       resolve(),
       commonjs(),
-      image(),
       terser()
     ]
   },
@@ -110,7 +107,6 @@ export default [
       }),
       external(),
       resolve(),
-      image(),
       commonjs()
     ]
   },
@@ -129,7 +125,6 @@ export default [
       external(),
       resolve(),
       commonjs(),
-      image(),
       terser()
     ]
   }
