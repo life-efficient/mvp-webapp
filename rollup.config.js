@@ -25,7 +25,7 @@ export default [
       }),
       external(),
       resolve(),
-      image(),
+      // image(),
       commonjs()
     ]
   },
