@@ -42,6 +42,7 @@ export default [
       external(),
       resolve(),
       commonjs(),
+      image(),
       uglify(),
     ]
   },
