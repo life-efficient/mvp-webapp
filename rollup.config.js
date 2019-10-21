@@ -17,7 +17,8 @@ export default {
     output: {
       file: packageJSON.main,
       format: "cjs",
-      sourcemap: true
+      // sourcemap: true
+      sourcemap: false
     },
   // output: {
   //   file: 'bundle.js',
