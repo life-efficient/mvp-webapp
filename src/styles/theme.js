@@ -15,6 +15,7 @@ export const button = css`
     border-radius: 3px;
     border: yo;
     background-color: var(--primary);
+    background-color: $primar;
 `
 
 export const core = css`

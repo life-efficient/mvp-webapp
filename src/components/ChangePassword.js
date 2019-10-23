@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import logo from "../images/logo.png"
+// import logo from "../images/logo.png"
 import eye from "../images/see-icon.png"
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux"
