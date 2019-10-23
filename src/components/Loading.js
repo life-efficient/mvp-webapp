@@ -16,7 +16,7 @@ const container = css`
     margin: auto;
     display: flex;
     justify-content: center;
-    background-color: ${window.theme.color2};
+    background-color: var(--color2);
 `
 
 const loading = css`
@@ -35,7 +35,7 @@ const segment = css`
     width: 10px;
     background-color: green;
     ${primaryColors}
-    background-color: ${window.theme.color2};
+    background-color: var(--color2);
 `
 
 const inner = css`
@@ -45,7 +45,7 @@ const inner = css`
     transform: translateX(5px) translateY(-5px);
     background-color: green;
     ${primaryColors}
-    background-color: ${window.theme.color2};
+    background-color: var(--color2);
 `
 
 const Loading = (props) => {

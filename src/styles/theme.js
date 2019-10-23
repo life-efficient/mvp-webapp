@@ -14,9 +14,11 @@ export const button = css`
     box-shadow: var(--shadow);
     border-radius: 3px;
     border: yo;
-    background-color: var(--color1);
+    background-color: var(--color2);
     background-color: $primar;
     font-family: var(--font2);
+    color: var(--color1);
+    padding: 15px;
 `
 
 export const core = css`

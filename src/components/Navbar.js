@@ -17,8 +17,7 @@ const navbar_container = css`
     // background: linear-gradient(var(--secondary), var(--secondary_grad));
     // color: var(--secondary) !important;
     // box-sizing: border-box;
-    background-color: ${window.theme.color1};
-    color: ${window.theme.color2};
+    background-color: var(--color1);
 `
 
 const navbar = {
@@ -42,37 +41,50 @@ const options = css`
     position: absolute;
     top: 2vh;
     justify-content: center;
-    font-size: 40px;
-    color: ${window.theme.color2};
+    font-size: 20px;
+    color: var(--color2);
+    font-family: var(--font1);
 `
 
 const option = css`
-    padding: 10px';
-    width: '10%';
-    display: 'flex';
-    flexDirection: 'column';
-    justifyContent: 'center'
-    color: ${window.theme.color2};
+    padding: 0 10px;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--color2) !important;
+`
+
+const logo_text = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--color2);
+    font-family: var(--font1);
+    font-size: 40px;
+    z-index: 1;
 `
 
 var Navbar = (props) => {
             return (
                 <div css={navbar_container}>
                     <div css={navbar}>
-                        <Link to="/" css={{display: 'flex', flexDirection: 'column', justifyContent:'center', color: window.theme.color2}}>
+                        <Link to="/" css={logo_text}>
                             Perks
                         </Link>
                         <button onClick={() => props.openModal('Call +447765892392')} css={button}>
                             GET STARTED                            
                         </button>
                     </div>
-                    {/* <div css={options}>
+                    <div
+                     css={options}
+                     >
                         {
                             ['about', 'work', 'team'].map(
                                 (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
                             )
                         }
-                    </div> */}
+                    </div>
                 </div>
             )
     // switch (true) {
