@@ -66,8 +66,8 @@ export default [
           // include: /node_modules/
           namedExports: {
             
-        //     'node_modules/react-is/index.js': ['isValidElementType']
-            // 'react-is': ['isValidElementType']
+            'node_modules/react-is/index.js': ['isValidElementType'],
+            'react-is': ['isValidElementType']
           }
         }
     )
