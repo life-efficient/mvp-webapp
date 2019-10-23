@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import logo from "../images/logo.png"
+// import logo from "../images/logo.png"
 import { connect } from "react-redux"
 // import "./Navbar.css"
 import { jsx, css } from "@emotion/core"
