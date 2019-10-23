@@ -2,20 +2,22 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { font, primaryColors, shape } from "styles/styles";
 import { connect } from "react-redux"
+import { button } from "../styles/theme"
 
 const Wrapper = styled.button`
   ${font}
   // ${primaryColors}
   ${shape}
-  background-color: ${window.theme.color2};
+  // background-color: ${color2};
 `;
 
 class Button extends Component {
   render() {
     return (
-          <Wrapper 
-          // css={this.props.app.theme}
-          >
+      // <button css={}>
+
+      <button
+          css={button}>
         {/* State: {JSON.stringify(this.props.state)} */}
         {/* Props: {JSON.stringify(this.props)} */}
         App name: {this.props.state.app.name}
@@ -24,7 +26,7 @@ class Button extends Component {
           yo
         </div>
         {JSON.stringify(Object.keys(this.props))} */}
-      </Wrapper>
+      </button>
     )
   }
 }
@@ -33,7 +35,8 @@ const mapStateToProps = (state) => {
   console.log('STATE IN BTN:', state)
   return {
     state,
-    app: state.app
+    app: state.app,
+    theme: state.theme
   }
 }
 

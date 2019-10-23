@@ -44,10 +44,11 @@ export default (props) => {
                         a​:hover {  color: black; }
                         a { color: black;}
 
-                        *{text-transform: uppercase;
-                        // font-size: 1.5em;
-                        font-weight: bold;
-                        letter-spacing: 4px;
+                        *{
+                            text-transform: uppercase;
+                            // font-size: 1.5em;
+                            font-weight: bold;
+                            letter-spacing: 4px;
                         }
                     `}
                 />
