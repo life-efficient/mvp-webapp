@@ -1,5 +1,5 @@
 import { css } from "@emotion/core"
-import { Theme } from "../styles/theme"
+import theme from "../styles/theme"
 
 export const Form = css`
     .text-response {
@@ -22,7 +22,7 @@ export const Form = css`
 
         text-align: justify;
         padding: 5px 10px;
-        border-radius: ${Theme.radius};
+        border-radius: ${theme.radius};
 
         border-radius: 0px;
         border-width: 0 0 2px 0;
