@@ -65,7 +65,7 @@ export default [
           include: 'node_modules/**',
           // include: /node_modules/
           namedExports: {
-            
+            // seems to prevent error 'isValidElementType is not exported'
             'node_modules/react-is/index.js': ['isValidElementType'],
             'react-is': ['isValidElementType']
           }
