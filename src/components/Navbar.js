@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 // import "./Navbar.css"
 import { jsx, css } from "@emotion/core"
-import { button } from "../styles/theme"
+import { button, breakpoints } from "../styles/theme"
 import theme from "../styles/theme"
 
 const navbar_container = css`
@@ -34,25 +34,34 @@ const options = css`
     width: 100%;
     height: 4vh;
     margin: auto;
-    boxSizing: border-box;
     display: flex;
     flex-direction: row;
-    marginTop: 0px;
     position: absolute;
-    top: 2vh;
-    justify-content: center;
     font-size: 20px;
     color: var(--color2);
     font-family: var(--font1);
+    margin-top: 8vh;
+    justify-content: space-between;
+    background-color: black;
+    top: 0vh;
+
+    ${breakpoints[0]} {
+        margin-top: 0vh;
+        height: 100%;
+        background-color: transparent;
+        justify-content: center;
+    }
 `
 
 const option = css`
     padding: 0 10px;
-    width: 10%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     color: var(--color2) !important;
+    max-width: 100px;
 `
 
 const logo_text = css`
@@ -70,17 +79,18 @@ var Navbar = (props) => {
                 <div css={navbar_container}>
                     <div css={navbar}>
                         <Link to="/" css={logo_text}>
-                            Perks
+                            {props.name}
                         </Link>
-                        <button onClick={() => props.openModal('Call +447765892392')} css={button}>
-                            GET STARTED                            
+                        <button onClick={props.action_cb} css={button}>
+                            {props.call_to_action ? props.call_to_action : 'Take action'}                            
                         </button>
                     </div>
                     <div
                      css={options}
                      >
                         {
-                            ['about', 'work', 'team'].map(
+                            ['about', 'work', 'team']
+                            .map(
                                 (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
                             )
                         }
@@ -110,6 +120,7 @@ var Navbar = (props) => {
 const mapStateToProps = (state) => {
     return {
         // logged_in: state.user.logged_in
+        name: state.app.name
     }
 }
 
