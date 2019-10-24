@@ -59,7 +59,7 @@ export default [
     plugins: [
       alias({
       entries: {
-        "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/'),  // trying to solve route must be within router
+        // "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/'),  // trying to solve route must be within router
       }
     }),
       babel({
