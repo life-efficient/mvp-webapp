@@ -24,7 +24,12 @@ module.exports = {
           ],
         },
       ]
-    }
+    },
+    // reslove: {
+    //   alias: {
+    //     "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/')  // trying to solve route must be within router
+    //   }
+    // }
   },
   title: "MVP",
   require: [
@@ -35,7 +40,7 @@ module.exports = {
   styleguideDir: "dist-docs",
   moduleAliases: {
     "react-sample-components-library": path.resolve(__dirname, "src"),
-    "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/')  // trying to solve route must be within router
+    // "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/')  // trying to solve route must be within router
   },
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')

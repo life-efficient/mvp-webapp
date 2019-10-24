@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import { uglify } from "rollup-plugin-uglify";
 import packageJSON from "./package.json";
 // import image from 'rollup-plugin-image';
+import alias from 'rollup-plugin-alias';
 
 const input = "./src/index.js";
 const minifyExtension = pathToFile => pathToFile.replace(/\.js$/, ".min.js");
@@ -55,6 +56,11 @@ export default [
       sourcemap: true
     },
     plugins: [
+      alias({
+      entries: {
+        "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/'),  // trying to solve route must be within router
+      }
+    }),
       babel({
         exclude: "node_modules/**"
       }),
