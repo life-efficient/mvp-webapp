@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import React, { Component } from "react";
 // import "./Login.css";
-import logo from "../images/logo.png"
+// import logo from "../images/logo.png"
 import eye from "../images/see-icon.png"
 // import { connect } from "react-redux"
-import { Auth } from "aws-amplify"
+// import { Auth } from "aws-amplify"
 import { Redirect } from "react-router-dom"
 import ChangePassword from "./ChangePassword"
 import Loading from "./Loading"
@@ -157,8 +157,8 @@ export default class Login extends Component {
           <>
           {this.renderRedirect()}
             <div className="slide">
-            <div css={Form} className="form-container">
-                <img src={ logo } css={mainLogo} alt="" />
+              <div css={Form} className="form-container">
+                {/* <img src={ logo } css={mainLogo} alt="" /> */}
                 <div className="field-container long-field-title">
                     <div className="field-title ">
                         <strong>Username</strong>
@@ -166,28 +166,27 @@ export default class Login extends Component {
                     <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
                 </div>
                 <div className="field-container ">
-                    <div className="field-title">
-                      <strong>Password</strong>
-                    </div>
-                    <br/>
-                    <div className="password-field">
-                      <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                      <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
-                    </div>
+                  <div className="field-title">
+                    <strong>Password</strong>
                   </div>
-                  <div className="form-error">{this.state.error}</div>
-                  <div className="small get-details" onClick={() => {this.setState({panel: 'get-details'})}}>
-                      Don't know your details?
+                  <br/>
+                  <div className="password-field">
+                    <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
+                    {/* <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" /> */}
                   </div>
-                  <button className="submit-form" type="submit" onClick={this.handleSubmit}>
-                      {
-                        this.state.loading ?
-                        <Loading /> :
-                        "Submit"
-                      }
-                  </button>
                 </div>
-
+                <div className="form-error">{this.state.error}</div>
+                <div className="small get-details" onClick={() => {this.setState({panel: 'get-details'})}}>
+                    Don't know your details?
+                </div>
+                <button className="submit-form" type="submit" onClick={this.handleSubmit}>
+                    {
+                      this.state.loading ?
+                      <Loading /> :
+                      "Submit"
+                    }
+                </button>
+              </div>
             </div>
           </>
         )
@@ -209,7 +208,7 @@ export default class Login extends Component {
           {this.renderRedirect()}
           <div className="slide">
           <div className="form-container">
-              <img src={ logo } css={mainLogo} alt="" />
+              {/* <img src={ logo } css={mainLogo} alt="" /> */}
               <div className="field-container long-field-title">
                   <div className="field-title ">
                       <strong>Enter your contact email</strong>

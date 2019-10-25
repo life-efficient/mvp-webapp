@@ -51,6 +51,8 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-image": "^1.0.2",
+    "rollup-plugin-image-files": "^1.4.2",
+    "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
@@ -62,7 +64,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "aws-amplify": "^1.2.2",
+    "aws-amplify": "^1.2.3",
     "emotion-theming": "^10.0.19",
     "query-string": "^6.8.3",
     "react-redux": "^7.1.1",

@@ -6,7 +6,8 @@ import external from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import { uglify } from "rollup-plugin-uglify";
 import packageJSON from "./package.json";
-// import image from 'rollup-plugin-image';
+// import images from 'rollup-plugin-image-files';
+import image from 'rollup-plugin-img';
 import alias from 'rollup-plugin-alias';
 
 const input = "./src/index.js";
@@ -58,10 +59,17 @@ export default [
     },
     plugins: [
       alias({
-      entries: {
-        "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/cjs/react-router-dom.js'),  // trying to solve route must be within router
-      }
-    }),
+        entries: {
+          "react-router-dom": path.resolve(__dirname, 'node_modules/react-router-dom/cjs/react-router-dom.js'),  // trying to solve route must be within router
+        }
+      }),
+      image({
+        output: `lib/imgs`, // default the root
+        extensions: /\.(png|jpg|jpeg|gif|svg)$/, // support png|jpg|jpeg|gif|svg, and it's alse the default value
+        limit: 1234568192,  // default 8192(8k)
+        exclude: 'node_modules/**'
+      }),
+      // images(),
       babel({
         exclude: "node_modules/**"
       }),
@@ -77,10 +85,17 @@ export default [
             'react-is': ['isValidElementType']
           }
         }
-    )
+      )
     ],
-    external: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'prop-types', 'styled-components'],
-
+    external: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router-dom',
+      'prop-types',
+      'aws-amplify'
+      // 'styled-components'
+    ],
   },
 ]
   // {
