@@ -9,7 +9,14 @@ const initialState = () => {
     return {
         app: {
             name: 'MVP',
-        }
+        },
+        payment: [
+            {
+                name: 'product1',
+                price: 'price1',
+                
+            }
+        ]
     }
 }
 
