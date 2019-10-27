@@ -12,6 +12,8 @@ import queryString from "query-string"
 import styled from "@emotion/styled"
 import { jsx, css } from "@emotion/core"
 import { Form } from "../styles/forms"
+import { panel, button } from "../styles/theme"
+
 
 const passwordShow = css`
     --dim: 40px;
@@ -33,9 +35,13 @@ const mainLogo = css`
     margin: 20px auto;
 `
 
-// .password-input {
-//   display: flex;
-// }
+const password_field = css`
+  display: flex;
+  img {
+    margin-bottom: 10px !important;
+    margin-left: 10px !important;
+  }
+`
 
 // .form-error {
 //     box-shadow: none;
@@ -156,7 +162,7 @@ export default class Login extends Component {
         return (
           <>
           {this.renderRedirect()}
-            <div className="slide">
+            <div css={panel}>
               <div css={Form} className="form-container">
                 {/* <img src={ logo } css={mainLogo} alt="" /> */}
                 <div className="field-container long-field-title">
@@ -169,17 +175,16 @@ export default class Login extends Component {
                   <div className="field-title">
                     <strong>Password</strong>
                   </div>
-                  <br/>
-                  <div className="password-field">
+                  <div css={password_field}>
                     <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                    {/* <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" /> */}
+                    <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
                   </div>
                 </div>
                 <div className="form-error">{this.state.error}</div>
-                <div className="small get-details" onClick={() => {this.setState({panel: 'get-details'})}}>
+                <div css={{textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
                     Don't know your details?
                 </div>
-                <button className="submit-form" type="submit" onClick={this.handleSubmit}>
+                <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
                     {
                       this.state.loading ?
                       <Loading /> :

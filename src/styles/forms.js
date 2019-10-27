@@ -21,11 +21,13 @@ export const Form = css`
         margin-bottom: 10px;
 
         text-align: justify;
-        padding: 5px 10px;
+        padding: 5px 5px;
         border-radius: ${theme.radius};
 
         border-radius: 0px;
         border-width: 0 0 2px 0;
+        border-color: black;
+        background-color: transparent;
     }
 
     

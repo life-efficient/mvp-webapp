@@ -10,21 +10,39 @@ export const breakpoints = [576, 768, 992, 1200].map(
 )
 
 export const button = css`
-    border: 0;
-    box-shadow: var(--shadow);
-    border-radius: 3px;
-    border: yo;
-    background-color: var(--color2);
-    background-color: $primar;
-    font-family: var(--font2);
-    color: var(--color1);
-    padding: 15px;
+  border: 0;
+  box-shadow: var(--shadow);
+  border-radius: 3px;
+  border: yo;
+  background-color: var(--color2);
+  background-color: $primar;
+  font-family: var(--font2);
+  color: var(--color1);
+  padding: 15px;
 `
 
 export const core = css`
-    a:link {text-decoration: none}
-    a:link { color: black;text-decoration: none; }
-    a​:visited {  color: black; text-decoration: none;}
-    a​:hover {  color: black; }
-    a { color: black;}
+  a:link {text-decoration: none}
+  a:link { color: black;text-decoration: none; }
+  a​:visited {  color: black; text-decoration: none;}
+  a​:hover {  color: black; }
+  a { color: black;}
+`
+
+export const panel = css`
+  font-family: var(--font1);
+  width: 100%;
+  background: linear-gradient(var(--secondary), var(--secondary_grad));
+  margin: 20px auto;
+  width: 80vw;
+  max-width: 400px;
+  border-radius: 3px;
+  padding: 20px;
+    
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color2);
 `

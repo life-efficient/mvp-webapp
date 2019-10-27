@@ -4,12 +4,13 @@ import React from "react"
 import styled from "@emotion/styled";
 import { jsx, css } from "@emotion/core"
 import { font, primaryColors, shape } from "styles/styles";
+import * as rs from "react-spinners"
 
 const container = css`
     ${primaryColors}
     border-radius: 30px;
     padding: 5px;
-    --dim: 30px;
+    --dim: 40px;
     width: var(--dim);
     height: var(--dim);
     margin-top: 10px;
@@ -17,11 +18,16 @@ const container = css`
     display: flex;
     justify-content: center;
     background-color: var(--color2);
+    align-items: center;
+    div {
+        width: 80%;
+        height: 80%;
+    }
 `
 
 const loading = css`
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-color: black;
     border-radius: 100vw;
     -webkit-animation:spin 2s linear infinite;
@@ -52,11 +58,11 @@ const Loading = (props) => {
     return (
         // <Wrapper>
         <div css={container}>
-            <div css={loading} >
-            {/* // className="loading"> */}
+            {<rs.RingLoader css={{}} size={30} sizeUnit={'px'} />}
+            {/* <div css={loading} >
                 <div css={segment}></div>
                 <div css={inner}></div>
-            </div>
+            </div> */}
         </div>
      )
 }
