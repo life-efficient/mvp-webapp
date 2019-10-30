@@ -16,7 +16,7 @@ const navbar_container = css`
     // justify-content: space-between;
     // background-color: var(--secondary) ;
     // background: linear-gradient(var(--secondary), var(--secondary_grad));
-    // color: var(--secondary) !important;
+    color: var(--color2) !important;
     // box-sizing: border-box;
     background-color: var(--color1);
 `
