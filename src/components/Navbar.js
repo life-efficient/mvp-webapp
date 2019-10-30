@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { jsx, css } from "@emotion/core"
 import { button, breakpoints } from "../styles/theme"
 import theme from "../styles/theme"
+import Button from "./Button"
 
 const navbar_container = css`
     position: relative;
@@ -81,9 +82,9 @@ var Navbar = (props) => {
                         <Link to="/" css={logo_text}>
                             {props.name}
                         </Link>
-                        <button onClick={props.action_cb} css={button}>
+                        <Button onClick={props.action_cb} css={button}>
                             {props.call_to_action ? props.call_to_action : 'Take action'}                            
-                        </button>
+                        </Button>
                     </div>
                     <div
                      css={options}

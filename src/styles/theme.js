@@ -19,6 +19,7 @@ export const button = css`
   font-family: var(--font2);
   color: var(--color1);
   padding: 15px;
+  cursor: pointer;
 `
 
 export const core = css`

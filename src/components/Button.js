@@ -16,8 +16,7 @@ class Button extends Component {
     return (
       // <button css={}>
 
-      <button
-          css={button}>
+      <button css={button}>
         {/* State: {JSON.stringify(this.props.state)} */}
         {/* Props: {JSON.stringify(this.props)} */}
         App name: {this.props.state.app.name}

@@ -26,6 +26,7 @@ const passwordShow = css`
     display: inline-block;
     vertical-align: center;
     padding: 0;
+    cursor: pointer;
 `
 const mainLogo = css`
     --logo-dim: 40px;
@@ -69,7 +70,8 @@ export default class Login extends Component {
       panel: "login",
       user: null,
       loading: false,
-      error: null
+      error: null,
+      email: ''
     };
   }
 
@@ -96,48 +98,56 @@ export default class Login extends Component {
     this.setState({loading: true})
     console.log('submitting')
     event.preventDefault();
-    try {
-      var user = await Auth.signIn(
-        this.state.username,
-        this.state.password
-      )
-      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-          this.setState({panel: "changePassword"})
-      }
-      else {
-        this.props.dispatchLogin()
-        console.log(this.props.logged_in)
-        Auth.currentSession()
-        .then(
-          data => {
-            // console.log('session data:', user)
+    switch(this.state.panel) {
+      case 'login': 
+        try {
+          var user = await Auth.signIn(
+            this.state.username,
+            this.state.password
+          )
+          if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+              this.setState({panel: "changePassword"})
           }
-        )
-        this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'},
-          () => {
-              console.log('redirected')
+          else {
+            this.props.dispatchLogin()
+            console.log(this.props.logged_in)
+            Auth.currentSession()
+            .then(
+              data => {
+                // console.log('session data:', user)
+              }
+            )
+            this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'},
+              () => {
+                  console.log('redirected')
+              }
+            )
           }
-        )
+        } 
+        catch (err) {
+        //   if (err.code === 'UserNotConfirmedException') {
+        //     // The error happens if the user didn't finish the confirmation step when signing up
+        //     // In this case you need to resend the code and confirm the user
+        //     // About how to resend the code and confirm the user, please check the signUp part
+        // } else if (err.code === 'PasswordResetRequiredException') {
+        //     // The error happens when the password is reset in the Cognito console
+        //     // In this case you need to call forgotPassword to reset the password
+        //     // Please check the Forgot Password part.
+        // } else if (err.code === 'NotAuthorizedException') {
+        //     // The error happens when the incorrect password is provided
+        // } else if (err.code === 'UserNotFoundException') {
+        //     // The error happens when the supplied username/email does not exist in the Cognito user pool
+        // } else {
+            this.setState({error: 'Incorrect username or password'})
+            console.log(err);
+        // }
+        }
+        this.setState({loading: false})
+        return
+      case 'get-details':
+        console.log('submitting email')
+        return
       }
-    } catch (err) {
-    //   if (err.code === 'UserNotConfirmedException') {
-    //     // The error happens if the user didn't finish the confirmation step when signing up
-    //     // In this case you need to resend the code and confirm the user
-    //     // About how to resend the code and confirm the user, please check the signUp part
-    // } else if (err.code === 'PasswordResetRequiredException') {
-    //     // The error happens when the password is reset in the Cognito console
-    //     // In this case you need to call forgotPassword to reset the password
-    //     // Please check the Forgot Password part.
-    // } else if (err.code === 'NotAuthorizedException') {
-    //     // The error happens when the incorrect password is provided
-    // } else if (err.code === 'UserNotFoundException') {
-    //     // The error happens when the supplied username/email does not exist in the Cognito user pool
-    // } else {
-        this.setState({error: 'Incorrect username or password'})
-        console.log(err);
-    // }
-    }
-    this.setState({loading: false})
   }
 
   showPassword = () => {
@@ -157,7 +167,9 @@ export default class Login extends Component {
   getPanel = () => {
     // console.log(this.state)
     console.log('login props:', this.props)
-    switch (this.state.panel) {
+
+    // switch (this.state.panel) {
+    switch ('get-details') {
       case "login":
         return (
           <>
@@ -181,7 +193,7 @@ export default class Login extends Component {
                   </div>
                 </div>
                 <div className="form-error">{this.state.error}</div>
-                <div css={{textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
+                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
                     Don't know your details?
                 </div>
                 <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
@@ -204,23 +216,57 @@ export default class Login extends Component {
               }
             )
         }
-        console.log('user:', this.state.user)
-        return this.state.user ? <ChangePassword user={this.state.user} from={this.props.location.state ? this.props.location.state.from : null}/> : null
+        // return this.state.user ? <ChangePassword user={this.state.user} from={this.props.location.state ? this.props.location.state.from : null}/> : null
+        return (
+          <>
+          {this.renderRedirect()}
+            <div css={panel}>
+              <div css={Form} className="form-container">
+                {/* <img src={ logo } css={mainLogo} alt="" /> */}
+                <div className="field-container long-field-title">
+                    <div className="field-title ">
+                        <strong>Username</strong>
+                    </div>
+                    <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
+                </div>
+                <div className="field-container ">
+                  <div className="field-title">
+                    <strong>Password</strong>
+                  </div>
+                  <div css={password_field}>
+                    <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
+                    <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
+                  </div>
+                </div>
+                <div className="form-error">{this.state.error}</div>
+                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
+                    Don't know your details?
+                </div>
+                <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
+                    {
+                      this.state.loading ?
+                      <Loading /> :
+                      "Submit"
+                    }
+                </button>
+              </div>
+            </div>
+          </>
+        )
       case "get-details":
         return (
           <>
-
           {this.renderRedirect()}
-          <div className="slide">
-          <div className="form-container">
-              {/* <img src={ logo } css={mainLogo} alt="" /> */}
-              <div className="field-container long-field-title">
-                  <div className="field-title ">
-                      <strong>Enter your contact email</strong>
-                  </div>
-                  <input className="text-response" prompt="email" value={this.state.username} /> 
-              </div>
-                <button className="submit-form" onClick={this.handleSubmit}>
+            <div css={panel}>
+              <div css={Form} className="form-container">
+                {/* <img src={ logo } css={mainLogo} alt="" /> */}
+                <div className="field-container long-field-title">
+                    <div className="field-title ">
+                        <strong>Email</strong>
+                    </div>
+                    <input type="text" id="email" value={this.state.email} className="text-response" placeholder="" onChange={ this.handleChange }/>
+                </div>
+                <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
                     {
                       this.state.loading ?
                       <Loading /> :
@@ -228,10 +274,9 @@ export default class Login extends Component {
                     }
                 </button>
               </div>
-          </div>
+            </div>
           </>
         )
-
       default:
         return null
     }
