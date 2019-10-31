@@ -18,9 +18,17 @@ export default (props) => {
         font-family: var(--font1);
         align-items: center;
     `
-    return (
-        <div css={style}>
-            {props.inner}
-        </div>
-    )
+
+    switch (props.op) {
+        case 'sass':
+            return (
+                'YO'
+            )
+        default:
+            return (
+                <div css={style}>
+                    {props.inner}
+                </div>
+            )
+    }
 }
