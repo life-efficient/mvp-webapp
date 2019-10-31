@@ -1,7 +1,7 @@
 import React from "react"
 import { css } from "@emotion/core";
 // import "./AnimatedBackground.css"
-import { bkgd, squares } from "../styles/background"
+import { squares } from "../styles/background"
 
 export default (props) => {
     const bkgd = css`
@@ -19,7 +19,7 @@ export default (props) => {
         height: 100vh;
         box-sizing: border-box;
         z-index: 0;
-        // overflow: hidden;
+        overflow: auto;
     `
     switch(props.option) {
         case 'squares':
