@@ -30,7 +30,7 @@ export const button = css`
   }
 
   :active {
-    transform: scale(0.8)
+    transform: scale(0.9)
   }
 `
 

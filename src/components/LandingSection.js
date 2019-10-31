@@ -9,14 +9,34 @@ export default (props) => {
         flex-direction: column;
         justify-content: center;
         overflow-x: hidden;
-        // padding: 0 10px; 
+        padding: 0 40px; 
+        text-align: center;
         box-sizing: border-box;
         position: sticky;
         position: -webkit-sticky;
-        background-color: ${props.color ? props.color : 'var(--color2)'};
-        background: ${props.color ? props.color : 'linear-gradient(var(--color2), var(--color2g))'};
+        background: ${props.idx ?
+                        props.idx % 2 == 0 ? 'transparent' : 'linear-gradient(var(--color2), var(--color2g))'
+                        :
+                        'transparent'
+                    };
         font-family: var(--font1);
         align-items: center;
+        > div, button {
+            margin-top: 30px;
+        }
+
+        .hero-img {
+            position: absolute;
+            padding: 0;
+            min-height: 100%;
+            min-width: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/hero.jpg");
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
     `
 
     switch (props.op) {

@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { font, primaryColors, shape } from "styles/styles";
 import { connect } from "react-redux"
 import { button } from "../styles/theme"
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.button`
   ${font}
@@ -13,6 +14,13 @@ const Wrapper = styled.button`
 
 class Button extends Component {
   render() {
+    if (this.props.to) {
+      return (
+        <Link to={this.props.to} css={button}>
+          {this.props.text}
+        </Link>
+      )
+    }
     return (
       // <button css={}>
 
