@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { font, primaryColors, shape } from "styles/styles";
-import { connect } from "react-redux"
 import { button } from "../styles/theme"
 import { Link } from "react-router-dom";
 
@@ -14,18 +13,20 @@ const Wrapper = styled.button`
 
 class Button extends Component {
   render() {
+    const text = this.props.text ? this.props.text : 'Pass a "text" prop to the Button!'
+    const onClick = this.props.onClick ? this.props.onClick : () => {alert('Pass an "onClick" prop to the button!')}
     if (this.props.to) {
       return (
         <Link to={this.props.to} css={button}>
-          {this.props.text}
+          {text}
         </Link>
       )
     }
     return (
       // <button css={}>
 
-      <button css={button} onClick={this.props.onClick}>
-        {this.props.text}
+      <button css={button} onClick={onClick}>
+        {text}
       </button>
     )
   }
