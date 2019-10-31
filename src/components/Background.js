@@ -18,7 +18,7 @@ export default (props) => {
         width: 100vw;
         height: 100vh;
         box-sizing: border-box;
-        z-index: ${props.test ? '-1': '0'};
+        z-index: ${props.test ? '0': '-1'};
         overflow-x: auto;
     `
     switch(props.option) {
