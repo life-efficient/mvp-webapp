@@ -18,8 +18,8 @@ export default (props) => {
         width: 100vw;
         height: 100vh;
         box-sizing: border-box;
-        z-index: 0;
-        overflow: auto;
+        z-index: ${props.test ? '-1': '0'};
+        overflow-x: auto;
     `
     switch(props.option) {
         case 'squares':
