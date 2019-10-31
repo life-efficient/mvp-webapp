@@ -19,7 +19,7 @@ export default (props) => {
         height: 100vh;
         box-sizing: border-box;
         z-index: ${props.test ? '0': '-1'};
-        overflow-x: auto;
+        overflow-x: hidden;
     `
     switch(props.option) {
         case 'squares':
