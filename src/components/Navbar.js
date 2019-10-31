@@ -19,6 +19,7 @@ const navbar_container = css`
     color: var(--color2) !important;
     // box-sizing: border-box;
     background-color: var(--color1);
+    z-index: 1;
 `
 
 const navbar = {
