@@ -16,15 +16,8 @@ class Button extends Component {
     return (
       // <button css={}>
 
-      <button css={button}>
-        {/* State: {JSON.stringify(this.props.state)} */}
-        {/* Props: {JSON.stringify(this.props)} */}
-        App name: {this.props.state.app.name}
-        {/* {window.maintheme.yo}
-        <div css={this.props.theme}>
-          yo
-        </div>
-        {JSON.stringify(Object.keys(this.props))} */}
+      <button css={button} onClick={this.props.onClick}>
+        {this.props.text}
       </button>
     )
   }
