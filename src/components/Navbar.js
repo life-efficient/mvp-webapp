@@ -91,10 +91,13 @@ var Navbar = (props) => {
                      css={options}
                      >
                         {
+                            props.links ?
                             props.links 
                             .map(
                                 (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
                             )
+                            :
+                            null
                         }
                     </div>
                 </div>
