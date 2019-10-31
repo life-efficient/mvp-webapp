@@ -67,7 +67,7 @@ export default [
         output: `lib/imgs`, // default the root
         extensions: /\.(png|jpg|jpeg|gif|svg)$/, // support png|jpg|jpeg|gif|svg, and it's alse the default value
         limit: 1234568192,  // default 8192(8k)
-        exclude: 'node_modules/**'
+        exclude: ['node_modules/**']
       }),
       // images(),
       babel({
