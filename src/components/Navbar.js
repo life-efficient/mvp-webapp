@@ -34,9 +34,9 @@ const navbar = {
 }
 
 const options = css`
-    width: 100%;
+    width: 60%;
     height: 4vh;
-    margin: auto;
+    margin: 20%;
     display: flex;
     flex-direction: row;
     position: absolute;
@@ -45,13 +45,13 @@ const options = css`
     font-family: var(--font1);
     margin-top: 8vh;
     justify-content: space-between;
-    background-color: black;
+    background-color: transparent;
     top: 0vh;
+    // z-index: -1;
 
     ${breakpoints[0]} {
         margin-top: 0vh;
         height: 100%;
-        background-color: transparent;
         justify-content: center;
     }
 `
@@ -65,6 +65,7 @@ const option = css`
     align-items: center;
     color: var(--color2) !important;
     max-width: 100px;
+    z-index: 1;
 `
 
 const logo_text = css`
@@ -84,15 +85,13 @@ var Navbar = (props) => {
                         <Link to="/" css={logo_text}>
                             {props.name}
                         </Link>
-                        <Button onClick={props.action_cb} css={button}>
-                            {props.call_to_action ? props.call_to_action : 'Take action'}                            
-                        </Button>
+                        <Button onClick={props.onClick} css={{zIndex: '1'}} text={props.btn}/>
                     </div>
                     <div
                      css={options}
                      >
                         {
-                            ['about', 'work', 'team']
+                            props.links 
                             .map(
                                 (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
                             )

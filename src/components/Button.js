@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
 }
 
 export default Button 
-= connect(mapStateToProps)(Button)
+// = connect(mapStateToProps)(Button)

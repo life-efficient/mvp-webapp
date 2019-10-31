@@ -23,6 +23,15 @@ export const button = css`
   min-width: 150px;
   position: relative;
   min-height: 45px;
+  transition-duration: 1s;
+
+  :focus {
+    outline: 0;
+  }
+
+  :active {
+    transform: scale(0.8)
+  }
 `
 
 export const core = css`
