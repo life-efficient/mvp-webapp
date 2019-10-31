@@ -3,23 +3,6 @@ import { hexToRgb } from "../utils"
 
 // const color2_grad = hexToRgb(   )
 
-export const bkgd = css`
-    background: var(--color1);
-    
-    background: linear-gradient(var(--color1), var(--color2));
-    width: 100%;
-    min-height: 92vh;
-    height: 100%;
-    position: absolute;
-
-    // position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
-    z-index: 0;
-    overflow: hidden;
-`
 
 export const squares = css`
     
