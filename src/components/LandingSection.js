@@ -3,7 +3,7 @@ import { css } from "@emotion/core"
 export default (props) => {
     const style = css`
         width: 100%;
-        min-height: 500px;
+        min-height: 85vh;
         position: relative;
         display: flex;
         flex-direction: column;

@@ -20,6 +20,9 @@ export const button = css`
   color: var(--color1);
   padding: 15px;
   cursor: pointer;
+  min-width: 150px;
+  position: relative;
+  min-height: 45px;
 `
 
 export const core = css`

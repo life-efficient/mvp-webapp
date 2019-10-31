@@ -1,4 +1,4 @@
-A secTion for the landing page that occupies most of the screen. By default its content is aligned centrally.
+A section for the landing page that occupies most of the screen. By default its content is aligned centrally.
 
 ```jsx
 import { LandingSection } from "react-sample-components-library";

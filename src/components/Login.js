@@ -13,6 +13,7 @@ import styled from "@emotion/styled"
 import { jsx, css } from "@emotion/core"
 import { Form } from "../styles/forms"
 import { panel, button } from "../styles/theme"
+import { Auth } from "aws-amplify"
 
 
 const passwordShow = css`
@@ -44,19 +45,6 @@ const password_field = css`
   }
 `
 
-// .form-error {
-//     box-shadow: none;
-//     color: red;
-// }
-
-// .get-details {
-//     box-shadow: none;
-//     font-size: 10px;
-//     text-decoration: underline;
-//     cursor: pointer;
-//     margin-bottom: 10px;
-// }
-
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +59,10 @@ export default class Login extends Component {
       user: null,
       loading: false,
       error: null,
-      email: ''
+      email: '',
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
     };
   }
 
@@ -106,7 +97,7 @@ export default class Login extends Component {
             this.state.password
           )
           if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-              this.setState({panel: "changePassword"})
+              this.setState({panel: "set-password"})
           }
           else {
             this.props.dispatchLogin()
@@ -147,7 +138,27 @@ export default class Login extends Component {
       case 'get-details':
         console.log('submitting email')
         return
-      }
+      case 'set-password':
+        console.log('user:', this.props.user)
+        if (this.getError() == null) {console.log(this.props.user)
+            this.setState({loading: true})
+            Auth.completeNewPassword(
+                this.props.user,
+                this.state.newPassword
+            )
+            .then(
+                () => {
+                    this.props.dispatchLogin()
+                    this.setState({redirect: this.props.from ? this.props.from : '/app/home'},
+                        () => {
+                            console.log('redirected')
+                        }
+                    )
+                }
+            )
+        }
+        return
+    }
   }
 
   showPassword = () => {
@@ -168,15 +179,13 @@ export default class Login extends Component {
     // console.log(this.state)
     console.log('login props:', this.props)
 
-    // switch (this.state.panel) {
-    switch ('get-details') {
+    switch (this.state.panel) {
       case "login":
         return (
           <>
           {this.renderRedirect()}
             <div css={panel}>
               <div css={Form} className="form-container">
-                {/* <img src={ logo } css={mainLogo} alt="" /> */}
                 <div className="field-container long-field-title">
                     <div className="field-title ">
                         <strong>Username</strong>
@@ -207,7 +216,7 @@ export default class Login extends Component {
             </div>
           </>
         )
-      case "changePassword":
+      case "set-password":
         if (!this.state.user) {
             var user = Auth.signIn(this.state.username, this.state.password)
             .then(
@@ -216,39 +225,36 @@ export default class Login extends Component {
               }
             )
         }
-        // return this.state.user ? <ChangePassword user={this.state.user} from={this.props.location.state ? this.props.location.state.from : null}/> : null
         return (
           <>
-          {this.renderRedirect()}
+            {this.renderRedirect()}
             <div css={panel}>
               <div css={Form} className="form-container">
-                {/* <img src={ logo } css={mainLogo} alt="" /> */}
-                <div className="field-container long-field-title">
+                  <div className="field-container long-field-title">
                     <div className="field-title ">
-                        <strong>Username</strong>
+                        <strong>New password</strong>
                     </div>
-                    <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
-                </div>
-                <div className="field-container ">
-                  <div className="field-title">
-                    <strong>Password</strong>
+                    <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
                   </div>
-                  <div css={password_field}>
-                    <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                    <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
+                  <div className="field-container long-field-title">
+                    <div className="field-title">
+                        <strong>Confirm new password</strong>
+                    </div>
+                      <div css={password_field}>
+                        <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
+                        <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
+                      </div>
                   </div>
-                </div>
-                <div className="form-error">{this.state.error}</div>
-                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
-                    Don't know your details?
-                </div>
-                <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
+                  <div className='error'>
+                      {this.getError()}
+                  </div>
+                  <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
                     {
                       this.state.loading ?
                       <Loading /> :
                       "Submit"
                     }
-                </button>
+                  </button>
               </div>
             </div>
           </>
@@ -270,7 +276,7 @@ export default class Login extends Component {
                     {
                       this.state.loading ?
                       <Loading /> :
-                      "Send verification code"
+                      "Send verification email"
                     }
                 </button>
               </div>
@@ -280,6 +286,16 @@ export default class Login extends Component {
       default:
         return null
     }
+  }
+
+  getError = () => {
+    if ( ! (this.state.newPassword === this.state.confirmNewPassword) ) {
+        return "Passwords must match"
+    }
+    else if (this.state.newPassword.length < 8) {
+        return "Password should be longer"
+    }
+    else return null
   }
 
   render() {

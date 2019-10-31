@@ -30,6 +30,11 @@ export const Form = css`
         background-color: transparent;
     }
 
-    
+    .error {
+        font-size: 16px;
+        padding-bottom: 10px;
+        color: red;
+        font-weight: 900;
+    }
 
 `
