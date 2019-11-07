@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Component } from "react";
 // import "./Login.css";
-// import logo from "../images/logo.png"
+import logo from "../images/logo.png"
 import eye from "../images/see-icon.png"
 // import { connect } from "react-redux"
 // import { Auth } from "aws-amplify"
@@ -184,7 +184,6 @@ export default class Login extends Component {
         return (
           <>
           {this.renderRedirect()}
-            <div css={panel}>
               <div css={Form} className="form-container">
                 <div className="field-container long-field-title">
                     <div className="field-title ">
@@ -215,7 +214,6 @@ export default class Login extends Component {
                     }
                 </button>
               </div>
-            </div>
           </>
         )
       case "set-password":
@@ -230,7 +228,6 @@ export default class Login extends Component {
         return (
           <>
             {this.renderRedirect()}
-            <div css={panel}>
               <div css={Form} className="form-container">
                   <div className="field-container long-field-title">
                     <div className="field-title ">
@@ -258,7 +255,6 @@ export default class Login extends Component {
                     }
                   </button>
               </div>
-            </div>
           </>
         )
       case "get-details":
@@ -304,7 +300,8 @@ export default class Login extends Component {
     return (
       <>
       {/* <Navbar /> */}
-          <div className="panel" >
+          <div css={panel} >
+            <img src={logo} style={{height: '100px', margin: '40px'}} alt=""/>
           {/* // style={{backgroundColor: 'var(--green)', width: '400px', margin: 'auto', padding: '20px'}}> */}
             {this.getPanel()}
           </div>

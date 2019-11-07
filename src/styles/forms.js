@@ -10,7 +10,6 @@ export const Form = css`
         background-color: white;
         width: 100%;
         box-sizing: border-box;
-        box-shadow: var(--shadow);
 
         font-family: var(--font3);
         font-size: var(--small);
