@@ -25,7 +25,7 @@ class Modal extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log(state.modal)
+    console.log(state.modal)
     return {
         modalOpen: state.modal.open,
         content: state.modal.content

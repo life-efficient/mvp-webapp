@@ -36,10 +36,10 @@ export const button = css`
 
 export const core = css`
   a:link {text-decoration: none}
-  a:link { color: black;text-decoration: none; }
-  a​:visited {  color: black; text-decoration: none;}
-  a​:hover {  color: black; }
-  a { color: black;}
+  a:link { color: var(--textColor); text-decoration: none; }
+  a​:visited {  color: var(--textColor); text-decoration: none;}
+  a​:hover {  color: var(--textColor); }
+  a { color: var(--textColor);}
 `
 
 export const panel = css`
