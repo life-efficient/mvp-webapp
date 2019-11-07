@@ -300,7 +300,7 @@ class Login extends Component {
       <>
       {/* <Navbar /> */}
           <div css={panel} >
-            <img src={this.props.logo} style={{height: '100px', margin: '40px'}} alt=""/>
+            <img src={this.props.logo} style={{height: '200px', margin: '40px'}} alt=""/>
           {/* // style={{backgroundColor: 'var(--green)', width: '400px', margin: 'auto', padding: '20px'}}> */}
             {this.getPanel()}
           </div>
