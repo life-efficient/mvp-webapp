@@ -12,6 +12,9 @@ const initialState = () => {
             name: 'MVP',
             logo
         },
+        modal: {
+            open: false
+        },
         payment: [
             {
                 name: 'product1',

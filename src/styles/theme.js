@@ -59,4 +59,9 @@ export const panel = css`
   justify-content: center;
   background-color: var(--color2);
   color: var(--color1);
+
+  > button {
+    background-color: var(--color1);
+    color: var(--color2);
+  }
 `

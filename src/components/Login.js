@@ -183,7 +183,7 @@ class Login extends Component {
         return (
           <>
           {this.renderRedirect()}
-              <div css={Form} className="form-container">
+              <div css={Form} >
                 <div className="field-container long-field-title">
                     <div className="field-title ">
                         <strong>Username</strong>
