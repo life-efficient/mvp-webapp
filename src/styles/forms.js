@@ -37,4 +37,7 @@ export const Form = css`
         font-weight: 900;
     }
 
+    .field-title {
+        float: left;
+    }
 `
