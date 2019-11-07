@@ -22,7 +22,7 @@ export const button = css`
   cursor: pointer;
   min-width: 150px;
   position: relative;
-  min-height: 45px;
+  // min-height: 45px;
   transition-duration: 1s;
 
   :focus {
