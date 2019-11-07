@@ -190,12 +190,14 @@ export default class Login extends Component {
                     <div className="field-title ">
                         <strong>Username</strong>
                     </div>
+                    <br/>
                     <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
                 </div>
                 <div className="field-container ">
                   <div className="field-title">
                     <strong>Password</strong>
                   </div>
+                  <br/>
                   <div css={password_field}>
                     <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
                     <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
