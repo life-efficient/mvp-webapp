@@ -3,12 +3,12 @@ import { css } from "@emotion/core"
 export default (props) => {
     const style = css`
         width: 100%;
-        min-height: 85vh;
+        min-height: 92vh;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        overflow-x: hidden;
+        overflow: hidden;
         padding: 0 40px; 
         text-align: center;
         box-sizing: border-box;
@@ -30,7 +30,7 @@ export default (props) => {
             padding: 0;
             min-height: 100%;
             min-width: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/hero.jpg");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../images/hero.jpg");
 
             background-position: center;
             background-repeat: no-repeat;

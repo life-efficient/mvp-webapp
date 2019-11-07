@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default (props) => {return(
     // <div>
-        <LandingSection inner={(
+        <LandingSection idx={-1} inner={(
             <>
                 <div style={{fontSize: '50px', fontWeight: '900'}}>
                     {props.heading}
