@@ -63,7 +63,6 @@ const option = css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--color2) !important;
     max-width: 100px;
     z-index: 1;
 `
@@ -72,7 +71,6 @@ const logo_text = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--color2);
     font-family: var(--font1);
     font-size: 40px;
     z-index: 1;
