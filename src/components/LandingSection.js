@@ -35,11 +35,11 @@ export default (props) => {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            z-index: -1;
+            z-index: -2;
         }
         .hero-filter {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
-            z-index: 0;
+            z-index: -1;
 
             position: absolute;
             padding: 0;
