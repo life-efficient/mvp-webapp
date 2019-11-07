@@ -45,6 +45,6 @@ export const Form = css`
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active  {
-        -webkit-box-shadow: 0 0 0 30px red inset !important;
+        -webkit-box-shadow: 0 0 0 30px var(--color2) inset !important;
     }
 `
