@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import React, { Component } from "react";
 // import "./Login.css";
-import logo from "../images/logo.png"
 import eye from "../images/see-icon.png"
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
 // import { Auth } from "aws-amplify"
 import { Redirect } from "react-router-dom"
 import ChangePassword from "./ChangePassword"
@@ -45,7 +44,7 @@ const password_field = css`
   }
 `
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     var params = queryString.parse(window.location.search)
@@ -301,7 +300,7 @@ export default class Login extends Component {
       <>
       {/* <Navbar /> */}
           <div css={panel} >
-            <img src={logo} style={{height: '100px', margin: '40px'}} alt=""/>
+            <img src={this.props.logo} style={{height: '100px', margin: '40px'}} alt=""/>
           {/* // style={{backgroundColor: 'var(--green)', width: '400px', margin: 'auto', padding: '20px'}}> */}
             {this.getPanel()}
           </div>
@@ -312,7 +311,8 @@ export default class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    logged_in: state.user.logged_in
+    // logged_in: state.user.logged_in,
+    logo: state.app.logo
   }
 }
 
@@ -326,4 +326,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)

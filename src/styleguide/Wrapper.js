@@ -4,11 +4,13 @@ import { createStore } from "redux"
 import { BrowserRouter as Router } from "react-router-dom"
 import { ThemeProvider } from 'emotion-theming'
 import { css, Global } from "@emotion/core"
+import logo from "../images/external/logo.png"
 
 const initialState = () => {
     return {
         app: {
             name: 'MVP',
+            logo
         },
         payment: [
             {
