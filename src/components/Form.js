@@ -1,7 +1,6 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
-import { css } from "@emotion/core"
 import Button from "./Button"
 
 export default class Form extends Component {
@@ -42,7 +41,7 @@ export default class Form extends Component {
                 <div css={FormStyle}>
                     <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
                         {this.props.title}
-                    </div>                    
+                    </div>
                     {
                         this.props.questions.map(
                             (q) => {
