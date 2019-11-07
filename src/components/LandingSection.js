@@ -1,4 +1,5 @@
 import { css } from "@emotion/core"
+import hero from "../images/hero.jpg"
 
 export default (props) => {
     const style = css`
@@ -30,12 +31,22 @@ export default (props) => {
             padding: 0;
             min-height: 100%;
             min-width: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../images/hero.jpg");
+
 
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             z-index: -1;
+        }
+        .hero-filter {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+            z-index: 0;
+
+            position: absolute;
+            padding: 0;
+            min-height: 100%;
+            min-width: 100%;
+            margin-top: 0;
         }
     `
 
