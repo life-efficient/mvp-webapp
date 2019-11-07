@@ -1,6 +1,7 @@
 import React from "react"
 import Fold from "./Fold"
 import LandingSection from "./LandingSection"
+import Navbar from "./Navbar"
 import { Background } from ".."
 
 export default (props) => { return (
