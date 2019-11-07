@@ -1,5 +1,4 @@
 import { css } from "@emotion/core"
-import hero from "../images/hero.jpg"
 
 export default (props) => {
     const style = css`
