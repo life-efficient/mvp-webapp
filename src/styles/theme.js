@@ -58,4 +58,5 @@ export const panel = css`
   flex-direction: column;
   justify-content: center;
   background-color: var(--color2);
+  color: var(--color1);
 `
