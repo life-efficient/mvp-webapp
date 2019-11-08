@@ -61,7 +61,6 @@ const section = css`
     }
 `
 
-
 export default class Section extends Component {
 
     render() {
