@@ -46,4 +46,8 @@ export const Form = css`
     input:-webkit-autofill:active  {
         -webkit-box-shadow: 0 0 0 30px var(--color2) inset !important;
     }
+
+    .detail {
+        font-size: 14px;
+    }
 `

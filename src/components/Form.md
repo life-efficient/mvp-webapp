@@ -21,7 +21,8 @@ import { Form } from "mvp-webapp";
                     {
                         title: 'Email',
                         type: 'text',   
-                        id: 'email'
+                        id: 'email',
+                        detail: 'Some extra detail'
                     }
                 ]}
             />

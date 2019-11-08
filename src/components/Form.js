@@ -69,6 +69,10 @@ export const TextResponse = (props) => {
                 <strong>{props.title}</strong>
             </div>
             <br/>
+            <div className="detail">
+                {props.detail}
+            </div>
+            <br/>
             <input type="text" id={props.id} value={props.value} className="text-response" placeholder="" onChange={props.handleChange}/>
         </div>
     )
