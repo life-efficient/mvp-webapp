@@ -22,6 +22,7 @@ const style = css`
     justify-content: center;
     align-items: center;
     transition: 0.5s;
+    color: var(--color1);
 
     img {
         height: 100px;
