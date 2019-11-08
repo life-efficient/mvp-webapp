@@ -69,7 +69,7 @@ export const TextResponse = (props) => {
                 <strong>{props.title}</strong>
             </div>
             <br/>
-            <div className="detail">
+            <div className="field-title detail">
                 {props.detail}
             </div>
             <br/>
