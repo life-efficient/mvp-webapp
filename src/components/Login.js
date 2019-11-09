@@ -202,8 +202,13 @@ class Login extends Component {
                   </div>
                 </div>
                 <div className="form-error">{this.state.error}</div>
-                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px'}} onClick={() => {this.setState({panel: 'get-details'})}}>
+                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px', display: 'flex', justifyContent: 'space-between'}}>
+                  <div onClick={() => {this.setState({panel: 'get-details'})}}>
                     Don't know your details?
+                  </div>
+                  <div onClick={() => {this.setState({panel: 'redirect-to-signup'})}}>
+                    Sign up
+                  </div>
                 </div>
                 <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
                     {
@@ -280,6 +285,8 @@ class Login extends Component {
             </div>
           </>
         )
+      case 'redirect-to-signup':
+        return <Redirect to="/signup" />
       default:
         return null
     }

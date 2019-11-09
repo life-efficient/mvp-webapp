@@ -27,6 +27,7 @@ const style = css`
 
     img {
         height: 100px;
+        margin: 20px;
     }
 
 `
