@@ -12,22 +12,30 @@ export default class Form extends Component {
         // need to assert that the questions prop contains either ONLY lists or objects
         // need to assert that the list of onSubmits is the same as the number of slides
 
-        var question_slides = this.props.questions
-        if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
-            question_slides = [question_slides]                           // if not, then we need to put that list of dicts into a list to make it a list of lists of dicts
+        var question_ids = {}
+        for (var s of this.props.slides) {
+            console.log('S:', s)
+            s.questions.map((q) => {
+                question_ids[q.id] = q.default ? q.default : ''
+            })
         }
-        this.question_slides = question_slides
+        this.state = {...question_ids, slide_idx: 0}
+        // var question_slides = this.props.questions
+        // if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
+        //     question_slides = [question_slides]                           // if not, then we need to put that list of dicts into a list to make it a list of lists of dicts
+        // }
+        // this.question_slides = question_slides
 
-        this.state = props.questions ?
-            props.questions.reduce(
-                (acc, curr) => {return {...acc, ...curr.reduce(
-                    (qs, q) => {return {...qs, [q.id]: q.default ? q.default : ''}},
-                    {...acc}
-                )}},
-                {slide_idx: 0}
-            )
-            :
-            {}
+        // this.state = props.questions ?
+        //     props.questions.reduce(
+        //         (acc, curr) => {return {...acc, ...curr.reduce(
+        //             (qs, q) => {return {...qs, [q.id]: q.default ? q.default : ''}},
+        //             {...acc}
+        //         )}},
+        //         {slide_idx: 0}
+        //     )
+        //     :
+        //     {}
     }
 
     handleChange = (e) => {
@@ -40,7 +48,7 @@ export default class Form extends Component {
     }
 
     validate = () => {
-        for (var q in this.question_slides[this.state.slide_idx]) {
+        for (var q in this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
         }
         return true
@@ -50,14 +58,14 @@ export default class Form extends Component {
         if (this.validate()) {
             console.log('slide idx', this.state.slide_idx)
 
-            this.props.onSubmit[this.state.slide_idx](this.state)
+            this.props.slides[this.state.slide_idx].onSubmit(this.state)
             this.setState({slide_idx: this.state.slide_idx + 1})
         }
     }
 
     render () {
         console.log('STATE:', this.state)
-        if (this.state.slide_idx > this.question_slides.length - 1) {
+        if (this.state.slide_idx > this.props.slides.length - 1) {
             return <Redirect to={this.props.redirect}/>
         }
         var handleChange = this.handleChange
@@ -69,19 +77,19 @@ export default class Form extends Component {
             <>
             <div css={panel} style={{display: 'flex', flexDirection: 'row', overflow: 'hidden', justifyContent: 'left', padding: '20px'}}>
                 {
-                    question_slides.map((qs) => {              // map question slides to that form slide
-                        console.log('question slide:', qs)
+                    this.props.slides.map((s) => {              // map question slides to that form slide
+                        console.log('question slide:', s)
                         return <>  
                         <div style={{minWidth: '100%', padding: '0px', transform: `translateX(-${100 * this.state.slide_idx}%)`, transitionDuration: '0.5s', paddingRight: '20px'}}>
                             <div css={FormStyle} >
                                 <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
-                                    {qs.title}
+                                    {s.title}
                                     <div className='detail'>
-                                        {qs.subtitle}
+                                        {s.subtitle}
                                     </div>
                                 </div>
                                 {
-                                    qs.map((q) => {                         // map question slide (list of objects) to the questions
+                                    s.questions.map((q) => {                         // map question slide (list of objects) to the questions
                                         q = {...q, handleChange, handleOptionChange}
                                         switch (q.type) {
                                             case "text":
@@ -94,7 +102,7 @@ export default class Form extends Component {
                                     })
                                 }
                                 <div className='detail'>
-                                    {qs.detail}
+                                    {s.detail}
                                 </div>
                                 <Button text='Submit' onClick={this.submit} />
                             </div>
