@@ -149,10 +149,10 @@ class Login extends Component {
           <>
           {this.renderRedirect()}
           <Form title='Log in' 
-            onSubmit={ async (event) => { 
+            onSubmit={[ async (event) => { 
               r = await Auth.signIn(event.email, event.password)
               console.log('response:', r)
-            }}
+            }]}
             questions={[
               {
                 title: 'Email',
@@ -162,19 +162,18 @@ class Login extends Component {
               {
                 title: 'Password',
                 type: 'password',
-                id: 'password'
+                id: 'password',
+                detail: <div style={{textDecoration: 'underline', cursor: 'pointer', display: 'flex', justifyContent: 'space-between'}}>
+                    <div onClick={()=>{this.setState({panel:'get-details'})}}>
+                      Forgot your details?
+                    </div>
+                    <div onClick={()=>{this.setState({panel:'redirect'})}}>
+                      Sign up
+                    </div>
+                  </div>
               }
             ]} 
-            detail={
-              <div style={{textDecoration: 'underline', cursor: 'pointer', display: 'flex', justifyContent: 'space-between'}}>
-                <div onClick={()=>{this.setState({panel:'get-details'})}}>
-                  Forgot your details?
-                </div>
-                <div onClick={()=>{this.setState({panel:'redirect'})}}>
-                  Sign up
-                </div>
-              </div>
-            }/>
+            />
           </>
         )
       // case "set-password":
