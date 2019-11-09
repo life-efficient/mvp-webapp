@@ -3,6 +3,7 @@ import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
+import { Redirect } from "react-router-dom"
 
 export default class Form extends Component {
     constructor(props) {
@@ -56,15 +57,19 @@ export default class Form extends Component {
 
     render () {
         console.log('STATE:', this.state)
+        if (this.state.slide_idx > this.question_slides.length - 1) {
+            return <Redirect to={this.props.redirect}/>
+        }
         var handleChange = this.handleChange
         var handleOptionChange = this.handleOptionChange
 
         var question_slides = this.question_slides
         console.log('All question slides:', question_slides)
         return (
+            <>
             <div css={panel} style={{display: 'flex', flexDirection: 'row', overflow: 'hidden', justifyContent: 'left', padding: '20px'}}>
                 {
-                    question_slides.map((qs, idx) => {              // map question slides to that form slide
+                    question_slides.map((qs) => {              // map question slides to that form slide
                         console.log('question slide:', qs)
                         return <>  
                         <div style={{minWidth: '100%', padding: '0px', transform: `translateX(-${100 * this.state.slide_idx}%)`, transitionDuration: '0.5s', paddingRight: '20px'}}>
@@ -98,6 +103,7 @@ export default class Form extends Component {
                     })
                 }
             </div>
+            </>
         )
     }
 }
