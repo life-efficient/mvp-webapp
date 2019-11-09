@@ -3,7 +3,6 @@ import React, { Component } from "react";
 // import "./Login.css";
 import eye from "../images/see-icon.png"
 import { connect } from "react-redux"
-// import { Auth } from "aws-amplify"
 import { Redirect } from "react-router-dom"
 import ChangePassword from "./ChangePassword"
 import Loading from "./Loading"
@@ -91,7 +90,8 @@ class Login extends Component {
       this.setState({panel: 'login-code'})
     }
     catch (err) {
-      console.log(err)
+      console.log('ERROR:', err)
+      console.log(err.code)
       if (err.code === 'UserNotFoundException')
         this.setState({error: 'Account not found, try signing up first'})
     }
