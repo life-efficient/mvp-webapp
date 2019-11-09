@@ -62,6 +62,7 @@ export default class Form extends Component {
             if (ok !== false) {
                 console.log('both internal and external validation successful')
                 this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
+            }
         }
     }
 
