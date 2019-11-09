@@ -23,6 +23,7 @@ const style = css`
     align-items: center;
     transition: 0.5s;
     color: var(--color1);
+    border-radius: var(--radius);
 
     img {
         height: 100px;
