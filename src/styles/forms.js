@@ -40,6 +40,7 @@ export const Form = css`
         float: left;
     }
 
+    padding: 10px 20px;
     input:-webkit-autofill,
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
@@ -61,17 +62,17 @@ export const Form = css`
         }
 
         img {
-    --dim: 40px;
-    width: var(--dim);
-    height: var(--dim);
-    min-height:var(--dim);
-    min-width: var(--dim);
-    margin: auto;
-    background-color: transparent;
-    display: inline-block;
-    vertical-align: center;
-    padding: 0;
-    cursor: pointer;
+            --dim: 40px;
+            width: var(--dim);
+            height: var(--dim);
+            min-height:var(--dim);
+            min-width: var(--dim);
+            margin: auto;
+            background-color: transparent;
+            display: inline-block;
+            vertical-align: center;
+            padding: 0;
+            cursor: pointer;
         }
     }
 `
