@@ -78,4 +78,9 @@ export const Form = css`
     > .form {
         padding: 0px;
     }
+    
+  > button {
+    background-color: var(--color1);
+    color: var(--color2);
+  }
 `

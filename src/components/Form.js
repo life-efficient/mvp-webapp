@@ -7,10 +7,23 @@ import eye from "../images/see-icon.png"
 export default class Form extends Component {
     constructor(props) {
         super(props)
+
+        // need to assert that the questions prop contains either ONLY lists or objects
+        // need to assert that the list of onSubmits is the same as the number of slides
+
+        var question_slides = this.props.questions
+        if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
+            question_slides = [question_slides]                           // if not, then we need to put that list of dicts into a list to make it a list of lists of dicts
+        }
+        this.question_slides = question_slides
+
         this.state = props.questions ?
             props.questions.reduce(
-                (acc, curr) => {return {...acc, [curr.id]: curr.default ? curr.default : ''}},
-                {}
+                (acc, curr) => {return {...acc, ...curr.reduce(
+                    (qs, q) => {return {...qs, [q.id]: q.default ? q.default : ''}},
+                    {...acc}
+                )}},
+                {slide_idx: 0}
             )
             :
             {}
@@ -26,46 +39,64 @@ export default class Form extends Component {
     }
 
     validate = () => {
+        for (var q in this.question_slides[this.state.slide_idx]) {
+            console.log('verifying:', q)
+        }
         return true
     }
 
     submit = () => {
-        if (this.validate()) this.props.onSubmit(this.state)
+        if (this.validate()) {
+            console.log('slide idx', this.state.slide_idx)
+
+            this.props.onSubmit[this.state.slide_idx](this.state)
+            this.setState({slide_idx: this.state.slide_idx + 1})
+        }
     }
 
     render () {
         console.log('STATE:', this.state)
         var handleChange = this.handleChange
         var handleOptionChange = this.handleOptionChange
+
+        var question_slides = this.question_slides
+        console.log('All question slides:', question_slides)
         return (
-            <div css={panel} >
-                <div css={FormStyle}>
-                    <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
-                        {this.props.title}
-                        <div className='detail'>
-                            {this.props.subtitle}
-                        </div>
-                    </div>
-                    {
-                        this.props.questions.map(
-                            (q) => {
-                                q = {...q, handleChange, handleOptionChange}
-                                switch (q.type) {
-                                    case "text":
-                                        return <TextResponse {...q} />
-                                    case "password":
-                                        return <Password {...q} />
-                                    case "dropdown":
-                                        null
+            <div css={panel} style={{display: 'flex', flexDirection: 'row', overflow: 'hidden', justifyContent: 'left', padding: '20px'}}>
+                {
+                    question_slides.map((qs, idx) => {              // map question slides to that form slide
+                        console.log('question slide:', qs)
+                        return <>  
+                        <div style={{minWidth: '100%', padding: '0px', transform: `translateX(-${100 * this.state.slide_idx}%)`, transitionDuration: '0.5s', paddingRight: '20px'}}>
+                            <div css={FormStyle} >
+                                <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
+                                    {qs.title}
+                                    <div className='detail'>
+                                        {qs.subtitle}
+                                    </div>
+                                </div>
+                                {
+                                    qs.map((q) => {                         // map question slide (list of objects) to the questions
+                                        q = {...q, handleChange, handleOptionChange}
+                                        switch (q.type) {
+                                            case "text":
+                                                return <TextResponse {...q} />
+                                            case "password":
+                                                return <Password {...q} />
+                                            case "dropdown":
+                                                null
+                                        }
+                                    })
                                 }
-                            }
-                        )
-                    }
-                    <div className='detail'>
-                        {this.props.detail}
-                    </div>
-                </div>
-                <Button text='Submit' onClick={this.submit} />
+                                <div className='detail'>
+                                    {qs.detail}
+                                </div>
+                                <Button text='Submit' onClick={this.submit} />
+                            </div>
+                        </div>
+                        </>
+                    })
+                }
             </div>
         )
     }
