@@ -48,6 +48,30 @@ export const Form = css`
     }
 
     .detail {
-        font-size: 14px;
+        font-size: 13px;
+        padding-bottom: 10px;
+        font-weight: 300
+    }
+  
+    .password {
+        display: flex;
+        img {
+            margin-bottom: 10px !important;
+            margin-left: 10px !important;
+        }
+
+        img {
+    --dim: 40px;
+    width: var(--dim);
+    height: var(--dim);
+    min-height:var(--dim);
+    min-width: var(--dim);
+    margin: auto;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: center;
+    padding: 0;
+    cursor: pointer;
+        }
     }
 `

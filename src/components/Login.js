@@ -9,41 +9,13 @@ import Loading from "./Loading"
 import queryString from "query-string"
 import styled from "@emotion/styled"
 import { jsx, css } from "@emotion/core"
-import { Form } from "../styles/forms"
+import { Form as FormStyle } from "../styles/forms"
 import { panel, button } from "../styles/theme"
 import { Auth } from "aws-amplify"
 import { makeid } from "../utils"
+import Form from "./Form"
 
-
-const passwordShow = css`
-    --dim: 40px;
-    width: var(--dim);
-    height: var(--dim);
-    min-height:var(--dim);
-    min-width: var(--dim);
-    margin: auto;
-    background-color: transparent;
-    display: inline-block;
-    vertical-align: center;
-    padding: 0;
-    cursor: pointer;
-`
-const mainLogo = css`
-    --logo-dim: 40px;
-    height: var(--logo-dim);
-    width: var(--logo-dim);
-    max-height: 300px;
-    margin: 20px auto;
-`
-
-const password_field = css`
-  display: flex;
-  img {
-    margin-bottom: 10px !important;
-    margin-left: 10px !important;
-  }
-`
-
+// VERSION OF COMPONENT THAT USES PASSWORDS
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +41,7 @@ class Login extends Component {
 //       window.analytics.page('login')
 //   }
 
-  validateForm = () => {
+  validateFormStyle = () => {
     return this.state.username.length > 0 && this.state.password.length > 0;
   }
 
@@ -82,30 +54,6 @@ class Login extends Component {
           console.log(this.state)
       }
     );
-  }
-
-  sendCode = async event => {
-    try {
-      await Auth.forgotPassword(this.state.username)
-      this.setState({panel: 'login-code'})
-    }
-    catch (err) {
-      console.log('ERROR:', err)
-      console.log(err.code)
-      if (err.code === 'UserNotFoundException')
-        this.setState({error: 'Account not found, try signing up first'})
-    }
-  }
-
-  login = async event => {
-    var p = makeid()
-    await Auth.forgotPasswordSubmit(this.state.username, p, p)
-    try {
-      await Auth.signIn(this.state.username, p)
-    }
-    catch (err) {
-      console.log(err)
-    }
   }
 
   handleSubmit = async event => {
@@ -125,17 +73,8 @@ class Login extends Component {
           else {
             this.props.dispatchLogin()
             console.log(this.props.logged_in)
-            Auth.currentSession()
-            .then(
-              data => {
-                // console.log('session data:', user)
-              }
-            )
-            this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'},
-              () => {
-                  console.log('redirected')
-              }
-            )
+            await Auth.currentSession()
+            this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'})
           }
         } 
         catch (err) {
@@ -159,6 +98,29 @@ class Login extends Component {
         }
         }
         this.setState({loading: false})
+        return
+      case 'get-details':
+        console.log('submitting email')
+        return
+      // case 'set-password':
+      //   console.log('user:', this.props.user)
+      //   if (this.getError() == null) {console.log(this.props.user)
+      //       this.setState({loading: true})
+      //       Auth.completeNewPassword(
+      //           this.props.user,
+      //           this.state.newPassword
+      //       )
+      //       .then(
+      //           () => {
+      //               this.props.dispatchLogin()
+      //               this.setState({redirect: this.props.from ? this.props.from : '/app/home'},
+      //                   () => {
+      //                       console.log('redirected')
+      //                   }
+      //               )
+      //           }
+      //       )
+      //   }
         return
     }
   }
@@ -186,65 +148,91 @@ class Login extends Component {
         return (
           <>
           {this.renderRedirect()}
-              <div css={Form} >
-                <div style={{fontWeight: 1000, fontSize: '35px', marginBottom: '20px'}} >Log in</div>
-                <div className="field-container long-field-title">
-                    <div className="field-title ">
-                        <strong>Email</strong>
-                    </div>
-                    <br/>
-                    <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
+          <Form title='Log in' 
+            onSubmit={ async (event) => { 
+              r = await Auth.signIn(event.email, event.password)
+              console.log('response:', r)
+            }}
+            questions={[
+              {
+                title: 'Email',
+                type: 'text',
+                id: 'email',
+              },
+              {
+                title: 'Password',
+                type: 'password',
+                id: 'password'
+              }
+            ]} 
+            detail={
+              <div style={{textDecoration: 'underline', cursor: 'pointer', display: 'flex', justifyContent: 'space-between'}}>
+                <div onClick={()=>{this.setState({panel:'get-details'})}}>
+                  Forgot your details?
                 </div>
-                {/* <div className="field-container ">
-                  <div className="field-title">
-                    <strong>Password</strong>
-                  </div>
-                  <br/>
-                  <div css={password_field}>
-                    <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                    <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
-                  </div>
-                </div> */}
-                <div className="form-error">{this.state.error}</div>
-                <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px', display: 'flex', justifyContent: 'space-between'}}>
-                  {/* <div onClick={() => {this.setState({panel: 'get-details'})}}>
-                    Don't know your details?
-                  </div> */}
-                  <div onClick={() => {this.setState({panel: 'redirect-to-signup'})}}>
-                    Don't have an account? Sign up
-                  </div>
+                <div onClick={()=>{this.setState({panel:'redirect'})}}>
+                  Sign up
                 </div>
-                <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.sendCode}>
-                    {
-                      this.state.loading ?
-                      <Loading /> :
-                      "Get login code"
-                    }
-                </button>
               </div>
+            }/>
           </>
         )
-      case 'login-code':
+      // case "set-password":
+      //   if (!this.state.user) {
+      //       var user = Auth.signIn(this.state.username, this.state.password)
+      //       .then(
+      //         (user) => {
+      //           this.setState({user: user})
+      //         }
+      //       )
+      //   }
+      //   return (
+      //     <>
+      //       {this.renderRedirect()}
+      //         <div css={Form} className="form-container">
+      //             <div className="field-container long-field-title">
+      //               <div className="field-title ">
+      //                   <strong>New password</strong>
+      //               </div>
+      //               <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
+      //             </div>
+      //             <div className="field-container long-field-title">
+      //               <div className="field-title">
+      //                   <strong>Confirm new password</strong>
+      //               </div>
+      //                 <div css={password_field}>
+      //                   <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
+      //                   <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
+      //                 </div>
+      //             </div>
+      //             <div className='error'>
+      //                 {this.getError()}
+      //             </div>
+      //             <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
+      //               {
+      //                 this.state.loading ?
+      //                 <Loading /> :
+      //                 "Submit"
+      //               }
+      //             </button>
+      //         </div>
+      //     </>
+      // //   )
+      case "get-details":
         return (
-          <div css={Form} >
-            <div style={{fontWeight: 1000, fontSize: '35px', marginBottom: '20px'}} >Log in</div>
-            <div className="field-container long-field-title">
-                <div className="field-title ">
-                    <strong>Enter the code we emailed you</strong>
-                </div>
-                <br/>
-                <input type="text" id="login-code" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
-            </div>
-            <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.login}>
-                {
-                  this.state.loading ?
-                  <Loading /> :
-                  "Get login code"
-                }
-            </button>
-          </div>
+          <Form title='Get my details'
+            subtitle='Enter your email to get a confirmation code'
+            questions={[
+              {
+                title: 'Email',
+                type: 'text',
+                id: 'email'
+              }
+            ]}
+            onSubmit={()=>{Auth.forgotPassword(this.state.email)}}
+          />
         )
-      case 'redirect-to-signup':
+      case 'redirect':
         return <Redirect to="/signup" />
       default:
         return null
@@ -293,8 +281,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
-
-// VERSION OF COMPONENT THAT USES PASSWORDS
 // class Login extends Component {
 //   constructor(props) {
 //     super(props);
@@ -333,6 +319,30 @@ export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 //           console.log(this.state)
 //       }
 //     );
+//   }
+
+//   sendCode = async event => {
+//     try {
+//       await Auth.forgotPassword(this.state.username)
+//       this.setState({panel: 'login-code'})
+//     }
+//     catch (err) {
+//       console.log('ERROR:', err)
+//       console.log(err.code)
+//       if (err.code === 'UserNotFoundException')
+//         this.setState({error: 'Account not found, try signing up first'})
+//     }
+//   }
+
+//   login = async event => {
+//     var p = makeid()
+//     await Auth.forgotPasswordSubmit(this.state.username, p, p)
+//     try {
+//       await Auth.signIn(this.state.username, p)
+//     }
+//     catch (err) {
+//       console.log(err)
+//     }
 //   }
 
 //   handleSubmit = async event => {
@@ -386,29 +396,6 @@ export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 //         }
 //         }
 //         this.setState({loading: false})
-//         return
-//       case 'get-details':
-//         console.log('submitting email')
-//         return
-//       // case 'set-password':
-//       //   console.log('user:', this.props.user)
-//       //   if (this.getError() == null) {console.log(this.props.user)
-//       //       this.setState({loading: true})
-//       //       Auth.completeNewPassword(
-//       //           this.props.user,
-//       //           this.state.newPassword
-//       //       )
-//       //       .then(
-//       //           () => {
-//       //               this.props.dispatchLogin()
-//       //               this.setState({redirect: this.props.from ? this.props.from : '/app/home'},
-//       //                   () => {
-//       //                       console.log('redirected')
-//       //                   }
-//       //               )
-//       //           }
-//       //       )
-//       //   }
 //         return
 //     }
 //   }
@@ -464,7 +451,7 @@ export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 //                     Don't have an account? Sign up
 //                   </div>
 //                 </div>
-//                 <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
+//                 <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.sendCode}>
 //                     {
 //                       this.state.loading ?
 //                       <Loading /> :
@@ -474,71 +461,26 @@ export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 //               </div>
 //           </>
 //         )
-//       // case "set-password":
-//       //   if (!this.state.user) {
-//       //       var user = Auth.signIn(this.state.username, this.state.password)
-//       //       .then(
-//       //         (user) => {
-//       //           this.setState({user: user})
-//       //         }
-//       //       )
-//       //   }
-//       //   return (
-//       //     <>
-//       //       {this.renderRedirect()}
-//       //         <div css={Form} className="form-container">
-//       //             <div className="field-container long-field-title">
-//       //               <div className="field-title ">
-//       //                   <strong>New password</strong>
-//       //               </div>
-//       //               <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
-//       //             </div>
-//       //             <div className="field-container long-field-title">
-//       //               <div className="field-title">
-//       //                   <strong>Confirm new password</strong>
-//       //               </div>
-//       //                 <div css={password_field}>
-//       //                   <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
-//       //                   <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
-//       //                 </div>
-//       //             </div>
-//       //             <div className='error'>
-//       //                 {this.getError()}
-//       //             </div>
-//       //             <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
-//       //               {
-//       //                 this.state.loading ?
-//       //                 <Loading /> :
-//       //                 "Submit"
-//       //               }
-//       //             </button>
-//       //         </div>
-//       //     </>
-//       // //   )
-//       // case "get-details":
-//       //   return (
-//       //     <>
-//       //     {this.renderRedirect()}
-//       //       <div css={panel}>
-//       //         <div css={Form} className="form-container">
-//       //           {/* <img src={ logo } css={mainLogo} alt="" /> */}
-//       //           <div className="field-container long-field-title">
-//       //               <div className="field-title ">
-//       //                   <strong>Email</strong>
-//       //               </div>
-//       //               <input type="text" id="email" value={this.state.email} className="text-response" placeholder="" onChange={ this.handleChange }/>
-//       //           </div>
-//       //           <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.handleSubmit}>
-//       //               {
-//       //                 this.state.loading ?
-//       //                 <Loading /> :
-//       //                 "Send verification email"
-//       //               }
-//       //           </button>
-//       //         </div>
-//       //       </div>
-//       //     </>
-//       //   )
+//       case 'login-code':
+//         return (
+//           <div css={Form} >
+//             <div style={{fontWeight: 1000, fontSize: '35px', marginBottom: '20px'}} >Log in</div>
+//             <div className="field-container long-field-title">
+//                 <div className="field-title ">
+//                     <strong>Enter the code we emailed you</strong>
+//                 </div>
+//                 <br/>
+//                 <input type="text" id="login-code" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
+//             </div>
+//             <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.login}>
+//                 {
+//                   this.state.loading ?
+//                   <Loading /> :
+//                   "Get login code"
+//                 }
+//             </button>
+//           </div>
+//         )
 //       case 'redirect-to-signup':
 //         return <Redirect to="/signup" />
 //       default:

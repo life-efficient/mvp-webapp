@@ -2,6 +2,7 @@ import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import Button from "./Button"
+import eye from "../images/see-icon.png"
 
 export default class Form extends Component {
     constructor(props) {
@@ -41,6 +42,9 @@ export default class Form extends Component {
                 <div css={FormStyle}>
                     <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
                         {this.props.title}
+                        <div className='detail'>
+                            {this.props.subtitle}
+                        </div>
                     </div>
                     {
                         this.props.questions.map(
@@ -49,12 +53,17 @@ export default class Form extends Component {
                                 switch (q.type) {
                                     case "text":
                                         return <TextResponse {...q} />
+                                    case "password":
+                                        return <Password {...q} />
                                     case "dropdown":
                                         null
                                 }
                             }
                         )
                     }
+                    <div className='detail'>
+                        {this.props.detail}
+                    </div>
                 </div>
                 <Button text='Submit' onClick={this.submit} />
             </div>
@@ -81,7 +90,7 @@ export const TextResponse = (props) => {
 export class Password extends Component {
     constructor (props) {
         super(props)
-        constructorhis.state = {
+        this.state = {
             hidden: true
         }
     }
@@ -92,11 +101,15 @@ export class Password extends Component {
 
     render(){
         return (
-            <div className="field-container long-field-title">
-                <div className="field-title ">
-                    <strong>{this.props.title}</strong>
+            <div className="field-container ">
+                <div className="field-title">
+                    <strong>Password</strong>
                 </div>
-                <input type={ this.state.hidden ? 'password': 'text' } id={this.props.id} className="text-response" placeholder="" onChange={this.props.handleChange}/>
+                <br/>
+                <div className="password">
+                    <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+                    <img src={ eye } onClick={ this.toggleHidden } alt="" />
+                </div>
             </div>
         )
     }

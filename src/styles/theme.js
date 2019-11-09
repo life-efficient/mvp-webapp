@@ -50,7 +50,7 @@ export const panel = css`
   width: 80vw;
   max-width: 400px;
   border-radius: 3px;
-  padding: 20px;
+  padding: 20px 0;
     
   position: relative;
   align-items: center;
@@ -64,4 +64,5 @@ export const panel = css`
     background-color: var(--color1);
     color: var(--color2);
   }
+
 `
