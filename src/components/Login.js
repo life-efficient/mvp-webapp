@@ -148,31 +148,33 @@ class Login extends Component {
         return (
           <>
           {this.renderRedirect()}
-          <Form title='Log in' 
-            onSubmit={[ async (event) => { 
-              r = await Auth.signIn(event.email, event.password)
-              console.log('response:', r)
-            }]}
-            questions={[
+          <Form
+            slides={[
               {
-                title: 'Email',
-                type: 'text',
-                id: 'email',
-              },
-              {
-                title: 'Password',
-                type: 'password',
-                id: 'password',
+                title: 'Log in',
+                onSubmit: async (event) => {r = await Auth.signIn(event.email, event.password);console.log('response:', r)},
+                questions:[
+                  {
+                    title: 'Email',
+                    type: 'text',
+                    id: 'email',
+                  },
+                  {
+                    title: 'Password',
+                    type: 'password',
+                    id: 'password',
+                  }
+                ],
                 detail: <div style={{textDecoration: 'underline', cursor: 'pointer', display: 'flex', justifyContent: 'space-between'}}>
-                    <div onClick={()=>{this.setState({panel:'get-details'})}}>
-                      Forgot your details?
-                    </div>
-                    <div onClick={()=>{this.setState({panel:'redirect'})}}>
-                      Sign up
-                    </div>
+                  <div onClick={()=>{this.setState({panel:'get-details'})}}>
+                    Forgot your details?
                   </div>
+                  <div onClick={()=>{this.setState({panel:'redirect'})}}>
+                    Sign up
+                  </div>
+                </div>
               }
-            ]} 
+            ]}
             />
           </>
         )
@@ -219,16 +221,30 @@ class Login extends Component {
       // //   )
       case "get-details":
         return (
-          <Form title='Get my details'
-            subtitle='Enter your email to get a confirmation code'
-            questions={[
+          <Form             
+            slides={[
               {
-                title: 'Email',
-                type: 'text',
-                id: 'email'
+                title: 'Forgot your password?',
+                subtitle: 'Enter your email to get a confirmation code',
+                questions: [
+                  {
+                    title: 'Email',
+                    type: 'text',
+                    id: 'email'
+                  }
+                ],
+                onSubmit: ()=>{Auth.forgotPassword(this.state.email)}
+              },
+              {
+                title: 'Enter code',
+                subtitle: 'Check the email you signed up with for the code',
+                questions: [
+                  {title:'Code', type: 'text', id: 'code'},
+                  {title: 'New password', type: 'password', id:'new_password'}
+                ],
+                onSubmit: (e) => {Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
               }
             ]}
-            onSubmit={()=>{Auth.forgotPassword(this.state.email)}}
           />
         )
       case 'redirect':
