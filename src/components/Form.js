@@ -38,7 +38,7 @@ export default class Form extends Component {
         var handleChange = this.handleChange
         var handleOptionChange = this.handleOptionChange
         return (
-            <div css={panel} style={{padding: '0px'}}>
+            <div css={panel} >
                 <div css={FormStyle}>
                     <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
                         {this.props.title}
