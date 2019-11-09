@@ -40,7 +40,6 @@ export const Form = css`
         float: left;
     }
 
-    padding: 10px 20px;
     input:-webkit-autofill,
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
@@ -74,5 +73,9 @@ export const Form = css`
             padding: 0;
             cursor: pointer;
         }
+    }
+
+    > .form {
+        padding: 0px;
     }
 `
