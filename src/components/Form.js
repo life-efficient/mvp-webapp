@@ -55,11 +55,13 @@ export default class Form extends Component {
     }
 
     submit = () => {
-        if (this.validate()) {
+        if (this.validate()) {      // do basic validation based on field type
             console.log('slide idx', this.state.slide_idx)
-
-            this.props.slides[this.state.slide_idx].onSubmit(this.state)
-            this.setState({slide_idx: this.state.slide_idx + 1})
+            var onSubmit = this.props.slides[this.state.slide_idx].onSubmit 
+            var ok = onSubmit ? onSubmit(this.state) : null                 // validate + do extra stuff
+            if (ok !== false) {
+                console.log('both internal and external validation successful')
+                this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
         }
     }
 
