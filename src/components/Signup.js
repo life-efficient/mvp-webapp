@@ -43,6 +43,9 @@ var Signup = (props) => {
                                 type: 'text',
                             }
                         ],
+                        detail: <button className="detail" onClick={()=> {Auth.resendSignUp(e.email)}}>
+                            Resend
+                        </button>,
                         onSubmit: async (e) => {
                             try {
                                 await Auth.confirmSignUp(e.email, e.code)
