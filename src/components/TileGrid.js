@@ -5,7 +5,7 @@ import { css } from "@emotion/core"
 const style = css`
     display: flex;
     max-width: 1000px;
-    margin: auto;
+    margin: 100px auto;
     flex-wrap: wrap;
     justify-content: center;
 `
