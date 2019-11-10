@@ -19,6 +19,39 @@ var Signup = (props) => {
                                 type: 'email',
                                 id: 'email',
                             },
+                        ],
+                        onSubmit: async (e) => {
+                            try {
+                                await Auth.signUp(e.email, e.password)
+                            }
+                            catch (err) {
+                                console.log('sumbission error:', err)
+                                return err.message ? err.message : 'Something went wrong'
+                            }
+                        }
+                    },
+                    {
+                        title: 'Confirm your email',
+                        questions: [
+                            {
+                                title: 'Code',
+                                id: 'code',
+                                type: 'text',
+                            }
+                        ],
+                        onSubmit: async (e) => {
+                            try {
+                                await Auth.confirmSignUp(e.email, e.code)
+                            }
+                            catch (err) {
+                                console.log('sumbission error:', err)
+                                return err.message ? err.message : 'Something went wrong'
+                            }
+                        }
+                    },
+                    {
+                        title: 'Create a password',
+                        questions: [
                             {
                                 id: 'password',
                                 type: 'confirm-password',
@@ -26,7 +59,6 @@ var Signup = (props) => {
                         ],
                         onSubmit: async (e) => {
                             try {
-                                await Auth.signUp(e.email, e.password)
                                 await Auth.signIn(e.email, e.password)
                             }
                             catch (err) {
