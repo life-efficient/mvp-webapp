@@ -51,7 +51,7 @@ const style = css`
     }
 `
 
-class SideNav extends Component {
+class SideMenu extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -108,7 +108,7 @@ class SideNav extends Component {
 
 const mapStateToProps = (state) => {
     return  {
-        open: state.sideNav.open
+        open: state.menu.open
     }
 }
 
@@ -120,4 +120,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default SideNav = connect(mapStateToProps, mapDispatchToProps)(SideNav)
+export default SideMenu = connect(mapStateToProps, mapDispatchToProps)(SideMenu)
