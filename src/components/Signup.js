@@ -43,9 +43,9 @@ var Signup = (props) => {
                                 type: 'text',
                             }
                         ],
-                        detail: <button className="detail" onClick={()=> {Auth.resendSignUp(e.email)}}>
+                        detail: <div className="detail" style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={()=> {Auth.resendSignUp(e.email).then(()=>console.log('resent successfully').catch((e)=>console.log(e)))}}>
                             Resend
-                        </button>,
+                        </div>,
                         onSubmit: async (e) => {
                             try {
                                 await Auth.confirmSignUp(e.email, e.code)
