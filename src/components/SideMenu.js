@@ -100,7 +100,11 @@ class SideMenu extends Component {
             <div id="mySidenav" css={style} style={this.getStyle()} ref={this.setWrapperRef}>
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
                 <Link to="/" onClick={this.clickLogout}>Log out</Link>
-                <Link to="/app/help" onClick={this.props.toggleMenu}>Help</Link>
+                {
+                    this.props.links.map((l)=>{
+                        <Link to={l.to} onClick={this.props.toggleMenu}>{l.title}</Link>
+                    })
+                }
             </div>
         )
     }
