@@ -151,7 +151,7 @@ class Login extends Component {
             slides={[
               {
                 title: 'Log in',
-                onSubmit: async (event) => {r = await Auth.signIn(event.email, event.password);console.log('response:', r)},
+                onSubmit: async (event) => {var r = await Auth.signIn(event.email, event.password);console.log('response:', r)},
                 questions:[
                   {
                     title: 'Email',
@@ -282,15 +282,15 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        dispatchLogin: () => {
-            dispatch({
-                type: "LOG_IN"
-            })
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         dispatchLogin: () => {
+//             dispatch({
+//                 type: "LOG_IN"
+//             })
+//         }
+//     }
+// }
 
 export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 // class Login extends Component {
