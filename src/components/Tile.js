@@ -60,7 +60,7 @@ export default class Tile extends Component {
     render () {
         const k = 0.1 * 2* 3.1415926
         return (
-            <Link css={style} to={this.props.to}
+            <Link css={style} to={this.props.to} onClick={this.props.onClick}
                 // onMouseLeave={() => {clearInterval(this.i); this.setState({x: 0, y: 0})}} 
                 // onMouseEnter={() => {this.i = setInterval(this.tilt, 100)}} 
                 style={{transform: `rotateX(${k*this.state.x}rad) rotateY(${k*this.state.y}rad)`, order: '3px solid red'}}>
