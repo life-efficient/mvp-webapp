@@ -292,7 +292,7 @@ const mapStateToProps = (state) => {
 //     }
 // }
 
-export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login = connect(mapStateToProps)(Login)
 // class Login extends Component {
 //   constructor(props) {
 //     super(props);
