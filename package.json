@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "aws-amplify": "^1.2.3",
+    "aws-amplify": "^1.2.4",
     "emotion-theming": "^10.0.19",
     "query-string": "^6.8.3",
     "react-cursor-position": "^3.0.3",
