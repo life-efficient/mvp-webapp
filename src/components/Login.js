@@ -41,20 +41,20 @@ class Login extends Component {
 //       window.analytics.page('login')
 //   }
 
-  validateFormStyle = () => {
-    return this.state.username.length > 0 && this.state.password.length > 0;
-  }
+  // validateFormStyle = () => {
+  //   return this.state.username.length > 0 && this.state.password.length > 0;
+  // }
 
-  handleChange = event => {
-    if (event.target.id !== 'password') {event.target.value = event.target.value.toLowerCase()}
-    this.setState({
-      [event.target.id]: event.target.value
-    },
-      () => {
-          console.log(this.state)
-      }
-    );
-  }
+  // handleChange = event => {
+  //   if (event.target.id !== 'password') {event.target.value = event.target.value.toLowerCase()}
+  //   this.setState({
+  //     [event.target.id]: event.target.value
+  //   },
+  //     () => {
+  //         console.log(this.state)
+  //     }
+  //   );
+  // }
 
   handleSubmit = async event => {
     this.setState({loading: true})
@@ -125,19 +125,19 @@ class Login extends Component {
     }
   }
 
-  showPassword = () => {
-    var type = this.state.passwordFieldType
-    var newType = type === "password" ? "input" : "password"
-    this.setState({passwordFieldType: newType})
-    console.log(this.state)
-  }
+  // showPassword = () => {
+  //   var type = this.state.passwordFieldType
+  //   var newType = type === "password" ? "input" : "password"
+  //   this.setState({passwordFieldType: newType})
+  //   console.log(this.state)
+  // }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      console.log('redirecting to:', this.state.redirect)
-      return <Redirect to={this.state.redirect} />
-    }
-  }
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     console.log('redirecting to:', this.state.redirect)
+  //     return <Redirect to={this.state.redirect} />
+  //   }
+  // }
 
   getPanel = () => {
     // console.log(this.state)
@@ -147,7 +147,6 @@ class Login extends Component {
       case "login":
         return (
           <>
-          {this.renderRedirect()}
           <Form
             slides={[
               {
@@ -254,23 +253,21 @@ class Login extends Component {
     }
   }
 
-  getError = () => {
-    if ( ! (this.state.newPassword === this.state.confirmNewPassword) ) {
-        return "Passwords must match"
-    }
-    else if (this.state.newPassword.length < 8) {
-        return "Password should be longer"
-    }
-    else return null
-  }
+  // getError = () => {
+  //   if ( ! (this.state.newPassword === this.state.confirmNewPassword) ) {
+  //       return "Passwords must match"
+  //   }
+  //   else if (this.state.newPassword.length < 8) {
+  //       return "Password should be longer"
+  //   }
+  //   else return null
+  // }
 
   render() {
     return (
       <>
-      {/* <Navbar /> */}
           <div css={panel} >
             <img src={this.props.logo} style={{height: '200px', margin: '40px'}} alt=""/>
-          {/* // style={{backgroundColor: 'var(--green)', width: '400px', margin: 'auto', padding: '20px'}}> */}
             {this.getPanel()}
           </div>
       </>

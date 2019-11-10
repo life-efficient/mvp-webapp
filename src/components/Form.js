@@ -41,28 +41,51 @@ export default class Form extends Component {
     handleChange = (e) => {
         this.setState({[e.target.id]: e.target.value},
             () =>{console.log(this.state)})
-    }   
+    }
     
     handleOptionChange = () => {
 
     }
 
     validate = () => {
-        for (var q in this.props.slides[this.state.slide_idx].questions) {
+        var s = this.state
+        var errors = []
+        for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
+            if (q.type === 'text') {
+                if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
+            }
+            if (q.type === 'confirm-password') {
+                console.log('confirm', s[q.id])
+                if (s[q.id].length < 8) {errors.push('Password should be longer')}
+                if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
+            }
+            if (q.type === 'email') {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(String(s[q.id]).toLowerCase())) {errors.push('Email is not valid')}
+            }
+
         }
-        return true
+        console.log('FORM ERRORS:', errors)
+        this.setState({error: errors[0]})       // either null or some error
+        return errors.length > 0 ? false : true
     }
 
-    submit = () => {
+    submit = async () => {
         if (this.validate()) {      // do basic validation based on field type
             console.log('slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit 
-            var ok = onSubmit ? onSubmit(this.state) : null                 // validate + do extra stuff
-            if (ok !== false) {
+            var error = onSubmit ? await onSubmit(this.state) : null                 // validate + do extra stuff
+            if (!error) {
                 console.log('both internal and external validation successful')
                 this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
             }
+            else {
+                this.setState({error})
+            }
+        }
+        else {
+            console.log('internal validation failed')
         }
     }
 
@@ -97,13 +120,20 @@ export default class Form extends Component {
                                         switch (q.type) {
                                             case "text":
                                                 return <TextResponse {...q} />
+                                            case "email":
+                                                return <EmailField {...q} />
                                             case "password":
                                                 return <Password {...q} />
+                                            case "confirm-password":
+                                                return <ConfirmPassword {...q} />
                                             case "dropdown":
                                                 null
                                         }
                                     })
                                 }
+                                <div className="error">
+                                    {this.state.error}
+                                </div>
                                 <div className='detail'>
                                     {s.detail}
                                 </div>
@@ -135,6 +165,10 @@ export const TextResponse = (props) => {
     )
 }
 
+export const EmailField = (props) => {
+    return <TextResponse {...props} />
+}
+
 export class Password extends Component {
     constructor (props) {
         super(props)
@@ -159,6 +193,45 @@ export class Password extends Component {
                     <img src={ eye } onClick={ this.toggleHidden } alt="" />
                 </div>
             </div>
+        )
+    }
+}
+
+export class ConfirmPassword extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            hidden: true
+        }
+    }
+
+    toggleHidden = () => {
+        this.setState({hidden: !this.state.hidden})
+    }
+
+    render(){
+        return (
+            <>
+            <div className="field-container ">
+                <div className="field-title">
+                    <strong>Password</strong>
+                </div>
+                <br/>
+                <div className="password">
+                    <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+                    <img src={ eye } onClick={ this.toggleHidden } alt="" />
+                </div>
+            </div>
+            <div className="field-container ">
+                <div className="field-title">
+                    <strong>Confirm Password</strong>
+                </div>
+                <br/>
+                <div className="password">
+                    <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+                </div>
+            </div>
+            </>
         )
     }
 }
