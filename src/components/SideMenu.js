@@ -101,9 +101,11 @@ class SideMenu extends Component {
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
                 <Link to="/" onClick={this.clickLogout}>Log out</Link>
                 {
-                    this.props.links.map((l)=>{
+                    this.props.links ? this.props.links.map((l)=>{
                         <Link to={l.to} onClick={this.props.toggleMenu}>{l.title}</Link>
                     })
+                    :
+                    null
                 }
             </div>
         )
