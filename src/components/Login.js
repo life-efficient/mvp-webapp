@@ -148,6 +148,7 @@ class Login extends Component {
         return (
           <>
           <Form
+            redirect="/app"
             slides={[
               {
                 title: 'Log in',
