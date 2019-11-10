@@ -10,6 +10,7 @@ const style = css`
     width: var(--dim);
     max-width: 45vw;
     max-height: 45vw;
+    box-sizing: border-box;
     background-color: var(--color2);
     background: linear-gradient(var(--color2), var(--color2g));
     font-family: var(--font1);
@@ -26,8 +27,8 @@ const style = css`
     border-radius: var(--radius);
 
     img {
-        height: 100px;
-        margin: 20px;
+        height: 50%;
+        margin: 10%;
     }
 
 `
