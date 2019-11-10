@@ -19,6 +19,10 @@ var Signup = (props) => {
                                 type: 'email',
                                 id: 'email',
                             },
+                            {
+                                id: 'password',
+                                type: 'confirm-password',
+                            }
                         ],
                         onSubmit: async (e) => {
                             try {
@@ -42,23 +46,6 @@ var Signup = (props) => {
                         onSubmit: async (e) => {
                             try {
                                 await Auth.confirmSignUp(e.email, e.code)
-                            }
-                            catch (err) {
-                                console.log('sumbission error:', err)
-                                return err.message ? err.message : 'Something went wrong'
-                            }
-                        }
-                    },
-                    {
-                        title: 'Create a password',
-                        questions: [
-                            {
-                                id: 'password',
-                                type: 'confirm-password',
-                            }
-                        ],
-                        onSubmit: async (e) => {
-                            try {
                                 await Auth.signIn(e.email, e.password)
                             }
                             catch (err) {
@@ -66,7 +53,7 @@ var Signup = (props) => {
                                 return err.message ? err.message : 'Something went wrong'
                             }
                         }
-                    }
+                    },
                 ]}
             />
         </div>
