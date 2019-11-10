@@ -17,7 +17,7 @@ const style = css`
     font-family: var(--font1);
     display: flex;
     flex-direction: column;
-    background-color: var(--secondary) ;
+    background-color: var(--color2) ;
 
     width: 70%;
     box-shadow: var(--shadow);
