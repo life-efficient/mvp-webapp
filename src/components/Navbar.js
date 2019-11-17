@@ -49,7 +49,8 @@ const options = css`
     top: 0vh;
     // z-index: -1;
 
-    ${breakpoints[0]} {
+    ${breakpoints[3]} {
+        width: 100%;
         margin-top: 0vh;
         height: 100%;
         justify-content: center;
