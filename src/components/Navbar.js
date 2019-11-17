@@ -36,7 +36,7 @@ const navbar = {
 const options = css`
     width: 100%;
     height: 4vh;
-    margin: 20%;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
     position: absolute;
@@ -63,7 +63,6 @@ const option = css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100px;
     z-index: 1;
 `
 
