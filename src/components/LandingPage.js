@@ -6,7 +6,7 @@ import { Background } from ".."
 
 export default (props) => { return (
     <>
-        <Navbar btn='Login' to={props.navLink}/>
+        <Navbar {...props.nav} btn='Login' to={props.navLink}/>
         <Fold hero={props.hero} 
             heading={props.heading ? props.heading : 'Add a `heading` prop!'} 
             subtitle={props.subtitle ? props.subtitle : 'Add a `subtitle` prop!'} 
