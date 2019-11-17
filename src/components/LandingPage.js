@@ -24,5 +24,6 @@ export default (props) => { return (
             :
             null
         }
+        <Footer />
     </>
 )}
