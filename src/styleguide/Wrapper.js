@@ -10,7 +10,9 @@ const initialState = () => {
     return {
         app: {
             name: 'MVP',
-            logo
+            logo,
+            address: 'my business address, ABCDEF',
+            contact: '0123456789'
         },
         modal: {
             open: false

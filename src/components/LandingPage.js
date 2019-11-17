@@ -3,6 +3,7 @@ import Fold from "./Fold"
 import LandingSection from "./LandingSection"
 import Navbar from "./Navbar"
 import { Background } from ".."
+import Footer from "./Footer"
 
 export default (props) => { return (
     <>

@@ -53,6 +53,8 @@ const options = css`
         margin-top: 0vh;
         height: 100%;
         justify-content: center;
+        // width: 60%;
+        // margin: 0 auto;
     }
 `
 

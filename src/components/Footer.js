@@ -1,17 +1,32 @@
 import React from "react"
 import { css } from "@emotion/core"
+import { connect } from "react-redux"
 
-const Footer = () => {
+const style = css`
+    color: var(--color2);
+    background-color: black;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    font-family: var(--font1);
+    
+    > div {
+        max-width: 30vw;
+    }
+`
+
+var Footer = (props) => {
     return (
-        <div css={css`background-color: black; height: 8vh; display: flex; justify-content: space-between;`}>
+        <div css={style}>
             <div>
-                Contact
+                {props.address}
             </div>
             <div>
-                Address
+                {props.contact}
             </div>
         </div>
-
     )
 }
 
