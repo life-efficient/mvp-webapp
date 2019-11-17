@@ -34,7 +34,7 @@ const navbar = {
 }
 
 const options = css`
-    width: 60%;
+    width: 100%;
     height: 4vh;
     margin: 20%;
     display: flex;
@@ -50,7 +50,6 @@ const options = css`
     // z-index: -1;
 
     ${breakpoints[3]} {
-        width: 100%;
         margin-top: 0vh;
         height: 100%;
         justify-content: center;
