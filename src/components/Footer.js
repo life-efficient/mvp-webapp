@@ -33,7 +33,7 @@ var Footer = (props) => {
 const mapStateToProps = (state) => {
     return {
         address: state.app.address,
-        contact: state.app.address
+        contact: state.app.contact
     }
 }
 
