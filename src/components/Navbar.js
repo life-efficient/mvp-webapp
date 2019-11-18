@@ -53,7 +53,8 @@ const options = css`
         margin-top: 0vh;
         height: 100%;
         justify-content: center;
-        // width: 60%;
+        width: 60%;
+        left: 20%;
         // margin: 0 auto;
     }
 `
@@ -75,6 +76,7 @@ const logo_text = css`
     font-family: var(--font1);
     font-size: 40px;
     z-index: 1;
+    float: left;
 `
 
 var Navbar = (props) => {
