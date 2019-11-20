@@ -26,6 +26,7 @@ var Signup = (props) => {
                         ],
                         onSubmit: async (e) => {
                             try {
+                                console.log('signing up')
                                 await Auth.signUp(e.email, e.password)
                             }
                             catch (err) {
@@ -48,6 +49,7 @@ var Signup = (props) => {
                         </div>,
                         onSubmit: async (e) => {
                             try {
+                                console.log('confirming and logging in')
                                 await Auth.confirmSignUp(e.email, e.code)
                                 await Auth.signIn(e.email, e.password)
                             }
