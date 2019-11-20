@@ -152,7 +152,11 @@ class Login extends Component {
             slides={[
               {
                 title: 'Log in',
-                onSubmit: async (event) => {var r = await Auth.signIn(event.email, event.password);console.log('response:', r)},
+                onSubmit: async (event) => {
+                  console.log('logging in')
+                  var r = await Auth.signIn(event.email, event.password);
+                  console.log('response:', r)
+                },
                 questions:[
                   {
                     title: 'Email',

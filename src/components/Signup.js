@@ -27,28 +27,6 @@ var Signup = (props) => {
                         onSubmit: async (e) => {
                             try {
                                 await Auth.signUp(e.email, e.password)
-                            }
-                            catch (err) {
-                                console.log('sumbission error:', err)
-                                return err.message ? err.message : 'Something went wrong'
-                            }
-                        }
-                    },
-                    {
-                        title: 'Confirm your email',
-                        questions: [
-                            {
-                                title: 'Code',
-                                id: 'code',
-                                type: 'text',
-                            }
-                        ],
-                        detail: <div className="detail" style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={()=> {Auth.resendSignUp(e.email).then(()=>console.log('resent successfully').catch((e)=>console.log(e)))}}>
-                            Resend
-                        </div>,
-                        onSubmit: async (e) => {
-                            try {
-                                await Auth.confirmSignUp(e.email, e.code)
                                 await Auth.signIn(e.email, e.password)
                             }
                             catch (err) {
@@ -57,6 +35,29 @@ var Signup = (props) => {
                             }
                         }
                     },
+                    // {
+                    //     title: 'Confirm your email',
+                    //     questions: [
+                    //         {
+                    //             title: 'Code',
+                    //             id: 'code',
+                    //             type: 'text',
+                    //         }
+                    //     ],
+                    //     detail: <div className="detail" style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={()=> {Auth.resendSignUp(e.email).then(()=>console.log('resent successfully').catch((e)=>console.log(e)))}}>
+                    //         Resend
+                    //     </div>,
+                    //     onSubmit: async (e) => {
+                    //         try {
+                    //             await Auth.confirmSignUp(e.email, e.code)
+                    //             await Auth.signIn(e.email, e.password)
+                    //         }
+                    //         catch (err) {
+                    //             console.log('sumbission error:', err)
+                    //             return err.message ? err.message : 'Something went wrong'
+                    //         }
+                    //     }
+                    // },
                 ]}
             />
         </div>
