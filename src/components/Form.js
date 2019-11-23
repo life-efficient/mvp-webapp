@@ -116,7 +116,7 @@ export default class Form extends Component {
                                 </div>
                                 {
                                     s.questions.map((q) => {                         // map question slide (list of objects) to the questions
-                                        q = {...q, handleChange, handleOptionChange}
+                                        q = {...q, value: this.state[q.id], handleChange, handleOptionChange}
                                         switch (q.type) {
                                             case "text":
                                                 return <TextResponse {...q} />
@@ -150,7 +150,7 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
-    console.log(props.value)
+    console.log('VALUE:', props.value)
     return (
         <div className="field-container">
             <div className="field-title ">

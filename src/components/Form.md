@@ -28,7 +28,8 @@ import { makePostRequest } from "../api_calls";
                     title: 'Title 1, Slide 1',
                     type: 'text',   
                     id: 'id1, slide1',
-                    detail: 'Some extra detail'
+                    detail: 'Some extra detail',
+                    default: 'Some default value'
                 },
                 {
                     title: 'Title 2, Slide 1',
