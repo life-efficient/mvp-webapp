@@ -83,7 +83,7 @@ var Navbar = (props) => {
             return (
                 <div css={navbar_container}>
                     <div css={navbar}>
-                        <Link to="/" css={logo_text}>
+                        <Link to={props.home ? props.home : "/"} css={logo_text}>
                             {props.name}
                         </Link>
                         <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
