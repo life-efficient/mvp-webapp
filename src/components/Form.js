@@ -150,6 +150,7 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
+    console.log(props.value)
     return (
         <div className="field-container">
             <div className="field-title ">
