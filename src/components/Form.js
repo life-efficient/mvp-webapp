@@ -81,6 +81,7 @@ export default class Form extends Component {
                 this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
             }
             else {
+                console.log('An external error occured')
                 this.setState({error})
             }
         }
