@@ -85,11 +85,6 @@ var Navbar = (props) => {
                     <div css={navbar}>
                         <Link to={props.home ? props.home : "/"} css={logo_text}>
                             {props.name}* 
-a:link { text-decoration: none; }
-a:link { text-decoration: none; }
-a​:visited {  color: black; text-decoration: none;}
-a​:hover {  color: black; }
-a { color: black;} */ 
                         </Link>
                         <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
                     </div>
