@@ -26,7 +26,7 @@ export default (props) => {
                     hero={
                         idx % 2 == 1 ? 
                             props.heros ?
-                            props.heros[idx/2] 
+                            props.heros[(idx+1)/2] 
                             :
                             null
                         : 
