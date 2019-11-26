@@ -11,20 +11,18 @@ import Button from "./Button"
 const navbar_container = css`
     position: relative;
     height: 8vh;
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-between;
-    // background-color: var(--secondary) ;
-    // background: linear-gradient(var(--secondary), var(--secondary_grad));
     color: var(--color2) !important;
-    // box-sizing: border-box;
     background-color: var(--color1);
-    background-color: transparent; 
+    background-color: transparent;
     z-index: 1;
 
     a​:visited, a:link, a:hover, a {  
         color: var(--color2); 
         text-decoration: none;
+    }
+
+    button {
+        color: var(--color1);
     }
 `
 
@@ -52,7 +50,6 @@ const options = css`
     justify-content: space-between;
     background-color: transparent;
     top: 0vh;
-    // z-index: -1;
 
     ${breakpoints[3]} {
         margin-top: 0vh;
