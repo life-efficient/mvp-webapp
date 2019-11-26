@@ -173,6 +173,7 @@ class Login extends Component {
                             }
                           }
                         ]}
+                      />
                     )
                     // if they haven't confirmed yet, 
                     // send them an email
