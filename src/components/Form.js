@@ -82,7 +82,7 @@ export default class Form extends Component {
             }
             catch (error) {
                 console.log('An external error occured:', error)
-                this.setState({error.message})
+                this.setState({error: error.message})
             }
         }
         else {
