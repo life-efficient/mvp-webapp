@@ -14,16 +14,15 @@ export const button = css`
   box-shadow: var(--shadow);
   border-radius: 3px;
   border: yo;
-  background-color: var(--color2);
-  background-color: $primar;
   font-family: var(--font2);
+  background-color: var(--color2);
   color: var(--color1);
   padding: 15px;
   cursor: pointer;
   min-width: 150px;
   position: relative;
-  // min-height: 45px;
   transition-duration: 1s;
+  text-decoration: none;
 
   :focus {
     outline: 0;

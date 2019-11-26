@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 
 const Wrapper = styled.button`
   ${font}
-  // ${primaryColors}
   ${shape}
-  // background-color: ${color2};
+  text-decoration: none;
 `;
 
 class Button extends Component {
