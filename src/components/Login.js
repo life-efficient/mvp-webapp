@@ -170,7 +170,8 @@ class Login extends Component {
                               await Auth.confirmSignUp(event.email, e.code)
                               console.log('confirmed')
                               // await Auth.signIn(event.email)
-                            }
+                            },
+                            questions: [{title: 'code', type: 'text', id: 'code'}]
                           }
                         ]}
                       />
