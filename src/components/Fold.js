@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default (props) => {return(
     // <div>
-        <LandingSection idx={-1} inner={(
+        <LandingSection idx={-1} hero={props.hero} inner={(
             <>
                 <div style={{fontSize: '50px', fontWeight: '900'}}>
                     {props.heading}
@@ -13,8 +13,6 @@ export default (props) => {return(
                 <div>
                     {props.subtitle}
                 </div>
-                <div className="hero-filter"></div>
-                <img className="hero-img" src={props.hero} alt="Add a hero image in src/images to cover this background!"/>
                 {
                     props.actionText ?
                     <Button text={props.actionText ? props.actionText : 'Add an "actionText" prop!'} onClick={props.action ? props.action : () => {alert('Add a "action" prop to the LandingSection component')}}/>
