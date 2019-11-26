@@ -21,6 +21,11 @@ const navbar_container = css`
     background-color: var(--color1);
     background-color: transparent; 
     z-index: 1;
+    
+    a​:visited, a:link, a:hover, a {  
+        color: var(--color2); 
+        text-decoration: none;
+    }
 `
 
 const navbar = {
@@ -49,10 +54,6 @@ const options = css`
     top: 0vh;
     // z-index: -1;
 
-    a​:visited, a:link, a:hover, a {  
-        color: var(--color2); 
-        text-decoration: none;
-    }
 
     ${breakpoints[3]} {
         margin-top: 0vh;
