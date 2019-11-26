@@ -22,9 +22,12 @@ export default (props) => {
                     };
         font-family: var(--font1);
         align-items: center;
-        > div, button {
+
+        > div, button, a {
             margin-top: 30px;
         }
+
+        
 
         .hero-img {
             position: absolute;

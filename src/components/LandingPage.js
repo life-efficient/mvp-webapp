@@ -5,7 +5,9 @@ import Navbar from "./Navbar"
 import { Background } from ".."
 import Footer from "./Footer"
 
-export default (props) => { return (
+export default (props) => { 
+    console.log('HEROS:', props.heros)
+    return (
     <>
         <Navbar {...props.nav} btn='Login' />
         <Fold 
@@ -20,7 +22,16 @@ export default (props) => { return (
         {
             props.sections ?
             props.sections.map((inner, idx) => {return (
-                <LandingSection inner={inner} idx={idx} hero={idx % 2 == 0 ? props.heros[idx/2] : null}/>
+                <LandingSection inner={inner} idx={idx} 
+                    hero={
+                        idx % 2 == 0 ? 
+                            props.heros ?
+                            props.heros[idx/2] 
+                            :
+                            null
+                        : 
+                        null}
+                />
             )})
             :
             null
