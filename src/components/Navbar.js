@@ -49,6 +49,11 @@ const options = css`
     top: 0vh;
     // z-index: -1;
 
+    a​:visited, a:link, a:hover, a {  
+        color: var(--color2); 
+        text-decoration: none;
+    }
+
     ${breakpoints[3]} {
         margin-top: 0vh;
         height: 100%;
