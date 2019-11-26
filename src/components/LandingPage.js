@@ -7,7 +7,7 @@ import Footer from "./Footer"
 
 export default (props) => { return (
     <>
-        <Navbar {...props.nav} btn='Login' to={props.navLink}/>
+        <Navbar {...props.nav} btn='Login' />
         <Fold 
             {...props.fold}
             // hero={props.hero} 
