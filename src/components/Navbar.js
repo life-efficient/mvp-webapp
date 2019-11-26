@@ -20,10 +20,6 @@ const navbar_container = css`
         color: var(--color2); 
         text-decoration: none;
     }
-
-    button {
-        color: var(--color1);
-    }
 `
 
 const navbar = {
@@ -88,7 +84,7 @@ var Navbar = (props) => {
                         <Link to={props.home ? props.home : "/"} css={logo_text}>
                             {props.name}
                         </Link>
-                        <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
+                        <Button onClick={props.action} css={{zIndex: '1', color: 'var(--color1)'}} text={props.btn} to={props.to}/>
                     </div>
                     <div
                      css={options}
