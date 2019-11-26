@@ -16,11 +16,9 @@ class Button extends Component {
     const onClick = this.props.onClick ? this.props.onClick : () => {alert('Pass an "onClick" prop to the button!')}
     if (this.props.to) {
       return (
-        <div css={button}>
-        <Link to={this.props.to} >
+        <Link css={button} to={this.props.to} >
           {text}
         </Link>
-</div>
       )
     }
     return (
