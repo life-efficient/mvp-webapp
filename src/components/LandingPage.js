@@ -24,7 +24,7 @@ export default (props) => {
             props.sections.map((inner, idx) => {return (
                 <LandingSection inner={inner} idx={idx} 
                     hero={
-                        idx % 2 == 0 ? 
+                        idx % 2 == 1 ? 
                             props.heros ?
                             props.heros[idx/2] 
                             :
