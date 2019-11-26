@@ -317,9 +317,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        openModal: () => {
+        openModal: (content) => {
             dispatch({
-                type: "OPEN_MODAL"
+                type: "OPEN_MODAL",
+                content
             })
         }
     }
