@@ -80,9 +80,10 @@ const logo_text = css`
     z-index: 1;
     float: left;
     a​:visited, a:link, a:hover, a {  
-        color: var(--color2); 
+        color: var(--color2) !important; 
         text-decoration: none;
     }
+    color: var(--color2) !important;
 
 `
 
