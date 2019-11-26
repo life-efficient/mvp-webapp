@@ -80,9 +80,9 @@ export default class Form extends Component {
                 console.log('both internal and external validation successful')
                 this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
             }
-            catch (err) {
-                console.log('An external error occured:', err)
-                this.setState({err})
+            catch (error) {
+                console.log('An external error occured:', error)
+                this.setState({error.message})
             }
         }
         else {
