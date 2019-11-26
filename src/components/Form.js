@@ -74,13 +74,13 @@ export default class Form extends Component {
     submit = async () => {
         if (this.validate()) {      // do basic validation based on field type
             console.log('slide idx', this.state.slide_idx)
-            var onSubmit = this.props.slides[this.state.slide_idx].onSubmit 
-            var error = onSubmit ? await onSubmit(this.state) : null                 // validate + do extra stuff
-            if (!error) {
+            var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
+            try {
+                var error = onSubmit ? await onSubmit(this.state) : null                 // validate + do extra stuff
                 console.log('both internal and external validation successful')
                 this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
             }
-            else {
+            catch (err) {
                 console.log('An external error occured')
                 this.setState({error})
             }
