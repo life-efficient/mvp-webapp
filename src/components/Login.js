@@ -160,6 +160,20 @@ class Login extends Component {
                   }
                   catch (err) {
                     console.log('Failed to sign in:', err)
+                    Auth.resendSignUp(e.email)
+                    this.props.openModal(
+                      <Form
+                        slides={[
+                          {
+                            title: 'Confirm email',
+                            onSubmit: async (e) => {
+                              await Auth.confirmSignUp(event.email, e.code)
+                              console.log('confirmed')
+                              // await Auth.signIn(event.email)
+                            }
+                          }
+                        ]}
+                    )
                     // if they haven't confirmed yet, 
                     // send them an email
                     // prompt them to enter code
