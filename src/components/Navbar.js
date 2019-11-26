@@ -16,9 +16,8 @@ const navbar_container = css`
     background-color: transparent;
     z-index: 1;
 
-    a​:visited, a:link, a:hover, a {  
-        color: var(--color2); 
-        text-decoration: none;
+    .btn {
+        color: var(--color1);
     }
 `
 
@@ -45,6 +44,11 @@ const options = css`
     margin-top: 8vh;
     justify-content: space-between;
     background-color: transparent;
+    a​:visited, a:link, a:hover, a {  
+        color: var(--color2); 
+        text-decoration: none;
+    }
+
     top: 0vh;
 
     ${breakpoints[3]} {
@@ -75,6 +79,11 @@ const logo_text = css`
     font-size: 40px;
     z-index: 1;
     float: left;
+    a​:visited, a:link, a:hover, a {  
+        color: var(--color2); 
+        text-decoration: none;
+    }
+
 `
 
 var Navbar = (props) => {
@@ -84,7 +93,7 @@ var Navbar = (props) => {
                         <Link to={props.home ? props.home : "/"} css={logo_text}>
                             {props.name}
                         </Link>
-                        <Button onClick={props.action} css={{zIndex: '1', color: 'var(--color1)'}} text={props.btn} to={props.to}/>
+                        <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
                     </div>
                     <div
                      css={options}
