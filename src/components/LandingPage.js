@@ -20,7 +20,7 @@ export default (props) => { return (
         {
             props.sections ?
             props.sections.map((inner, idx) => {return (
-                <LandingSection inner={inner} idx={idx} />
+                <LandingSection inner={inner} idx={idx} hero={idx % 2 == 0 ? props.heros[idx/2] : null}/>
             )})
             :
             null
