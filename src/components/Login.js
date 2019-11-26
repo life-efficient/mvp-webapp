@@ -160,7 +160,7 @@ class Login extends Component {
                   }
                   catch (err) {
                     console.log('Failed to sign in:', err)
-                    Auth.resendSignUp(e.email)
+                    Auth.resendSignUp(event.email)
                     this.props.openModal(
                       <Form
                         slides={[
