@@ -17,6 +17,9 @@ export default class Form extends Component {
             console.log('S:', s)
             s.questions.map((q) => {
                 question_ids[q.id] = q.default ? q.default : ''
+                // if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
+                //     question_ids[`confirm-${q.id}`] = ''
+                // } 
             })
         }
         this.state = {...question_ids, slide_idx: 0}
@@ -126,7 +129,7 @@ export default class Form extends Component {
                                             case "password":
                                                 return <Password {...q} />
                                             case "confirm-password":
-                                                return <ConfirmPassword {...q} />
+                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} />
                                             case "dropdown":
                                                 null
                                         }
@@ -230,7 +233,7 @@ export class ConfirmPassword extends Component {
                 </div>
                 <br/>
                 <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+                    <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.confirm_value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
                 </div>
             </div>
             </>
