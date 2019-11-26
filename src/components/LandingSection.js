@@ -1,4 +1,5 @@
 import { css } from "@emotion/core"
+import React from "react"
 
 export default (props) => {
     const style = css`
