@@ -154,7 +154,20 @@ class Login extends Component {
                 title: 'Log in',
                 onSubmit: async (event) => {
                   console.log('logging in')
-                  var r = await Auth.signIn(event.email, event.password);
+                  try {
+                    var r = await Auth.signIn(event.email, event.password);   // try to sign in
+                    return      // successful sign in
+                  }
+                  catch (err) {
+                    console.log('Failed to sign in:', err)
+                    // if they haven't confirmed yet, 
+                    // send them an email
+                    // prompt them to enter code
+                    // confirm the code
+                    // close the modal
+                    // log them in once 
+                  }
+                  throw 'Error'
                   console.log('response:', r)
                 },
                 questions:[
@@ -287,17 +300,17 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         dispatchLogin: () => {
-//             dispatch({
-//                 type: "LOG_IN"
-//             })
-//         }
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openModal: () => {
+            dispatch({
+                type: "OPEN_MODAL"
+            })
+        }
+    }
+}
 
-export default Login = connect(mapStateToProps)(Login)
+export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
 // class Login extends Component {
 //   constructor(props) {
 //     super(props);
