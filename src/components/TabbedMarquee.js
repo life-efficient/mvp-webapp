@@ -3,6 +3,7 @@ import { css } from "@emotion/core"
 
 const style = css`
     font-family: var(--font1);
+    width: 100%;
 
     .tabs {
         display: flex;
