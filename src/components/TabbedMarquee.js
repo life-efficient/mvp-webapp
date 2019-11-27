@@ -16,7 +16,8 @@ const style = css`
 
     .tab {
         cursor: pointer;
-        font-size: 18px;    
+        font-size: 25px; 
+        font-weight: 600;   
         width: 30%;
         padding: 20px
     }
@@ -69,7 +70,7 @@ export default class TabbedIndexSection extends Component {
                         this.tabs.map(
                             (i, idx) => {
                                 return (
-                                    <div id={idx} className="tab" style={{opacity: this.state.tab == idx ? 1 : 0.25, transitionDuration: '0.5s', textDecoration: this.state.tab == idx ? 'underline': null}} onClick={this.handleTabChange}>
+                                    <div id={idx} className="tab" style={{opacity: this.state.tab == idx ? 1 : 0.4, transitionDuration: '0.5s', textDecoration: this.state.tab == idx ? 'underline': null}} onClick={this.handleTabChange}>
                                         {i.name}
                                     </div>
                                 )
