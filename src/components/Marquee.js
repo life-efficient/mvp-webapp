@@ -21,7 +21,7 @@ export default (props) => {
         props.items ?
         <div css={style}>
             {props.items.map((i, idx)=>{return (
-                <img src={i} alt={`image ${idx}`} css={css``}/>
+                <img src={i} alt=''/>
             )})}
         </div>
         :
