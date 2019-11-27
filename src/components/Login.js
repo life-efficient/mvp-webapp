@@ -160,27 +160,29 @@ class Login extends Component {
                   }
                   catch (err) {
                     console.log('Failed to sign in:', err)
-                    Auth.resendSignUp(event.email)
-                    this.props.openModal(
-                      <Form
-                        slides={[
-                          {
-                            title: 'Confirm email',
-                            onSubmit: async (e) => {
-                              await Auth.confirmSignUp(event.email, e.code)
-                              console.log('confirmed')
-                              // await Auth.signIn(event.email)
-                            },
-                            questions: [{title: 'code', type: 'text', id: 'code'}]
-                          }
-                        ]}
-                      />
-                    )
-                    // if they haven't confirmed yet, 
-                    // send them an email
-                    // prompt them to enter code
-                    // confirm the code
-                    // close the modal
+                    if (err.name === "UserNotConfirmedException") {// if they haven't confirmed yet, 
+                      Auth.resendSignUp(event.email)    // send them an email
+                      this.props.openModal(     // prompt them to enter code
+                        <Form
+                          slides={[
+                            {
+                              title: 'Confirm email',
+                              onSubmit: async (e) => {
+                                await Auth.confirmSignUp(event.email, e.code)     // confirm the code
+                                console.log('confirmed')
+                                this.props.closeModal()   // close the modal
+                                // await Auth.signIn(event.email, event.password)
+                              },
+                              questions: [{title: 'code', type: 'text', id: 'code'}]
+                            }
+                          ]}
+                        />
+                      )
+                    }
+                    
+                    
+                    
+                    
                     // log them in once 
                   }
                   throw 'Error'
@@ -318,6 +320,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        closeModal: () => {
+            dispatch({
+                type: "CLOSE_MODAL",
+            })
+        },
         openModal: (content) => {
             dispatch({
                 type: "OPEN_MODAL",
