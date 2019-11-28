@@ -11,6 +11,7 @@ import Button from "./Button"
 const navbar_container = css`
     position: relative;
     height: 8vh;
+    min-height: 71px;
     color: var(--color2) !important;
     background-color: var(--color1);
     background-color: transparent;
