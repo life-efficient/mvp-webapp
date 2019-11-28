@@ -96,7 +96,12 @@ export default class Form extends Component {
     render () {
         console.log('STATE:', this.state)
         if (this.state.slide_idx > this.props.slides.length - 1) {
-            return <Redirect to={this.props.redirect}/>
+            if (!this.props.stay) {
+                return <Redirect to={this.props.redirect}/>
+            }
+            else {
+                this.setState({slide_idx: this.state.slide_idx - 1})
+            }
         }
         var handleChange = this.handleChange
         var handleOptionChange = this.handleOptionChange
