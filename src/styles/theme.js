@@ -47,6 +47,7 @@ export const panel = css`
   background: linear-gradient(var(--secondary), var(--secondary_grad));
   margin: 20px auto;
   // width: 80%;
+  overflow: hidden;
   max-width: 400px;
   border-radius: 3px;
   padding: 20px;
