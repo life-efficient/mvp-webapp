@@ -135,11 +135,11 @@ export default class Form extends Component {
                                             case "number":
                                                 return <TextResponse {...q} handleChange={this.handleNumChange} />
                                             case "email":
-                                                return <EmailField {...q} />
+                                                return <EmailField {...q} handleChange={this.handleChange}/>
                                             case "password":
-                                                return <Password {...q} />
+                                                return <Password {...q} handleChange={this.handleChange}/>
                                             case "confirm-password":
-                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} />
+                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 null
                                         }
