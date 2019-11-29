@@ -73,4 +73,12 @@ export const panel = css`
     margin-bottom: 20px;
     font-weight: 900;
   }
+  
+  > .edit {
+    position: absolute;
+    height: 25px;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
 `
