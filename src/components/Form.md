@@ -50,8 +50,8 @@ import { makePostRequest } from "../api_calls";
                     default: 'Some default value'
                 },
                 {
-                    title: 'Title 2, Slide 1',
-                    type: 'text',   
+                    title: 'A number field',
+                    type: 'number',   
                     id: 'id2, slide 1',
                     detail: 'Some detail'
                 }

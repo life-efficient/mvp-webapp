@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import eye from "../images/see-icon.png"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import ChangePassword from "./ChangePassword"
 import Loading from "./Loading"
 import queryString from "query-string"
 import styled from "@emotion/styled"

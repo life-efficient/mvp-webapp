@@ -45,6 +45,11 @@ export default class Form extends Component {
         this.setState({[e.target.id]: e.target.value},
             () =>{console.log(this.state)})
     }
+
+    handleNumChange = (e) => {
+        this.setState({[e.target.id]: e.target.value.replace(/\D/g,'')},
+            () =>{console.log(this.state)})
+    }
     
     handleOptionChange = () => {
 
@@ -103,8 +108,6 @@ export default class Form extends Component {
                 this.setState({slide_idx: this.state.slide_idx - 1})
             }
         }
-        var handleChange = this.handleChange
-        var handleOptionChange = this.handleOptionChange
 
         var question_slides = this.question_slides
         console.log('All question slides:', question_slides)
@@ -125,10 +128,12 @@ export default class Form extends Component {
                                 </div>
                                 {
                                     s.questions.map((q) => {                         // map question slide (list of objects) to the questions
-                                        q = {...q, value: this.state[q.id], handleChange, handleOptionChange}
+                                        q = {...q, value: this.state[q.id]}
                                         switch (q.type) {
                                             case "text":
-                                                return <TextResponse {...q} />
+                                                return <TextResponse {...q} handleChange={this.handleChange} />
+                                            case "number":
+                                                return <TextResponse {...q} handleChange={this.handleNumChange} />
                                             case "email":
                                                 return <EmailField {...q} />
                                             case "password":
