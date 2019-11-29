@@ -120,23 +120,8 @@ class Login extends Component {
       //           }
       //       )
       //   }
-        return
     }
   }
-
-  // showPassword = () => {
-  //   var type = this.state.passwordFieldType
-  //   var newType = type === "password" ? "input" : "password"
-  //   this.setState({passwordFieldType: newType})
-  //   console.log(this.state)
-  // }
-
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     console.log('redirecting to:', this.state.redirect)
-  //     return <Redirect to={this.state.redirect} />
-  //   }
-  // }
 
   getPanel = () => {
     // console.log(this.state)
@@ -155,6 +140,7 @@ class Login extends Component {
                   console.log('logging in')
                   try {
                     var r = await Auth.signIn(event.email, event.password);   // try to sign in
+                    console.log('successfully signed in')
                     return      // successful sign in
                   }
                   catch (err) {
@@ -178,10 +164,6 @@ class Login extends Component {
                         />
                       )
                     }
-                    
-                    
-                    
-                    
                     // log them in once 
                   }
                   throw 'Error'

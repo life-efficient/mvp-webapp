@@ -3,6 +3,7 @@ import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
+import { Redirect } from "react-router-dom"
 
 export default class Form extends Component {
     constructor(props) {
