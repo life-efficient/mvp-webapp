@@ -50,9 +50,16 @@ import { makePostRequest } from "../api_calls";
                     default: 'Some default value'
                 },
                 {
+                    title: 'A dropdown field',
+                    type: 'dropdown',
+                    options: ['first option', 'second option', 'third option'],
+                    id: 'id2, slide 1',
+                    detail: 'Some detail'
+                },
+                {
                     title: 'A number field',
                     type: 'number',   
-                    id: 'id2, slide 1',
+                    id: 'id3, slide 1',
                     detail: 'Some detail'
                 }
             ],

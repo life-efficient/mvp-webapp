@@ -3,7 +3,6 @@ import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
-import { Redirect } from "react-router-dom"
 
 export default class Form extends Component {
     constructor(props) {
@@ -51,8 +50,9 @@ export default class Form extends Component {
             () =>{console.log(this.state)})
     }
     
-    handleOptionChange = () => {
-
+    handleOptionChange = (e) => {
+        this.setState({[e.target.id]: e.target.value},
+            () =>{console.log(this.state)})
     }
 
     validate = () => {
@@ -141,7 +141,9 @@ export default class Form extends Component {
                                             case "confirm-password":
                                                 return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
-                                                null
+                                                return <DropDown {...q} handleChange={this.handleOptionChange} />
+                                            default:
+                                                return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
                                     })
                                 }
@@ -249,4 +251,27 @@ export class ConfirmPassword extends Component {
             </>
         )
     }
+}
+
+export const DropDown = (props) => {
+    return (
+        <div className="field-container">
+            <div className="field-title ">
+                <strong>{props.title}</strong>
+            </div>
+            <br/>
+            <div className="field-title detail">
+                {props.detail}
+            </div>
+            <br/>
+            <select id={props.id} onChange={props.handleChange}>
+                <option disabled selected>Select</option>
+                {
+                    props.options.map((o)=>{return (
+                        <option value={o}>{o}</option>
+                    )})
+                }
+            </select>
+        </div>
+    )
 }
