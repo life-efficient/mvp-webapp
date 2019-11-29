@@ -68,4 +68,9 @@ export const panel = css`
     padding: 0px;
   }
 
+  .title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: 900;
+  }
 `
