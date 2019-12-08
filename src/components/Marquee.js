@@ -7,13 +7,14 @@ const style = css`
     max-width: 100%;
     min-height: 200px;
     font-family: var(--font1);
+    
     > * {
         animation: translate 50s linear infinite;
         min-height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        min-width: 200px;
+        min-width: 600px;
         max-width: 600px;
         align-items: center;
         margin: 0 20px;
