@@ -5,11 +5,25 @@ const style = css`
     display: flex;
     overflow: hidden;
     max-width: 100%;
+    min-height: 200px;
+    font-family: var(--font1);
+    > * {
+        animation: translate 50s linear infinite;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 200px;
+        max-width: 600px;
+        align-items: center;
+    }
+
     img {
         max-height: 200px;
-        animation: translate 50s linear infinite;
         margin: 5px;
         border-radius: var(--radius);
+        min-width: auto;
+        max-width: auto;
     }
 
     @keyframes translate {
@@ -21,9 +35,14 @@ export default (props) => {
     return (
         props.items ?
         <div css={style}>
-            {props.items.map((i, idx)=>{return (
-                <img src={i} alt=''/>
-            )})}
+            {props.items.map((i, idx)=>{
+                switch (props.type) {
+                    case "img":
+                        return (<img src={i} alt=''/>)
+                    case "html":
+                        return i
+                }
+            })}
         </div>
         :
         null
