@@ -16,6 +16,7 @@ const style = css`
         min-width: 200px;
         max-width: 600px;
         align-items: center;
+        margin: 0 20px;
     }
 
     img {
