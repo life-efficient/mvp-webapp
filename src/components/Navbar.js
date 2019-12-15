@@ -91,9 +91,9 @@ const logo_text = css`
 var Navbar = (props) => {
     var back_to = props.back
     
-    // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
-    //     back_to = null // then it should show a home and redirect to home
-    // }
+    if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
+        back_to = null // then it should show a home and redirect to home
+    }
     var content = back_to ? 'back' : props.name
     
     return (
