@@ -89,37 +89,36 @@ const logo_text = css`
 `
 
 var Navbar = (props) => {
-            return (
-                <div css={navbar_container}>
-                    <div css={navbar}>
-                        {
-                            props.back ? 
-                            <Link to={props.back==true ? document.referrer : props.back} css={logo_text}>
-                                back
-
-                            </Link>
-                            :
-                            <Link to={props.home ? props.home : "/"} css={logo_text}>
-                                {props.name}
-                            </Link>
-                        }
-                        <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
-                    </div>
-                    <div
-                     css={options}
-                     >
-                        {
-                            props.links ?
-                            props.links 
-                            .map(
-                                (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
-                            )
-                            :
-                            null
-                        }
-                    </div>
-                </div>
-            )
+    var back_to = props.back
+    
+    // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
+    //     back_to = null // then it should show a home and redirect to home
+    // }
+    var content = back_to ? 'back' : props.name
+    
+    return (
+        <div css={navbar_container}>
+            <div css={navbar}>
+                <Link to={back_to} css={logo_text}>
+                    {content}
+                </Link>
+                <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
+            </div>
+            <div
+                css={options}
+                >
+                {
+                    props.links ?
+                    props.links 
+                    .map(
+                        (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
+                    )
+                    :
+                    null
+                }
+            </div>
+        </div>
+    )
     // switch (true) {
     //     case true:
     //     default:

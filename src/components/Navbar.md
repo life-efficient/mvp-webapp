@@ -10,6 +10,6 @@ A standard, responsive navbar.
 ```jsx
 import { Navbar } from "mvp-webapp";
 
-<Navbar links={['about', 'work', 'team']} btn='Call to action'/>;
-// <Navbar back={true} links={['about', 'work', 'team']} btn='Call to action'/>;
+// <Navbar links={['about', 'work', 'team']} btn='Call to action' roots={[]}/>;
+<Navbar links={['about', 'work', 'team']} btn='Call to action' back={'back a page'}/>;
 ```
