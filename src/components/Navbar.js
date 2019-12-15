@@ -94,7 +94,7 @@ var Navbar = (props) => {
     
     var content = back_to ? 'back' : props.name
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
-    if (back_to && window.pathname === back_to)) { // if array of roots contains this path
+    if (back_to && window.pathname === back_to) { // if array of roots contains this path
         content = props.name // then it should show a home and redirect to home
     }
 
