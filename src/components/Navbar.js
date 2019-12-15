@@ -92,9 +92,11 @@ var Navbar = (props) => {
     var back_to = props.back
     // back_to = back_to === true ? '/' : back_to
     
+    //document.referrer
+
     var content = back_to ? 'back' : props.name // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
-    if (back_to && window.pathname === back_to) { // if array of roots contains this path
+    if (back_to && window.location.pathname === back_to) { // if array of roots contains this path
         content = props.name // then it should show a home and redirect to home
     }
 
