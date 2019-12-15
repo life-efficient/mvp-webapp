@@ -92,9 +92,17 @@ var Navbar = (props) => {
             return (
                 <div css={navbar_container}>
                     <div css={navbar}>
-                        <Link to={props.home ? props.home : "/"} css={logo_text}>
-                            {props.name}
-                        </Link>
+                        {
+                            props.back ? 
+                            <Link to={props.back==true ? document.referrer : props.back} css={logo_text}>
+                                back
+
+                            </Link>
+                            :
+                            <Link to={props.home ? props.home : "/"} css={logo_text}>
+                                {props.name}
+                            </Link>
+                        }
                         <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
                     </div>
                     <div
