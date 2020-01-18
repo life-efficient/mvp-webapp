@@ -31,8 +31,6 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@emotion/babel-preset-css-prop": "^10.0.17",
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
     "@testing-library/react": "^8.0.7",
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.14",
@@ -64,6 +62,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "aws-amplify": "^1.2.4",
     "emotion-theming": "^10.0.19",
     "query-string": "^6.8.3",
