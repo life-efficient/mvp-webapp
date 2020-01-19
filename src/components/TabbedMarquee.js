@@ -45,7 +45,7 @@ export default class TabbedIndexSection extends Component {
             tab: 0
         }
         this.tabs = props.tabs
-        this.interval = setInterval(() => {this.setState({tab: (this.state.tab + 1) % this.tabs.length})}, 4000)
+        this.interval = props.autoChange == false ? null : setInterval(() => {this.setState({tab: (this.state.tab + 1) % this.tabs.length})}, 4000)
     }
 
     getTab = () => {
