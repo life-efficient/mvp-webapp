@@ -89,7 +89,8 @@ const logo_text = css`
 `
 
 var Navbar = (props) => {
-    var back_to = props.back
+    // var back_to = props.back
+
     var root = props.root
     var to = window.location.pathname
     console.log('root:', root, 'to:', to)
@@ -105,16 +106,17 @@ var Navbar = (props) => {
     
     //document.referrer
     // back_img = <img src={back_icon}/>
-    var content = back_to ? 'back' : props.name // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
+    var content = root ? 'back' : props.name // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
-    if (back_to && window.location.pathname === back_to) { // if array of roots contains this path
-        content = props.name // then it should show a home and redirect to home
+    if (root && window.location.pathname === root) { // if already at root // if array of roots contains this path
+        content = props.name // back button should show name of app
+        to = root // and just route back to where we are currently when they press it
     }
 
     return (
         <div css={navbar_container}>
             <div css={navbar}>
-                <Link to={back_to} css={logo_text}>
+                <Link to={to} css={logo_text}>
                     {content}
                 </Link>
                 <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
