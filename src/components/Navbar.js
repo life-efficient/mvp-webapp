@@ -90,17 +90,27 @@ const logo_text = css`
 
 var Navbar = (props) => {
     var back_to = props.back
+    var root = props.root
+    var to = window.location.pathname
+    console.log('root:', root, 'to:', to)
+    if (root != to) {
+        console.log('current pathname:', window.location.pathname)
+        to = to.split('/')
+        to = to.slice(0, to.length - 1)
+        to = to.join('/')
+        console.log('GOING BACK TO:', to)
+    }
+
     // back_to = back_to === true ? '/' : back_to
     
     //document.referrer
-
+    // back_img = <img src={back_icon}/>
     var content = back_to ? 'back' : props.name // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
     if (back_to && window.location.pathname === back_to) { // if array of roots contains this path
         content = props.name // then it should show a home and redirect to home
     }
 
-    
     return (
         <div css={navbar_container}>
             <div css={navbar}>
