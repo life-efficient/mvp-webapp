@@ -47,7 +47,7 @@ var Footer = (props) => {
             <div className='socials'>
                 {
                     props.socials ?
-                    Object.keys(socials).map((s)=>{return <img src={social_icons[s]} onClick={()=>{window.open(socials[k])}}/>})
+                    Object.keys(socials).map((s)=>{return <img src={social_icons[s]} onClick={()=>{window.open(socials[s])}}/>})
                     :
                     null
                 }
