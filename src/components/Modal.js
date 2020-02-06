@@ -54,7 +54,6 @@ const container = css`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
     }
 `
 

@@ -26,6 +26,10 @@ const style = css`
     color: var(--color1);
     border-radius: var(--radius);
 
+    @media (max-width: 600px) {
+        font-size: 16px;
+    }
+
     img {
         height: 50%;
         margin: 10%;
