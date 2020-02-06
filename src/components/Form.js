@@ -114,7 +114,7 @@ export default class Form extends Component {
         console.log('All question slides:', question_slides)
         return (
             <>
-            <div css={panel} style={{display: 'flex', flexDirection: 'row', overflow: 'hidden', justifyContent: 'left', padding: '20px'}}>
+            <div css={panel} style={{display: 'flex', flexDirection: 'row', overflow: 'scroll', justifyContent: 'left', padding: '20px'}}>
                 {
                     this.props.slides.map((s) => {              // map question slides to that form slide
                         console.log('question slide:', s)
