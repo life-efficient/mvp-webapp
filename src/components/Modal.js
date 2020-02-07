@@ -75,7 +75,7 @@ class Modal extends Component {
             <div css={container} style={this.props.modalOpen ? {opacity: 1, zIndex: 10} : {opacity: 0, zIndex: -1}} onClick={this.handleClick}>
                 <div className="modal" ref={node => this.node=node}>
                     {/* <img className="modal-closebtn" onClick={this.props.closeModal} src={cross} alt="" /> */}
-                    <div className="modal-closebtn" onClick={this.props.closeModal}>x</div>
+                    <div className="modal-closebtn" onClick={this.props.closeModal}>close</div>
                     {this.props.content}                
                 </div>
             </div>
