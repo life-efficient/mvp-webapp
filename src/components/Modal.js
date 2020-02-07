@@ -36,7 +36,10 @@ const container = css`
     }
 
     .modal-closebtn {
-        color: black;
+        // color: black;
+        font-weight: 1000;
+        font-size: 26px;
+        font-family: var(--font1);
         position: absolute;
         left: 10px;
         top: 10px;
