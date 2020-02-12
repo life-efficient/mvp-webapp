@@ -27,7 +27,6 @@ const navbar = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    height: '8vh',
     padding: '10px',
     boxSizing: 'border-box',
 }
