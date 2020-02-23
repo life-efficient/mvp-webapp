@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { font, primaryColors, shape } from "styles/styles";
 import { button } from "../styles/theme"
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 const Wrapper = styled.button`
   ${font}
@@ -13,11 +14,12 @@ const Wrapper = styled.button`
 class Button extends Component {
   render() {
     const text = this.props.text ? this.props.text : 'Pass a "text" prop to the Button!'
+    const content = this.props.loading ? <Loading/> : text
     const onClick = this.props.onClick ? this.props.onClick : () => {alert('Pass an "onClick" prop to the button!')}
     if (this.props.to) {
       return (
         <Link css={button} to={this.props.to} >
-          {text}
+          {content}
         </Link>
       )
     }
@@ -25,7 +27,7 @@ class Button extends Component {
       // <button css={}>
 
       <button css={button} onClick={onClick}>
-        {text}
+        {content}
       </button>
     )
   }

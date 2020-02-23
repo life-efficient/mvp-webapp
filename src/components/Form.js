@@ -22,7 +22,11 @@ export default class Form extends Component {
                 // } 
             })
         }
-        this.state = {...question_ids, slide_idx: 0}
+        this.state = {
+            ...question_ids, 
+            slide_idx: 0,
+            loading: false
+        }
         // var question_slides = this.props.questions
         // if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
         //     question_slides = [question_slides]                           // if not, then we need to put that list of dicts into a list to make it a list of lists of dicts
@@ -82,6 +86,7 @@ export default class Form extends Component {
 
     submit = async () => {
         if (this.validate()) {      // do basic validation based on field type
+            this.setState({loading: true})
             console.log('slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
             try {
@@ -93,6 +98,7 @@ export default class Form extends Component {
                 console.log('An external error occured:', error)
                 this.setState({error: error.message})
             }
+            this.setState({loading: false})
         }
         else {
             console.log('internal validation failed')
@@ -154,7 +160,7 @@ export default class Form extends Component {
                                 <div className='detail'>
                                     {s.detail}
                                 </div>
-                                <Button text='Submit' onClick={this.submit} />
+                                <Button text='Submit' onClick={this.submit} loading={this.state.loading}/>
                             </div>
                         </div>
                         </>
