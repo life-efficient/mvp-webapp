@@ -24,8 +24,6 @@ const style = css`
     -o-transition: opacity 0.5s ease-in-out;
 
     .modal {
-        animation-name: ${expand_in};
-        animation-duration: 1s;
         background-color: var(--secondary);
         background-size: 100vw 100%;
         border-radius: 6px;
@@ -74,7 +72,13 @@ class Modal extends Component {
 
     render() {
         return (
-            <div css={style} style={this.props.modalOpen ? {opacity: 1, zIndex: 10} : {opacity: 0, zIndex: -1}} onClick={this.handleClick}>
+            <div css={css`
+                ${style}
+                animation-name: ${expand_in};
+                animation-duration: 1s;
+                ${this.props.modalOpen ? css`opacity: 1; z-index: 10` : css`opacity: 0; z-index: -1`}
+                `} 
+                onClick={this.handleClick}>
                 <div className="modal" ref={node => this.node=node}>
                     {/* <img className="modal-closebtn" onClick={this.props.closeModal} src={cross} alt="" /> */}
                     <div className="modal-closebtn" onClick={this.props.closeModal}>close</div>
