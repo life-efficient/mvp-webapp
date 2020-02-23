@@ -25,7 +25,7 @@ const style = css`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
+        // width: 100%;
         padding: 10px;
         boxSizing: border-box;
         max-height: 100%;
