@@ -73,10 +73,8 @@ class Modal extends Component {
     render() {
         return (
             <div css={css`
-                ${style}
-                // animation-name: ${expand_in};
-                // animation-duration: 1s;
-                ${this.props.modalOpen ? css`opacity: 1; z-index: 10;` : css`opacity: 0; z-index: -1;`}
+                    ${style}
+                    ${this.props.modalOpen ? css`opacity: 1; z-index: 10; animation-name: ${expand_in}; animation-duration: 1s;` : css`opacity: 0; z-index: -1;`}
                 `} 
                 onClick={this.handleClick}>
                 <div className="modal" ref={node => this.node=node}>
