@@ -30,7 +30,7 @@ const style = css`
         padding: 10px;
         boxSizing: border-box;
         max-height: 100%;
-        button {
+         {
             min-width: auto;
         }
     }
@@ -122,7 +122,7 @@ var Navbar = (props) => {
                 <Link to={to} className="logo_text">
                     {content}
                 </Link>
-                <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
+                <Button onClick={props.action} css={css`z-index: 1; min-width: auto;`} text={props.btn} to={props.to}/>
             </div>
             <div
                 className="options"
