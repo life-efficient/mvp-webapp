@@ -8,7 +8,7 @@ import { button, breakpoints } from "../styles/theme"
 import theme from "../styles/theme"
 import Button from "./Button"
 
-const navbar_container = css`
+const style = css`
     position: relative;
     height: 8vh;
     min-height: 71px;
@@ -20,71 +20,71 @@ const navbar_container = css`
     .btn {
         color: var(--color1);
     }
-`
 
-const navbar = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    padding: '10px',
-    boxSizing: 'border-box',
-}
-
-const options = css`
-    width: 100%;
-    height: 4vh;
-    margin: 20px 0;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    font-size: 20px;
-    color: var(--color2);
-    font-family: var(--font1);
-    margin-top: 8vh;
-    justify-content: space-between;
-    background-color: transparent;
-    a​:visited, a:link, a:hover, a {  
-        color: var(--color2); 
-        text-decoration: none;
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        boxSizing: border-box;
+        max-height: 100%;
     }
 
-    top: 0vh;
+    .options {
+        width: 100%;
+        height: 4vh;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        font-size: 20px;
+        color: var(--color2);
+        font-family: var(--font1);
+        margin-top: 8vh;
+        justify-content: space-between;
+        background-color: transparent;
+        a​:visited, a:link, a:hover, a {  
+            color: var(--color2); 
+            text-decoration: none;
+        }
 
-    ${breakpoints[3]} {
-        margin-top: 0vh;
-        height: 100%;
+        top: 0vh;
+
+        ${breakpoints[3]} {
+            margin-top: 0vh;
+            height: 100%;
+            justify-content: center;
+            width: 60%;
+            left: 20%;
+            // margin: 0 auto;
+        }
+    }
+
+    .option {
+        padding: 0 10px;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        width: 60%;
-        left: 20%;
-        // margin: 0 auto;
+        align-items: center;
+        z-index: 1;
     }
-`
 
-const option = css`
-    padding: 0 10px;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-`
-
-const logo_text = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: var(--font1);
-    font-size: 40px;
-    z-index: 1;
-    float: left;
-    a​:visited, a:link, a:hover, a {  
-        color: var(--color2) !important; 
-        text-decoration: none;
+    .logo_text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: var(--font1);
+        font-size: 40px;
+        z-index: 1;
+        float: left;
+        a​:visited, a:link, a:hover, a {  
+            color: var(--color2) !important; 
+            text-decoration: none;
+        }
+        color: var(--color2) !important;
     }
-    color: var(--color2) !important;
-
 `
 
 var Navbar = (props) => {
@@ -113,21 +113,21 @@ var Navbar = (props) => {
     }
 
     return (
-        <div css={navbar_container}>
-            <div css={navbar}>
-                <Link to={to} css={logo_text}>
+        <div css={style}>
+            <div className="navbar">
+                <Link to={to} className="logo_text">
                     {content}
                 </Link>
                 <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
             </div>
             <div
-                css={options}
+                className="options"
                 >
                 {
                     props.links ?
                     props.links 
                     .map(
-                        (l) => {return <Link css={option} to={`/${l}`}>{l.toUpperCase()}</Link>}
+                        (l) => {return <Link className="option" to={`/${l}`}>{l.toUpperCase()}</Link>}
                     )
                     :
                     null
