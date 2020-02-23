@@ -17,18 +17,22 @@ const style = css`
     background-color: transparent;
     z-index: 1;
 
-    .btn {
-        color: var(--color1);
-    }
+    // .btn {
+    //     color: var(--color1);
+    // }
 
     .navbar {
         display: flex;
+        box-sizing: border-box;
         flex-direction: row;
         justify-content: space-between;
         // width: 100%;
         padding: 10px;
         boxSizing: border-box;
         max-height: 100%;
+        .action {
+            min-width: auto;
+        }
     }
 
     .options {
@@ -76,7 +80,7 @@ const style = css`
         flex-direction: column;
         justify-content: center;
         font-family: var(--font1);
-        font-size: 40px;
+        font-size: 30px;
         z-index: 1;
         float: left;
         a​:visited, a:link, a:hover, a {  
@@ -118,7 +122,7 @@ var Navbar = (props) => {
                 <Link to={to} className="logo_text">
                     {content}
                 </Link>
-                <Button onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
+                <Button className="action" onClick={props.action} css={{zIndex: '1'}} text={props.btn} to={props.to}/>
             </div>
             <div
                 className="options"
