@@ -7,12 +7,24 @@ import { Redirect } from "react-router-dom"
 import Loading from "./Loading"
 import queryString from "query-string"
 import styled from "@emotion/styled"
-import { jsx, css } from "@emotion/core"
+import { jsx, css, keyframes } from "@emotion/core"
 import { Form as FormStyle } from "../styles/forms"
 import { panel, button } from "../styles/theme"
 import { Auth } from "aws-amplify"
 import { makeid } from "../utils"
 import Form from "./Form"
+
+const expand_in = keyframes`
+  from {transform: scale(0.9)}
+  to {transform: scale(1)}
+`
+
+const style = css`
+  animation-name: ${expand_in};
+  animation-duration: 1s;
+  animation-direction: normal;
+  ${panel};
+`
 
 // VERSION OF COMPONENT THAT USES PASSWORDS
 class Login extends Component {
@@ -283,7 +295,7 @@ class Login extends Component {
   render() {
     return (
       <>
-          <div css={panel} >
+          <div css={style} >
             <img src={this.props.logo} style={{height: '200px', margin: '40px'}} alt=""/>
             {this.getPanel()}
           </div>
