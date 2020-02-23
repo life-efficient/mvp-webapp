@@ -3,8 +3,11 @@ import ReactDOM from "react-dom"
 import { Link } from "react-router-dom"
 import { css } from "@emotion/core"
 import ReactCursorPosition from 'react-cursor-position';
+import { expand_in } from "../styles/animations"
 
 const style = css`
+    animation-name: ${expand_in};
+    animation-duration: 1s;
     --dim: 200px;
     height: var(--dim);
     width: var(--dim);
