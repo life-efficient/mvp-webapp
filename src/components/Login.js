@@ -10,20 +10,10 @@ import styled from "@emotion/styled"
 import { jsx, css, keyframes } from "@emotion/core"
 import { Form as FormStyle } from "../styles/forms"
 import { panel, button } from "../styles/theme"
+import { expand_in } from "../styles/animations"
 import { Auth } from "aws-amplify"
 import { makeid } from "../utils"
 import Form from "./Form"
-
-const expand_in = keyframes`
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-`
 
 const style = css`
   animation-name: ${expand_in};
