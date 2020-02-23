@@ -15,14 +15,21 @@ import { makeid } from "../utils"
 import Form from "./Form"
 
 const expand_in = keyframes`
-  from {transform: scale(0.9)}
-  to {transform: scale(1)}
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+
+  }
+  to {
+    transform: scale(1)
+    opacity: 1;
+  }
 `
 
 const style = css`
   animation-name: ${expand_in};
   animation-duration: 1s;
-  animation-direction: normal;
+  // animation-direction: normal;
   ${panel};
 `
 
