@@ -28,6 +28,7 @@ const style = css`
         cursor: pointer;
         transition-duration: 1s;
         border-radius: 50px;
+        z-index: 100;
         :hover {
             background-color: var(--color2);
             color: var(--color1) !important;
