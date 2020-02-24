@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
 
 const style = css`
-    // position: absolute;
+    position: absolute;
     // background-color: var(--color2);
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@ export default class extends Component {
         return (
             <div css={style}>
                 {this.props.items.map(i=>{return ( 
-                    <Link to={i.to} className="item"> 
+                    <Link to={i.to} onClick={i.onClick} className="item"> 
                         {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
                         {i.title}
                     </Link>
