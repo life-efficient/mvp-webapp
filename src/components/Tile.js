@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { css } from "@emotion/core"
 import ReactCursorPosition from 'react-cursor-position';
 import { expand_in } from "../styles/animations"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const style = css`
     animation-name: ${expand_in};
@@ -33,9 +34,10 @@ const style = css`
         font-size: 16px;
     }
 
-    img {
+    img, .faicon {
         height: 50%;
         margin: 10%;
+        font-size: 80px;
     }
 
 `
@@ -71,7 +73,7 @@ export default class Tile extends Component {
                 // onMouseLeave={() => {clearInterval(this.i); this.setState({x: 0, y: 0})}} 
                 // onMouseEnter={() => {this.i = setInterval(this.tilt, 100)}} 
                 style={{transform: `rotateX(${k*this.state.x}rad) rotateY(${k*this.state.y}rad)`, order: '3px solid red'}}>
-                <img src={this.props.icon} alt="" />
+                {this.props.faIcon ? <FontAwesomeIcon icon={this.props.faIcon} className="faicon" /> : <img src={this.props.icon} alt="" />}
                 {this.props.title}
             </Link>
         )
