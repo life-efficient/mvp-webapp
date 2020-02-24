@@ -23,6 +23,7 @@ const style = css`
         color: var(--color2);
         cursor: pointer;
         font-size: 50px;
+        text-align: left;
     }
 
     .content {
@@ -70,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         close: () => {
             dispatch({
-                type: "CLOSE_SLIDEUP",
+                type: "CLOSE_SLIDEIN",
                 //content: content
             })
         }
