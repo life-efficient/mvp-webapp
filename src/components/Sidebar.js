@@ -8,8 +8,11 @@ const style = css`
     // background-color: var(--color2);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: left;
     border-radius: 30px;
+    height: 100%;
+
     // width: auto;
     .item {
         font-family: var(--font1);
