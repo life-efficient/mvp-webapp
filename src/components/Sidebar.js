@@ -11,7 +11,7 @@ const style = css`
     justify-content: center;
     align-items: left;
     border-radius: 30px;
-    height: 100%;
+    height: 90%;
 
     // width: auto;
     .item {

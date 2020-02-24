@@ -5,16 +5,20 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { ThemeProvider } from 'emotion-theming'
 import { css, Global } from "@emotion/core"
 import logo from "../images/external/logo.png"
+import { combineReducers } from 'redux'
 
 const initialState = () => {
     return {
         app: {
             name: 'MVP',
             logo,
-            address: 'my business address, ABCDEF',
+            address: 'my business address, P0STC0D3',
             contact: '0123456789'
         },
         modal: {
+            open: false
+        },
+        slideIn: {
             open: false
         },
         payment: [
@@ -27,7 +31,51 @@ const initialState = () => {
     }
 }
 
-const store = createStore(initialState)
+const slideIn = (state={open: false, content: null}, action) => {
+    switch (action.type) {
+        case "OPEN_SLIDEUP":
+            console.log('opening slideup')
+            return {
+                open: true,
+                content: action.content
+            }
+        case "CLOSE_SLIDEUP":
+            console.log('closing slideup')
+            return {
+                open: false,
+                content: null
+            }
+        default:
+            return state
+    }
+}
+
+const modal = (state={open: false, content: null}, action) => {
+    switch (action.type) {
+        case "OPEN_MODAL": 
+            console.log('opening modal')
+            return {
+                open: true,
+                content: action.content
+            }
+        case "CLOSE_MODAL":
+            console.log('closing modal')
+            return {
+                open: false,
+                content: null
+            }
+        default:
+            return state
+    }
+}
+
+const reducer = combineReducers({
+    initialState,
+    modal,
+    slideIn
+})
+
+const store = createStore(reducer)
 
 export default (props) => {
 

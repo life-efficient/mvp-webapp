@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import notification from "../images/icons/notification.png";
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
-<>
+<div style={{position: 'relative', height: '300px'}}>
 <Sidebar items={[
     {
         'title': 'Notifications',
@@ -29,5 +29,5 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
         icon: notification
     },
 ]}/>
-</>
+</div>
 ```

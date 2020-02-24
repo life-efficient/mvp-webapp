@@ -39,7 +39,6 @@ const style = css`
         margin: 10%;
         font-size: 80px;
     }
-
 `
 export default class Tile extends Component {
     constructor(props) {
