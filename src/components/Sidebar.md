@@ -22,7 +22,8 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
         icon: notification,
         // faIcon: <FontAwesomeIcon icon={faCoffee} color={'#ff822e'} size='50px'/>
         faIcon: faCoffee,
-        to: '/to_item'
+        to: '/to_item',
+        alert: '*'
     },
     {
         'title': 'Notifications',

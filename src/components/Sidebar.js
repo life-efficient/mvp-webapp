@@ -45,6 +45,20 @@ const style = css`
             height: 35px;
             width: 35px;
         }
+        .alert {
+            background-color: red;
+            box-shadow: var(--shadow);
+            border-radius: 30px;
+            color: black;
+            padding: 5px;
+            min-width: 10px;
+            height: 10px;
+            text-align: center;
+            margin: 10px;
+            font-family: var(--font1);
+            font-size: 15px;
+            font-weight: 900;
+        }
     }
     img {
     }
@@ -62,6 +76,7 @@ export default class extends Component {
                     <Link to={i.to} onClick={i.onClick} className="item"> 
                         {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
                         {i.title}
+                        {i.alert ? <div className="alert">{i.alert}</div> : null}
                     </Link>
                 )})}
             </div>
