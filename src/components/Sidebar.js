@@ -75,7 +75,7 @@ export default class extends Component {
                 {this.props.items.map(i=>{return ( 
                     <Link to={i.to} onClick={i.onClick} className="item"> 
                         {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
-                        {i.title}
+                        {window.innerWidth > 1100 ? i.title : null}
                         {i.alert ? <div className="alert">{i.alert}</div> : null}
                     </Link>
                 )})}
