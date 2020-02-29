@@ -7,29 +7,29 @@ import { css, Global } from "@emotion/core"
 import logo from "../images/external/logo.png"
 import { combineReducers } from 'redux'
 
-const initialState = () => {
+const app = () => {
+
     return {
-        app: {
             name: 'MVP',
             logo,
             address: 'my business address, P0STC0D3',
             contact: '0123456789'
-        },
-        modal: {
-            open: false
-        },
-        slideIn: {
-            open: false
-        },
-        payment: [
-            {
-                name: 'product1',
-                price: 'price1',
-                
-            }
-        ]
+        }
     }
-}
+//         modal: {
+//             open: false
+//         },
+//         slideIn: {
+//             open: false
+//         },
+//         payment: [
+//             {
+//                 name: 'product1',
+//                 price: 'price1',
+//             }
+//         ]
+//     }
+// }
 
 const slideIn = (state={open: false, content: null}, action) => {
     switch (action.type) {
@@ -70,7 +70,7 @@ const modal = (state={open: false, content: null}, action) => {
 }
 
 const reducer = combineReducers({
-    initialState,
+    app,
     modal,
     slideIn
 })

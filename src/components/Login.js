@@ -195,7 +195,7 @@ class Login extends Component {
                   </div>
                   <div onClick={()=>{this.setState({panel:'redirect'})}}>
                     Sign up
-                  </div>
+                  </div>   
                 </div>
               }
             ]}
@@ -264,7 +264,7 @@ class Login extends Component {
                 subtitle: 'Check the email you signed up with for the code',
                 questions: [
                   {title:'Code', type: 'text', id: 'code'},
-                  {title: 'New password', type: 'password', id:'new_password'}
+                  {title: 'New password', type:'password', id:'new_password'}
                 ],
                 onSubmit: (e) => {Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
               }
@@ -289,6 +289,7 @@ class Login extends Component {
   // }
 
   render() {
+    console.log('APP:', this.props.app)
     return (
       <>
           <div css={style} >
@@ -301,6 +302,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('state:', state)
+  console.log('APP:', state.app)
   return {
     // logged_in: state.user.logged_in,
     logo: state.app.logo
