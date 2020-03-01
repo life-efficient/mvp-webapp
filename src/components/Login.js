@@ -172,6 +172,9 @@ class Login extends Component {
                         />
                       )
                     }
+                    else if (err.name === "NotAuthorizedException") {
+                      
+                    }
                     // log them in once 
                   }
                   throw 'Error'

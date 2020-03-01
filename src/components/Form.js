@@ -46,6 +46,10 @@ export default class Form extends Component {
         //     {}
     }
 
+    componentDidUpdate = (prevProps) => {
+
+    }
+
     handleChange = (e) => {
         this.setState({[e.target.id]: e.target.value},
             () =>{console.log(this.state)})
@@ -97,6 +101,7 @@ export default class Form extends Component {
             }
             catch (error) {
                 console.log('An external error occured:', error)
+                console.log('external error message:', error.message)
                 this.setState({error: error.message})
             }
             this.setState({loading: false})
