@@ -257,8 +257,9 @@ class Login extends Component {
                     id: 'email'
                   },
                 ],
-                onSubmit: ()=>{
-                  Auth.forgotPassword(this.state.email)
+                onSubmit: (e)=>{
+                  console.log(e.email)
+                  Auth.forgotPassword(e.email)
                 }
               },
               {
