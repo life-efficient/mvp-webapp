@@ -34,7 +34,6 @@ class Login extends Component {
       passwordFieldType: "password",
       redirect: null,
       panel: "login",
-      panel: "get-details",
       user: null,
       loading: false,
       error: null,
