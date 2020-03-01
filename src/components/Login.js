@@ -270,7 +270,7 @@ class Login extends Component {
                   {title: 'New password', type:'password', id:'new_password'},
                 ],
                 onSubmit: (e) => {
-                  console.log(e)
+                  console.log('event:', e)
                   console.log('submitting:', e.email, e.code. e.new_password)
                   Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
               }
