@@ -145,10 +145,10 @@ class Login extends Component {
               {
                 title: 'Log in',
                 onSubmit: async (event) => {
-                  console.log('logging in')
+                  // console.log('logging in')
                   try {
                     var r = await Auth.signIn(event.email, event.password);   // try to sign in
-                    console.log('successfully signed in')
+                    // console.log('successfully signed in')
                     return      // successful sign in
                   }
                   catch (err) {
@@ -162,7 +162,7 @@ class Login extends Component {
                               title: 'Confirm email',
                               onSubmit: async (e) => {
                                 await Auth.confirmSignUp(event.email, e.code)     // confirm the code
-                                console.log('confirmed')
+                                // console.log('confirmed')
                                 this.props.closeModal()   // close the modal
                                 // await Auth.signIn(event.email, event.password)
                               },
