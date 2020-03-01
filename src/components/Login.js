@@ -257,7 +257,9 @@ class Login extends Component {
                     id: 'email'
                   },
                 ],
-                onSubmit: ()=>{Auth.forgotPassword(this.state.email)}
+                onSubmit: ()=>{
+                  Auth.forgotPassword(this.state.email)
+                }
               },
               {
                 title: 'Enter code',
@@ -266,7 +268,9 @@ class Login extends Component {
                   {title:'Code', type: 'text', id: 'code'},
                   {title: 'New password', type:'password', id:'new_password'},
                 ],
-                onSubmit: (e) => {Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
+                onSubmit: (e) => {
+                  console.log('submitting:', e.email, e.code. e.new_password)
+                  Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
               }
             ]}
           />
