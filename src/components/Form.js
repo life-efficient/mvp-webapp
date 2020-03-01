@@ -22,6 +22,7 @@ export default class Form extends Component {
                 // } 
             })
         }
+        console.log('question ids:', question_ids)
         this.state = {
             ...question_ids, 
             slide_idx: 0,
@@ -106,7 +107,7 @@ export default class Form extends Component {
     }
 
     render () {
-        console.log('STATE:', this.state)
+        // console.log('STATE:', this.state)
         if (this.state.slide_idx > this.props.slides.length - 1) {
             if (!this.props.stay) {
                 return <Redirect to={this.props.redirect}/>
@@ -117,13 +118,13 @@ export default class Form extends Component {
         }
 
         var question_slides = this.question_slides
-        console.log('All question slides:', question_slides)
+        // console.log('All question slides:', question_slides)
         return (
             <>
             <div css={panel} style={{display: 'flex', flexDirection: 'row', overflowY: 'auto', overflowX: 'hidden', justifyContent: 'left', padding: '20px'}}>
                 {
                     this.props.slides.map((s) => {              // map question slides to that form slide
-                        console.log('question slide:', s)
+                        // console.log('question slide:', s)
                         return <>  
                         <div style={{minWidth: '100%', padding: '0px', transform: `translateX(-${100 * this.state.slide_idx}%)`, transitionDuration: '0.5s', paddingRight: '20px'}}>
                             <div css={FormStyle} >
@@ -173,7 +174,7 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
-    console.log('VALUE:', props.value)
+    // console.log('VALUE:', props.value)
     return (
         <div className="field-container">
             <div className="field-title ">
@@ -213,7 +214,7 @@ export class Password extends Component {
                 </div>
                 <br/>
                 <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+                    <input type={ this.state.hidden ? 'password' : 'input' } id={this.props.id} value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
                     <img src={ eye } onClick={ this.toggleHidden } alt="" />
                 </div>
             </div>

@@ -34,6 +34,7 @@ class Login extends Component {
       passwordFieldType: "password",
       redirect: null,
       panel: "login",
+      panel: "get-details",
       user: null,
       loading: false,
       error: null,
@@ -255,16 +256,16 @@ class Login extends Component {
                     title: 'Email',
                     type: 'text',
                     id: 'email'
-                  }
+                  },
                 ],
-                onSubmit: ()=>{Auth.forgotPassword(this.state.email)}
+                // onSubmit: ()=>{Auth.forgotPassword(this.state.email)}
               },
               {
                 title: 'Enter code',
                 subtitle: 'Check the email you signed up with for the code',
                 questions: [
                   {title:'Code', type: 'text', id: 'code'},
-                  {title: 'New password', type:'password', id:'new_password'}
+                  {title: 'New password', type:'password', id:'new_password'},
                 ],
                 onSubmit: (e) => {Auth.forgotPasswordSubmit(e.email, e.code, e.new_password)}
               }
