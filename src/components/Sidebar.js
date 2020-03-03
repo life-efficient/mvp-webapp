@@ -19,7 +19,8 @@ const style = css`
         font-weight: 900;
         color: var(--color2);
         display: flex;
-        width: 160px;
+        position: relative;
+        width: 35px;
         flex-direction: row;
         align-items: center;
         justify-content: left;
@@ -29,6 +30,9 @@ const style = css`
         transition-duration: 1s;
         border-radius: 50px;
         z-index: 100;
+        transition-duration: 0.5s;
+
+
         :hover {
             background-color: var(--color2);
             color: var(--color1) !important;
@@ -48,16 +52,27 @@ const style = css`
         .alert {
             background-color: red;
             box-shadow: var(--shadow);
+            position: absolute;
+            top: -10px;
+            left: -10px;
             border-radius: 30px;
             color: black;
             padding: 5px;
             min-width: 10px;
-            height: 10px;
             text-align: center;
             margin: 10px;
             font-family: var(--font1);
-            font-size: 15px;
+            --textheight: 10px;
+            height: var(--textheight);
+            font-size: var(--textheight);
             font-weight: 900;
+        }
+
+        @media (max-width: 100px) {
+            .item{
+
+            width: 150px;
+            }
         }
     }
     img {

@@ -27,7 +27,12 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
     },
     {
         'title': 'Notifications',
-        icon: notification
+        icon: notification,
+    },
+    {
+        'title': 'Notifications',
+        faIcon: faCoffee,
+        alert: 15
     },
 ]}/>
 </div>
