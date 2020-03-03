@@ -13,43 +13,47 @@ const style = css`
     border-radius: 30px;
     height: 90%;
 
-    // width: auto;
     .item {
-        font-family: var(--font1);
-        font-weight: 900;
-        color: var(--color2);
-        display: flex;
         position: relative;
-        width: 35px;
-        overflow: hidden;
-        flex-direction: row;
-        align-items: center;
-        justify-content: left;
-        padding: 10px;
-        margin: 5px;
-        cursor: pointer;
-        transition-duration: 1s;
-        border-radius: 50px;
-        z-index: 100;
-        transition-duration: 0.5s;
+        .item-link {
+            font-family: var(--font1);
+            font-weight: 900;
+            color: var(--color2);
+            display: flex;
+            position: relative;
+            width: 35px;
+            overflow: hidden;
+            flex-direction: row;
+            align-items: center;
+            justify-content: left;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            transition-duration: 1s;
+            border-radius: 50px;
+            z-index: 100;
+            transition-duration: 0.5s;
+            z-index: 0;
 
 
-        :hover {
-            background-color: var(--color2);
-            color: var(--color1) !important;
-            .faicon {
+            :hover {
+                background-color: var(--color2);
                 color: var(--color1) !important;
+                .faicon {
+                    color: var(--color1) !important;
+                }
+            }
+            .faicon, img {
+                padding-right: 10px;
+                transition-duration: 1s;
+                font-size: 35px;
+                color: var(--color2);
+
+                height: 35px;
+                width: 35px;
             }
         }
-        .faicon, img {
-            padding-right: 10px;
-            transition-duration: 1s;
-            font-size: 35px;
-            color: var(--color2);
 
-            height: 35px;
-            width: 35px;
-        }
         .alert {
             background-color: red;
             box-shadow: var(--shadow);
@@ -67,7 +71,12 @@ const style = css`
             height: var(--textheight);
             font-size: var(--textheight);
             font-weight: 900;
+            
         }
+    }
+    // width: auto;
+
+    
 
         @media (max-width: 100px) {
             .item{
@@ -89,11 +98,13 @@ export default class extends Component {
         return (
             <div css={style}>
                 {this.props.items.map(i=>{return ( 
-                    <Link to={i.to} onClick={i.onClick} className="item"> 
-                        {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
-                        {window.innerWidth > 1100 ? i.title : null}
+                    <div className="item">
+                        <Link to={i.to} onClick={i.onClick} className="item-link"> 
+                            {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
+                            {window.innerWidth > 1100 ? i.title : null}
+                        </Link>                        
                         {i.alert ? <div className="alert">{i.alert}</div> : null}
-                    </Link>
+                    </div>
                 )})}
             </div>
         )
