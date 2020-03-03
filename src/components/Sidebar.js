@@ -21,6 +21,7 @@ const style = css`
         display: flex;
         position: relative;
         width: 35px;
+        overflow: hidden;
         flex-direction: row;
         align-items: center;
         justify-content: left;
