@@ -35,7 +35,6 @@ const style = css`
             transition-duration: 0.5s;
             z-index: 0;
 
-
             :hover {
                 background-color: var(--color2);
                 color: var(--color1) !important;
