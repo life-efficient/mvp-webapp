@@ -1,5 +1,12 @@
 A panel that slides in from some direction
 
+### props
+#### content
+- **type**: `jsx`
+- **default**: `null`
+- **required**: `false`
+- **description**: This is the jsx that will be rendered on the panel when it slides up 
+
 ``` jsx
 import SlideInPanel from "./SlideInPanel";
 import myButton from "./Button";

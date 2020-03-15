@@ -43,6 +43,8 @@ export default (props) => {
                         return (<img src={i} alt=''/>)
                     case "html":
                         return i
+                    default:
+                        return i
                 }
             })}
         </div>

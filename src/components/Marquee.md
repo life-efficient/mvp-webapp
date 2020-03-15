@@ -1,4 +1,17 @@
 A photo marquee 
+### props
+
+#### items
+- **type**: `array` of html or img srcs (depending on type prop)
+- **default**: `null`
+- **required**: `false`
+- **description**: a list of the items which are shown on the marquee
+
+#### type
+- **type**: `string`
+- **default**: `html`
+- **required**: `false`
+- **description**: Specifies whether the items should be treated as images or html
 
 ```jsx
 import { Marquee } from "mvp-webapp";

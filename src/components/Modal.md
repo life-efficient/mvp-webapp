@@ -1,4 +1,13 @@
-A modal
+A modal. 
+
+Content is updated any time the modal is opened. Content is wiped when the modal closes.
+
+### props
+#### content
+- **type**: jsx
+- **default**: `null`
+- **required**: `false`
+- **description**: The jsx that is rendered on the modal
 
 ``` jsx
 import { Button as _Button, Modal } from "mvp-webapp";

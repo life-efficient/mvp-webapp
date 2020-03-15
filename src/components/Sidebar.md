@@ -1,13 +1,33 @@
 
-A navbar, but on the side.
+Like a navbar, but on the side.
 
-### Props
+### props
 #### **`items`**
-The `items` prop should be a list of objects with the following keys.
+- **type**: `array` 
+- **default**: `null`
+- **required**: `true`
+- **description**: List of objects specifying each icon button shown on the Sidebar. Each should have the following keys:
 
-- `faIcon`: this prop should be a component from fontAwesome's react library. FontAwesome has a huge collection of icons which are all treated like font. This means that you can change their color dynamically, rather than being stuck with using an image that can't change.
-- alternatively to `faIcon`, you can pass in the src for an image that you'd like to use as an icon. It should be imported by doing something along the lines of `import my_src from ./my_img_path/img.png`
-- `title`: the title will be shown next to the icon when the page is large enough
+    * **`faIcon`**
+
+        - **type**: imported Font Awesome icon 
+        - **default**: `null`
+        - **required**: `true` unless `src` prop given
+        - **description**: icon shown
+
+    * **`src`** 
+        
+        * type: imported image 
+        - **default**: `null`
+        - **required**: `false`
+        - **description**: image that you'd like to use as an icon.
+
+    * **`alert`** 
+        
+        - **type**: `string` 
+        - **default**: `null`
+        - **required**: `false`
+        - **description**: string that you'd like to appear in a red alert bubble to the corner of the item 
 
 ``` jsx
 import { Sidebar } from "mvp-webapp";

@@ -195,9 +195,15 @@ class Login extends Component {
                   <div onClick={()=>{this.setState({panel:'get-details'})}}>
                     Forgot your details?
                   </div>
-                  <div onClick={()=>{this.setState({panel:'redirect'})}}>
-                    Sign up
-                  </div>   
+                  {
+                    this.props.can_sign_up === false
+                    ?
+                    null
+                    :
+                    <div onClick={()=>{this.setState({panel:'redirect'})}}>
+                      Sign up
+                    </div>   
+                  }
                 </div>
               }
             ]}

@@ -1,13 +1,36 @@
-A standard, responsive navbar. 
+A standard, responsive navbar. When viewport becomes too small to fit in all links, they are pushed under. 
 
-### Props
-**back**=true|'url to go to'
+### props
+#### root
+- **type**: `string`
+- **default**: `null`
+- **required**: `false`
+- **description**: When the path=root, the Navbar will show the name of your webapp in the left. Otherwise it will show 'back', and link back to this path when clicked.
 
-**links** = [array of names of links which appear with the navbar]
+#### links
+- **type**: `array`
+- **default**: `null`
+- **required**: `false`
+- **description**: array of strings that link to that string as a pathname
 
-**btn**='Text to display on the action button'
+#### btn
+- **type**: `string` 
+- **default**: `null`
+- **required**: `true`
+- **description**: Text shown on action button
 
-**roots**=[array of root pathnames that when the browser is on, put a back icon on the navbar to go to]
+#### action 
+- **type**: function
+- **default**: `null`
+- **required**: `false`
+- **description**: function called when action button on right of Navbar is clicked
+
+<!-- 
+#### back
+- **type**: `bool`
+- **default**: `null`
+- **required**: `false`
+- **description**: url to go back to when not on root page -->
 
 ```jsx
 import { Navbar } from "mvp-webapp";
