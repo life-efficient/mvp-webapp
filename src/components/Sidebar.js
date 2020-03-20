@@ -12,6 +12,7 @@ const style = css`
     align-items: left;
     border-radius: 30px;
     height: 90%;
+    bottom: 0;
 
     .item {
         position: relative;
