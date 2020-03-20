@@ -30,7 +30,7 @@ const style = css`
             z-index: 100;
             transition-duration: 0.5s;
             z-index: 0;
-            backgroun-color: var(--color1);
+            background-color: var(--color1);
 
             :hover {
                 background-color: var(--color2);
