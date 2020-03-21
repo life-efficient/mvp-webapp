@@ -29,10 +29,17 @@ Like a navbar, but on the side.
         - **required**: `false`
         - **description**: string that you'd like to appear in a red alert bubble to the corner of the item 
 
+    * **`icon`**
+
+        - **type**: imported image
+        - **default**: `null`
+        - **required**: `false`
+        - **description**: If you want to use a custom image as an icon then you can import it and use it here
+
 ``` jsx
 import { Sidebar } from "mvp-webapp";
 import { connect } from "react-redux";
-import notification from "../images/icons/notification.png";
+// import notification from "../images/icons/notification.png";
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 <div style={{position: 'relative', height: '300px'}}>
