@@ -44,7 +44,6 @@ export const core = css`
 export const panel = css`
   font-family: var(--font1);
   width: 100%;
-  background: linear-gradient(var(--secondary), var(--secondary_grad));
   margin: 20px auto;
   // width: 80%;
   width: 400px; 
@@ -59,6 +58,7 @@ export const panel = css`
   flex-direction: column;
   justify-content: center;
   background-color: var(--color2);
+  background: linear-gradient(var(--color2), var(--color2g));
   color: var(--color1);
 
   > button {

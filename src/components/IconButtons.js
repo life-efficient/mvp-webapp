@@ -1,18 +1,13 @@
 import React, { Component } from "react"
-import { css } from "@emotion/core"
+import { css, jsx } from "@emotion/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+
 
 const style = css`
-    position: absolute;
-    // background-color: var(--color2);
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: left;
     border-radius: 30px;
-    height: 90%;
-    bottom: 0;
 
     .item {
         position: relative;
@@ -35,6 +30,7 @@ const style = css`
             z-index: 100;
             transition-duration: 0.5s;
             z-index: 0;
+            background-color: var(--color1);
 
             :hover {
                 background-color: var(--color2);
@@ -74,18 +70,6 @@ const style = css`
             
         }
     }
-    // width: auto;
-
-    
-
-        @media (max-width: 100px) {
-            .item{
-
-            width: 150px;
-            }
-        }
-    }
-    img {
     }
 `
 

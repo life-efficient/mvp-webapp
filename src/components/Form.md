@@ -1,40 +1,89 @@
-Nice form
-The form can have many *slides*, which contain at least one question. 
+Fuck the form component libraries you heard of
 
-Each slide 
-- can have a `title` prop - the heading at the top of the form
-- can have a `subtitle` prop - a caption below the title
-- is an object with at least a `questions` prop. The `questions` prop is a list of objects (see below)
-- can have its own `onSubmit` prop handler
-- will perform simple *internal* validation (see below)
-- will display errors thrown by either the internal validation or *external* validation (the onSubmit prop)
+### props
+#### **`slides`**
+- **type**: `array` 
+- **default**: `null`
+- **required**: `true`
+- **description**: List of objects specifying each page (referred to as a slide). Each should have the following keys:
 
-Each question is an object with the following required keys:
-- `type` [text, email, password, confirm-password] defines what type of field this is
-- `default` which defines the default value for this field
-- `title` - the title of the question
-- `detail` - extra detail displyed in small below the question title
+    * **`title`**
 
-Other optional props of the form object:
-- `stay` - the form will not redirect once completed
-- `redirect` - the path that the form will redirect to once completed
+        - **type**: `string`
+        - **default**: `null`
+        - **required**: `false`
+        - **description**: The title shown at the top of this slide
+
+    * **`subtitle`** 
+        
+        - **type**: `string` 
+        - **default**: `null`
+        - **required**: `false`
+        - **description**: Subtitle shown below title
+
+    * **`questions`** 
+        
+        - **type**: `string` 
+        - **default**: `null`
+        - **required**: `true`
+        - **description**: A list of objects which describe the questions on this slide. Each of these objects should have the following keys:
+
+        * **`id`**
+            - **type**: `string`
+            - **default**: `null`
+            - **required**: `true`
+            - **description**: Upon initialising, the form component will populate it's state with keys which are the names of the ids of all questions. As such, the current values of each field are accessed by `state.<question id>`. Furthermore, the `Form`'s state is the argument to the call of the `onSubmit` prop.
+
+        * **`title`**
+
+            - **type**: `string`
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: Title displayed above each question
+
+        * **`detail`**
+
+            - **type**: `string`
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: Extra detail below the question title. Perhaps to explain what the question means.
+
+        * **`type`**
+
+            - **type**: `string`
+            - **default**: `text`
+            - **required**: `true`
+            - **description**: Specifies the type of this question. Each does some "internal" validation. Below are the supported types and the validation they perform:
+
+                * **`text`**: Checks that field is not empty
+                * **`number`**: Checks that the field contains numbers only
+                * **`email`**: Checks that the field is an email
+
+    * **`onSubmit`**
+
+        - **type**: `function`
+        - **default**: `()=>{}`
+        - **required**: `false`
+        - **description**: Called upon pressing the submit button for this slide. you can use this to make API calls to save data every slide. It can also be used for "external" validation, for example if you want to check if an email is already taken etc. Whilst it is being called, the form will show a loading spinner on the submit button.
+
+#### **`redirect`**
+- **type**: `string` 
+- **default**: `null`
+- **required**: `false`
+- **description**: Pathname that the form is redirected to after the final slide's `onSubmit` is called successfully
+
+#### **`stay`**
+- **type**: `bool`
+- **default**: `null`
+- **required**: `false`
+- **description**: if true, the form will not disappear (render null) upon completion
+
+
 
 ``` jsx
 import { Form } from "mvp-webapp";
 import { makePostRequest } from "../api_calls";
 
-// <Form title='Nice form!' onSubmit={()=>alert('Successfully sumbitted!')} questions={[
-//     {
-//         type: 'text',
-//         title: 'text response',
-//         id: 'question1'
-//     },
-//     {
-//         type: 'text',
-//         title: 'another text response',
-//         id: 'question2'
-//     }
-// ]}/>
  <Form title="Join the network!"
     redirect='/redirection'
     slides={[
