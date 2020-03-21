@@ -82,7 +82,6 @@ export default class Form extends Component {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if (!re.test(String(s[q.id]).toLowerCase())) {errors.push('Email is not valid')}
             }
-
         }
         console.log('FORM ERRORS:', errors)
         this.setState({error: errors[0]})       // either null or some error
