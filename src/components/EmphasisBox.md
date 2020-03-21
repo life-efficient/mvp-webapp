@@ -1,8 +1,26 @@
-Box with header to emphasise important text on the page. Matches global theme colours.
+A box to highlight or summarise important content on the page.
+
+### props
+#### **`title`**
+- **type**: `string` 
+- **default**: `empty string`
+- **required**: `false`
+- **description**: Title of the emphasis box, displayed in the coloured strip.
+
+#### **`content`**
+- **type**: `string` 
+- **default**: `empty string`
+- **required**: `false`
+- **description**: Content of the emphasis box, displayed in the grey section.
+
+
+
 
 ```jsx
-import {EmphasisBox} from './EmphasisBox';
+import { EmphasisBox } from "mvp-webapp";
+const content = "Lorem ipsum dolor sit amet...";
 
 <>
-<EmphasisBox />
+<EmphasisBox title="Element Title" content={content}/>
 </>
+```
