@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import "../styles/table.css"
+import "./table.css"
 import LineChart from "./Chart";
 import { label } from "@aws-amplify/ui";
 import { getEpoch } from "../utils"
