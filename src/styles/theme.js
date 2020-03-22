@@ -84,3 +84,40 @@ export const panel = css`
     cursor: pointer;
 }
 `
+
+export const table = css`
+table {
+  background-color: whitesmoke;
+  padding: 5px;
+  border-radius: var(--radius);
+  margin: 20px;
+  font-size: 10px;
+  transition-duration: 0.5s;
+}
+
+.tbody {
+  height: 300px;
+  overflow: scroll;
+}
+
+tr:nth-child(even){background-color: #dbd7d7;}
+.tr:hover {background-color: rgba(153, 153, 153, 0.548);}
+
+th:hover {background-color: rgba(79, 209, 170, 0.548);}
+th {
+  border-radius: 3px;
+  transition-duration: 0.5s;
+}
+
+tr {
+  border: 1px solid black;
+
+  transition-duration: 0.5s;
+}
+
+td {
+  padding: 5px;
+  width: 10px;
+  height: 10px;   
+}
+`
