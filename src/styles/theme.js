@@ -58,7 +58,7 @@ export const panel = css`
   flex-direction: column;
   justify-content: center;
   background-color: var(--color2);
-  background: linear-gradient(var(--color2), var(--color2g));
+  // background: linear-gradient(var(--color2), var(--color2g)); // doesn't work because forms have backgrounds and are placed on a panel in the login component so there is a color mismatch
   color: var(--color1);
 
   > button {
