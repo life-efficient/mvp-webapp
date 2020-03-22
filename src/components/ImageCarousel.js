@@ -5,7 +5,12 @@ import {css} from '@emotion/core'
 const styleArrow = (direction) => {  //returns approriate css based on arrow direction, 'left' or 'right'
     return(
         css`
-            ...
+            color: var(--color2);
+            cursor: pointer;
+            font-size: 2rem;
+            position: fixed;
+            top: 50;
+            ${direction} : 1rem;
         `
     )
 }
@@ -48,17 +53,18 @@ class ImageCarousel extends Component{
     render(){
         return(
             <div>
-                <div css={styleArrow('left')} className="arrow" onClick={console.log("Clicked Left")}></div>
+                <div css={styleArrow('left')} className="arrow" onClick={this.prevSlide}>&#9654;</div>
                 
-                <ImageSlide 
+                <img 
                 src={
                     this.props.images[this.state.currentImageIndex] //gets url of next image based on current state and img prop
                 } 
                 />
-
-                <div css={styleArrow('right')} className="arrow" onClick={console.log("Clicked Right")}></div>
+                <div css={styleArrow('right')} className="arrow" onClick={this.nextSlide}>&#9664;</div>
 
             </div>
         )
     }
 }
+
+export default ImageCarousel
