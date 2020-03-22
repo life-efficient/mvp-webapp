@@ -23,4 +23,8 @@ export { default as IconButtons } from "components/IconButtons"
 export { default as Sidebar } from "components/Sidebar"
 export { default as SlideInPanel } from "components/SlideInPanel"
 export { expand_in } from "styles/animations"
+export { default as Chart } from "components/Chart"
+export { default as Pie } from "components/Pie"
+export { default as TableToGraph } from "components/TableToGraph"
 export { default as EmphasisBox } from "components/EmphasisBox" 
+
