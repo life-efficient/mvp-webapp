@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import "./table.css"
+//import "../styles/table.css"
+import { table } from "../styles/theme"
 import LineChart from "./Chart";
 import { label } from "@aws-amplify/ui";
 import { getEpoch } from "../utils"
@@ -104,7 +105,7 @@ class TableToGraph extends Component {
         }
         console.log(this.state.raw_data)
         return (
-            <div css={style}>
+            <div css={css`${style};${table}`}>
                 <h2 style={{fontFamily: 'var(--font1)', color:'white', textDecoration:"underline", marginLeft: '50px'}}>
                     {this.props.datasset? this.props.dataset.replace(/_/g, ' ').replace(/\w\S*/g, function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : null}
                 </h2>
