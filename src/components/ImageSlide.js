@@ -5,12 +5,16 @@ import React from 'react'
 const ImageSlide = ({ src }) => { //emotion/core didn't work for this styling??
 	const styles = {
 		backgroundImage: `url(${src})`,
-		backgroundSize: 'cover',
-		backgroundPosition: 'center'
+		backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        height: '100%',
+		width: '100%',
+		transition: 'background-image .3s linear',
+		margin: '1px'
 	};
 	
 	return (
-		<div className="image-slide" style={styles}></div>
+		<div className="image-slide" style={styles} />
 	);
 }
 
