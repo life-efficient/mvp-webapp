@@ -4,6 +4,9 @@ import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import 'react-google-places-autocomplete/dist/assets/index.css';
+
 
 export default class Form extends Component {
     constructor(props) {
@@ -153,6 +156,8 @@ export default class Form extends Component {
                                                 return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
+                                            case "location":
+                                                return <LocationField />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -195,6 +200,10 @@ export const TextResponse = (props) => {
 
 export const EmailField = (props) => {
     return <TextResponse {...props} />
+}
+
+export const LocationField = (props) => {
+    return <GooglePlacesAutocomplete onSelect={console.log} />
 }
 
 export class Password extends Component {
