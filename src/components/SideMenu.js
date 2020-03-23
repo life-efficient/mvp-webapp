@@ -99,14 +99,15 @@ class SideMenu extends Component {
         return (
             <div id="mySidenav" css={style} style={this.getStyle()} ref={this.setWrapperRef}>
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
-                <Link to="/" onClick={this.logout}>Log out</Link>
+                {/* <Link to="/" onClick={this.logout}>Log out</Link>
                 {
                     this.props.links ? this.props.links.map((l)=>{
                         <Link to={l.to} onClick={this.props.toggleMenu}>{l.title}</Link>
                     })
                     :
                     null
-                }
+                } */}
+                {this.props.content}
             </div>
         )
     }
