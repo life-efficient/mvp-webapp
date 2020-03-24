@@ -69,10 +69,25 @@ const modal = (state={open: false, content: null}, action) => {
     }
 }
 
+const menu = (state = {open: false}, action) => {
+    switch (action.type) {
+        case "TOGGLE_MENU" :
+            console.log('toggling sidenav')
+            return {
+                ...state,
+                open: !state.open
+            }
+        default:
+            return state
+    }
+}
+
+
 const reducer = combineReducers({
     app,
     modal,
-    slideIn
+    slideIn,
+    menu
 })
 
 const store = createStore(reducer)

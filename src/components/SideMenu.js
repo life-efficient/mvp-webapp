@@ -15,9 +15,16 @@ const style = css`
     overflow-x: hidden;
     transition: 0.5s;
     font-family: var(--font1);
-    display: flex;
-    flex-direction: column;
     background-color: var(--color2) ;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
 
     width: 70%;
     box-shadow: var(--shadow);
@@ -38,12 +45,16 @@ const style = css`
     
 
     .closebtn {
-    top: 0;
-    font-size: 7vh;
-    float: left;
-    width: 10vw;
-    lposition: absolute;
-    color: var(--nude);
+        top: 0;
+        left: 0;
+        padding-left: 20px;
+        height: 50px;
+        vertical-align: top; 
+        font-size: 8vh;
+        float: left;
+        width: 10vw;
+        position: absolute;
+        color: var(--nude);
     }
 
     .closebtn:hover {
@@ -107,7 +118,9 @@ class SideMenu extends Component {
                     :
                     null
                 } */}
-                {this.props.content}
+                <div className="content">
+                    {this.props.content}
+                </div>
             </div>
         )
     }
