@@ -59,7 +59,7 @@ const style = css`
     }
       
     .active, .dot:hover {
-        background-color: #717171;
+        background-color: var(--color2);
     }
 `
 
@@ -99,7 +99,7 @@ class ImageCarousel extends Component{
         return(
             <div css={style}>
                 <div className="carousel-container">
-                    <ImageSlide src={this.props.images[this.state.imageIndex]} caption="Default Caption"/>
+                    <ImageSlide src={this.props.images[this.state.imageIndex]} />
 
                 {/* Next and previous buttons */}
                 <a className="prev" onClick={this.prevImage}>&#10094;</a>
@@ -134,17 +134,7 @@ const style_imageSlide = css`
     > img{
         width: 100%;
         height: 100%;
-    }
-    > .image-caption {
-        color: #f2f2f2;
-        font-size: 15px;
-        padding: 8px 12px;
-        position: absolute;
-        bottom: 8px;
-        width: 100%;
-        text-align: center;
-    }
-        
+    }   
 `
 
 
@@ -152,7 +142,6 @@ export const ImageSlide = ({src, caption}) => {
     return(
         <div className="imageslide fade" css={style_imageSlide}>
             <img src={src} />
-            <div className="image-caption">{caption}</div>
         </div>
     )
 }
