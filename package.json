@@ -1,6 +1,6 @@
 {
   "name": "mvp-webapp",
-  "version": "2.20.3",
+  "version": "2.21.3",
   "description": "",
   "main": "lib/index.js",
   "browser": "lib/index.umd.js",
@@ -68,8 +68,10 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "aws-amplify": "^1.2.4",
+    "chart.js": "^2.9.3",
     "emotion-theming": "^10.0.19",
     "query-string": "^6.8.3",
+    "react-chartjs-2": "^2.9.0",
     "react-cursor-position": "^3.0.3",
     "react-google-places-autocomplete": "^1.6.2",
     "react-redux": "^7.1.1",
