@@ -55,7 +55,7 @@ const style = css`
         background-color: #bbb;
         border-radius: 50%;
         display: inline-block;
-        transition: background-color 0.6s ease;
+        transition: background-color 0.4s ease;
     }
       
     .active, .dot:hover {
@@ -95,6 +95,13 @@ class ImageCarousel extends Component{
         })
     }
 
+    jumpImage = (e) => {
+        const index = parseInt(e.currentTarget.id)
+        this.setState({
+            imageIndex : index
+        })
+    }
+
     render(){
         return(
             <div css={style}>
@@ -111,10 +118,16 @@ class ImageCarousel extends Component{
                 {/* Circles indicating slide */}
                 <div className="dot-container">
                     {this.props.images.map(
-                        (img) => {
-                            return(
-                                <span className="dot"></span>
-                            )
+                        (img, index) => {
+                            if (index === this.state.imageIndex) {
+                                return(
+                                    <span className="dot active" id={index} onClick={this.jumpImage}></span>
+                                )
+                            } else {
+                                return(
+                                    <span className="dot" id={index} onClick={this.jumpImage}></span>
+                                )
+                            }
                         }
                     )}
                 </div>
@@ -127,10 +140,29 @@ class ImageCarousel extends Component{
 
 export default ImageCarousel
 
-// Imageslide component
 
-const style_imageSlide = css`
+// Imageslide component
+// Need to fix animations - maybe use div background image?
+const style_imageSlide = css` 
     height: 100%;
+
+    @-webkit-keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+      
+      @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+    
+    > .fade{
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
     > img{
         width: 100%;
         height: 100%;
@@ -145,3 +177,5 @@ export const ImageSlide = ({src, caption}) => {
         </div>
     )
 }
+
+// Dot component
