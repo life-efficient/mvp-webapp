@@ -5,7 +5,7 @@ import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import 'react-google-places-autocomplete/dist/assets/index.css';
+// import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
 
 
 export default class Form extends Component {
