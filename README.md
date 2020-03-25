@@ -1,7 +1,6 @@
 # MVP
 
-## Forms
+A UI library for hackers that want to build Minimum Viable Products (MVPs) quickly.
 
-Forms consist of slides
-
-`import { Form } from "mvp-webapp"
+## Usage
+Clone, run `npm install` then `npm start` to view the component library and documentation.
