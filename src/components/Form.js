@@ -70,12 +70,12 @@ export default class Form extends Component {
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
-            if (q.type === 'text') {
+            if (q.type === 'text' || q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
                 console.log('confirm', s[q.id])
-                if (s[q.id].length < 8) {errors.push('Password should be longer')}
+                if (s[q.id].length < 8) {errors.push('Password should be atleast 8 characters long')}
                 if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
             }
             if (q.type === 'email') {
