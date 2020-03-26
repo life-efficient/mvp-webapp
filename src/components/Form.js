@@ -4,6 +4,9 @@ import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+// import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
+
 
 export default class Form extends Component {
     constructor(props) {
@@ -70,12 +73,12 @@ export default class Form extends Component {
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
-            if (q.type === 'text') {
+            if (q.type === 'text' || q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
                 console.log('confirm', s[q.id])
-                if (s[q.id].length < 8) {errors.push('Password should be longer')}
+                if (s[q.id].length < 8) {errors.push('Password should be atleast 8 characters long')}
                 if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
             }
             if (q.type === 'email') {
@@ -153,6 +156,8 @@ export default class Form extends Component {
                                                 return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
+                                            case "location":
+                                                return <LocationField />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -195,6 +200,10 @@ export const TextResponse = (props) => {
 
 export const EmailField = (props) => {
     return <TextResponse {...props} />
+}
+
+export const LocationField = (props) => {
+    return <GooglePlacesAutocomplete onSelect={console.log} />
 }
 
 export class Password extends Component {
