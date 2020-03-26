@@ -101,13 +101,13 @@ var Navbar = (props) => {
 
     var root = props.root
     var to = window.location.pathname
-    console.log('root:', root, 'to:', to)
+    // console.log('root:', root, 'to:', to)
     if (root != to) {
-        console.log('current pathname:', window.location.pathname)
+        // console.log('current pathname:', window.location.pathname)
         to = to.split('/')
         to = to.slice(0, to.length - 1)
         to = to.join('/')
-        console.log('GOING BACK TO:', to)
+        // console.log('GOING BACK TO:', to)
     }
 
     // back_to = back_to === true ? '/' : back_to

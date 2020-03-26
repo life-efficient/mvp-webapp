@@ -116,6 +116,7 @@ export default class Form extends Component {
         // console.log('STATE:', this.state)
         if (this.state.slide_idx > this.props.slides.length - 1) {
             if (!this.props.stay) {
+                console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
             }
             else {
