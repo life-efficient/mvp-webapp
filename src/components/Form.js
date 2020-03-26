@@ -114,7 +114,11 @@ export default class Form extends Component {
 
     render () {
         // console.log('STATE:', this.state)
+        console.log('slide idx:', this.state.slide_idx)
+        console.log('slides len:', this.props.slides.length)
+        console.log(this.state.slide_idx > this.props.slides.length - 1)
         if (this.state.slide_idx > this.props.slides.length - 1) {
+            console.log('reached end of slides')
             if (!this.props.stay) {
                 console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
