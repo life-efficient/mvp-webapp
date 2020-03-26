@@ -15,11 +15,6 @@ const style = css`
     color: var(--color2) !important;
     background-color: var(--color1);
     background-color: transparent;
-    z-index: 1;
-
-    // .btn {
-    //     color: var(--color1);
-    // }
 
     .navbar {
         display: flex;
@@ -77,7 +72,6 @@ const style = css`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 1;
     }
 
     .logo_text {
@@ -86,7 +80,6 @@ const style = css`
         justify-content: center;
         font-family: var(--font1);
         font-size: 30px;
-        z-index: 1;
         float: left;
         a​:visited, a:link, a:hover, a {  
             color: var(--color2) !important; 
