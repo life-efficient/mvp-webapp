@@ -99,6 +99,8 @@ export default class Form extends Component {
             try {
                 onSubmit ? await onSubmit(this.state) : null                 // validate + do extra stuff
                 console.log('both internal and external validation successful')
+                
+                console.log('current slide idx in try', this.state.slide_idx)
                 const new_slide_idx = this.state.slide_idx + 1
                 console.log('setting slide idx to:', new_slide_idx)
                 this.setState({slide_idx: new_slide_idx})    // if onSubmit doesn't return null
