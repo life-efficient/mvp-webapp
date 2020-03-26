@@ -121,7 +121,8 @@ export default class Form extends Component {
         console.log('slide idx:', this.state.slide_idx)
         console.log('slides len:', this.props.slides.length)
         console.log(this.state.slide_idx > this.props.slides.length - 1)
-        if (this.state.slide_idx > this.props.slides.length - 1 || typeof(this.state.slide_idx) == NaN) {
+        console.log('slide idx is NaN:', typeof(this.state.slide_idx) == NaN)
+        if (this.state.slide_idx > this.props.slides.length - 1) {
             console.log('reached end of slides')
             if (!this.props.stay) {
                 console.log('redirecting to:', this.props.redirect)
