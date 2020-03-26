@@ -72,10 +72,14 @@ const modal = (state={open: false, content: null}, action) => {
 const menu = (state = {open: false}, action) => {
     switch (action.type) {
         case "TOGGLE_MENU" :
+            // if (state.open) { // if currently open (i.e. being closed)
+            //     action.content = null // set the content to null
+            // }
             console.log('toggling sidenav')
             return {
                 ...state,
-                open: !state.open
+                open: !state.open,
+                content: action.content
             }
         default:
             return state

@@ -68,7 +68,7 @@ class SideMenu extends Component {
         this.state = {
             ready: false
         }
-        console.log('open:', this.props.open)
+        // console.log('open:', this.props.open)
     }
 
     logout = () => {
@@ -106,8 +106,8 @@ class SideMenu extends Component {
     }
 
     render() {
-        console.log('logged in:', this.props.logged_in)
-        console.log('content:', this.props.content)
+        // console.log('logged in:', this.props.logged_in)
+        // console.log('content:', this.props.content)
         return (
             <div id="mySidenav" css={style} style={this.getStyle()} ref={this.setWrapperRef}>
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
@@ -130,15 +130,21 @@ class SideMenu extends Component {
 
 const mapStateToProps = (state) => {
     return  {
-        open: state.menu.open
+        open: state.menu.open,
+        content: state.menu.content
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleMenu: () => {dispatch({
-            type: "TOGGLE_MENU"
-        })}
+        toggleMenu: (content) => {
+            // console.log('content in dispatch:', content)
+            if (typeof(content, Object)) {content = null}
+            dispatch({
+                type: "TOGGLE_MENU",
+                content
+            })
+        }
     }
 }
 
