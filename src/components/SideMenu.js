@@ -107,6 +107,7 @@ class SideMenu extends Component {
 
     render() {
         console.log('logged in:', this.props.logged_in)
+        console.log('content:', this.props.content)
         return (
             <div id="mySidenav" css={style} style={this.getStyle()} ref={this.setWrapperRef}>
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
@@ -125,6 +126,7 @@ class SideMenu extends Component {
         )
     }
 }
+// export default SideMenu
 
 const mapStateToProps = (state) => {
     return  {
