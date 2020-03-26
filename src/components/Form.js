@@ -122,6 +122,7 @@ export default class Form extends Component {
         console.log('slides len:', this.props.slides.length)
         console.log(this.state.slide_idx > this.props.slides.length - 1)
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
+        console.log('go to new?', go_to_new)
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
             console.log('reached end of slides')
             if (!this.props.stay) {
