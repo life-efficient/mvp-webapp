@@ -81,6 +81,9 @@ export default class Form extends Component {
                 if (s[q.id].length < 8) {errors.push('Password should be atleast 8 characters long')}
                 if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
             }
+            if(q.type === 'phone-number'){
+                if (s[q.id].length < 10 || s[q.id].length > 12) {errors.push('Enter a valid phone number')}
+            }
             if (q.type === 'email') {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if (!re.test(String(s[q.id]).toLowerCase())) {errors.push('Email is not valid')}
@@ -159,6 +162,8 @@ export default class Form extends Component {
                                                 return <TextResponse {...q} handleChange={this.handleChange} />
                                             case "number":
                                                 return <TextResponse {...q} handleChange={this.handleNumChange} />
+                                            case "phone-number":
+                                                return <TextResponse {...q} handleChange={this.handleNumChange} /> 
                                             case "email":
                                                 return <EmailField {...q} handleChange={this.handleChange}/>
                                             case "password":

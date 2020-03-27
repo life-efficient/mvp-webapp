@@ -21,6 +21,8 @@ const style = css`
         box-sizing: border-box;
         flex-direction: row;
         justify-content: space-between;
+        flex-wrap: nowrap;
+        flex-shrink: 2;
         // width: 100%;
         padding: 10px;
         boxSizing: border-box;
@@ -31,7 +33,8 @@ const style = css`
     }
 
     .options {
-        width: 100%;
+        border: 1px solid red;
+        max-width: 100%;
         height: 4vh;
         margin: 20px 0;
         display: flex;
@@ -91,6 +94,7 @@ const style = css`
 
 var Navbar = (props) => {
     // var back_to = props.back
+    console.log(props)
 
     var root = props.root
     var to = window.location.pathname
@@ -107,7 +111,7 @@ var Navbar = (props) => {
     
     //document.referrer
     // back_img = <img src={back_icon}/>
-    var content = root ? 'back' : props.name // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
+    var content = root ? 'back' : <img src={props.logo} alt={props.name} /> // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
     if (root && window.location.pathname === root) { // if already at root // if array of roots contains this path
         content = props.name // back button should show name of app
