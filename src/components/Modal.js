@@ -71,6 +71,10 @@ class Modal extends Component {
     }
 
     render() {
+        console.log('rendering modal')
+        if (!this.props.content) { // if no content to show
+            this.props.closeModal() // close modal
+        }
         return (
             <div css={css`
                     ${style}

@@ -5,7 +5,7 @@ import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import 'react-google-places-autocomplete/dist/assets/index.css';
+// import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
 
 
 export default class Form extends Component {
@@ -73,12 +73,12 @@ export default class Form extends Component {
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
-            if (q.type === 'text') {
+            if (q.type === 'text' || q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
                 console.log('confirm', s[q.id])
-                if (s[q.id].length < 8) {errors.push('Password should be longer')}
+                if (s[q.id].length < 8) {errors.push('Password should be atleast 8 characters long')}
                 if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
             }
             if(q.type === 'phone-number'){
@@ -97,12 +97,16 @@ export default class Form extends Component {
     submit = async () => {
         if (this.validate()) {      // do basic validation based on field type
             this.setState({loading: true})
-            console.log('slide idx', this.state.slide_idx)
+            console.log('current slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
             try {
-                onSubmit ? await onSubmit(this.state) : null                 // validate + do extra stuff
+                if (onSubmit) {await onSubmit(this.state)}                  // validate + do extra stuff
                 console.log('both internal and external validation successful')
-                this.setState({slide_idx: this.state.slide_idx + 1})    // if onSubmit doesn't return null
+                
+                console.log('current slide idx in try', this.state.slide_idx)
+                const new_slide_idx = this.state.slide_idx + 1
+                console.log('setting slide idx to:', new_slide_idx)
+                this.setState({slide_idx: new_slide_idx})    // if onSubmit doesn't return null
             }
             catch (error) {
                 console.log('An external error occured:', error)
@@ -117,8 +121,15 @@ export default class Form extends Component {
 
     render () {
         // console.log('STATE:', this.state)
-        if (this.state.slide_idx > this.props.slides.length - 1) {
+        console.log('slide idx:', this.state.slide_idx)
+        console.log('slides len:', this.props.slides.length)
+        console.log(this.state.slide_idx > this.props.slides.length - 1)
+        const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
+        console.log('go to new?', go_to_new)
+        if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
+            console.log('reached end of slides')
             if (!this.props.stay) {
+                console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
             }
             else {

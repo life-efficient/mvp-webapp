@@ -15,9 +15,16 @@ const style = css`
     overflow-x: hidden;
     transition: 0.5s;
     font-family: var(--font1);
-    display: flex;
-    flex-direction: column;
     background-color: var(--color2) ;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
 
     width: 70%;
     box-shadow: var(--shadow);
@@ -38,12 +45,16 @@ const style = css`
     
 
     .closebtn {
-    top: 0;
-    font-size: 7vh;
-    float: left;
-    width: 10vw;
-    lposition: absolute;
-    color: var(--nude);
+        top: 0;
+        left: 0;
+        padding-left: 20px;
+        height: 50px;
+        vertical-align: top; 
+        font-size: 8vh;
+        float: left;
+        width: 10vw;
+        position: absolute;
+        color: var(--nude);
     }
 
     .closebtn:hover {
@@ -57,7 +68,7 @@ class SideMenu extends Component {
         this.state = {
             ready: false
         }
-        console.log('open:', this.props.open)
+        // console.log('open:', this.props.open)
     }
 
     logout = () => {
@@ -95,34 +106,45 @@ class SideMenu extends Component {
     }
 
     render() {
-        console.log('logged in:', this.props.logged_in)
+        // console.log('logged in:', this.props.logged_in)
+        console.log('content:', this.props.content)
         return (
             <div id="mySidenav" css={style} style={this.getStyle()} ref={this.setWrapperRef}>
                 <div className="closebtn" onClick={this.props.toggleMenu}>&times;</div>
-                <Link to="/" onClick={this.logout}>Log out</Link>
+                {/* <Link to="/" onClick={this.logout}>Log out</Link>
                 {
                     this.props.links ? this.props.links.map((l)=>{
                         <Link to={l.to} onClick={this.props.toggleMenu}>{l.title}</Link>
                     })
                     :
                     null
-                }
+                } */}
+                <div className="content">
+                    {this.props.content}
+                </div>
             </div>
         )
     }
 }
+// export default SideMenu
 
 const mapStateToProps = (state) => {
     return  {
-        open: state.menu.open
+        open: state.menu.open,
+        content: state.menu.content
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleMenu: () => {dispatch({
-            type: "TOGGLE_MENU"
-        })}
+        toggleMenu: (content) => {
+            // console.log('content in dispatch:', content)
+            if (typeof(content, Object)) {content = null}
+            dispatch({
+                type: "TOGGLE_MENU",
+                content
+            })
+        }
     }
 }
 

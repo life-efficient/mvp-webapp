@@ -15,11 +15,6 @@ const style = css`
     color: var(--color2) !important;
     background-color: var(--color1);
     background-color: transparent;
-    z-index: 1;
-
-    // .btn {
-    //     color: var(--color1);
-    // }
 
     .navbar {
         display: flex;
@@ -67,6 +62,11 @@ const style = css`
         }
     }
 
+    .option:hover{
+        transform: scale(1.1, 1.1);
+        transition-duration: 10ms;
+    }
+
     .option {
         padding: 0 10px;
         width: 30%;
@@ -74,7 +74,6 @@ const style = css`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 1;
     }
 
     .logo_text {
@@ -83,7 +82,6 @@ const style = css`
         justify-content: center;
         font-family: var(--font1);
         font-size: 30px;
-        z-index: 1;
         float: left;
         a​:visited, a:link, a:hover, a {  
             color: var(--color2) !important; 
@@ -99,13 +97,13 @@ var Navbar = (props) => {
 
     var root = props.root
     var to = window.location.pathname
-    console.log('root:', root, 'to:', to)
+    // console.log('root:', root, 'to:', to)
     if (root != to) {
-        console.log('current pathname:', window.location.pathname)
+        // console.log('current pathname:', window.location.pathname)
         to = to.split('/')
         to = to.slice(0, to.length - 1)
         to = to.join('/')
-        console.log('GOING BACK TO:', to)
+        // console.log('GOING BACK TO:', to)
     }
 
     // back_to = back_to === true ? '/' : back_to

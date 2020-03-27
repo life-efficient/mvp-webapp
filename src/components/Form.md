@@ -84,7 +84,7 @@ Fuck the form component libraries you heard of
 import { Form } from "mvp-webapp";
 import { makePostRequest } from "../api_calls";
 
- <Form title="Join the network!"
+<Form title="Join the network!"
     redirect='/redirection'
     slides={[
         {
@@ -135,5 +135,4 @@ import { makePostRequest } from "../api_calls";
         }
      ]}
 />
-
 ```
