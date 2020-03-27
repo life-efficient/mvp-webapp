@@ -26,6 +26,8 @@ const style = css`
         box-sizing: border-box;
         flex-direction: row;
         justify-content: space-between;
+        flex-wrap: nowrap;
+        flex-shrink: 2;
         // width: 100%;
         padding: 10px;
         boxSizing: border-box;
@@ -36,7 +38,8 @@ const style = css`
     }
 
     .options {
-        width: 100%;
+        border: 1px solid red;
+        max-width: 100%;
         height: 4vh;
         margin: 20px 0;
         display: flex;
