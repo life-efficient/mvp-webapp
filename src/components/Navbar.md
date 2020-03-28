@@ -43,6 +43,6 @@ import logo from "../images/external/logo.png";
     back={'back a page'} 
     logo={logo}
     btn_logo={logo}
-    link_back={false}
+    show_root_link={true}
 />;
 ```

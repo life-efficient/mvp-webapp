@@ -111,7 +111,7 @@ var Navbar = (props) => {
     
     //document.referrer
     // back_img = <img src={back_icon}/>
-    var content = props.link_back === false ?
+    var content = props.show_root_link === false ?
         null :
         root ? 
             'back' : 
