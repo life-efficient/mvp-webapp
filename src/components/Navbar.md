@@ -25,6 +25,18 @@ A standard, responsive navbar. When viewport becomes too small to fit in all lin
 - **required**: `false`
 - **description**: function called when action button on right of Navbar is clicked
 
+#### logo 
+- **type**: image
+- **default**: `null`
+- **required**: `false`
+- **description**: Logo shown in the top left instead of app name
+
+#### show_root_link
+- **type**: bool
+- **default**: `null`
+- **required**: `false`
+- **description**: Toggles whether the top left should link back to the root
+
 <!-- 
 #### back
 - **type**: `bool`
