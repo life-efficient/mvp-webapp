@@ -9,29 +9,6 @@ export const breakpoints = [576, 768, 992, 1200].map(
   bp => `@media (min-width: ${bp}px)`
 )
 
-export const button = css`
-  border: 0;
-  box-shadow: var(--shadow);
-  border-radius: 3px;
-  border: yo;
-  font-family: var(--font2);
-  background-color: var(--color2);
-  color: var(--color1);
-  padding: 15px;
-  cursor: pointer;
-  min-width: 150px;
-  position: relative;
-  transition-duration: 1s;
-  text-decoration: none;
-
-  :focus {
-    outline: 0;
-  }
-
-  :active {
-    transform: scale(0.9)
-  }
-`
 
 export const core = css`
   a:link {text-decoration: none}

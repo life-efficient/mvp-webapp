@@ -131,7 +131,7 @@ var Navbar = (props) => {
                     {!props.link_back ? content : null}
                     {/* {content} */}
                 </Link>
-                <Button onClick={props.action} css={css`z-index: 1; min-width: auto;`} text={props.btn} to={props.to}/>
+                <Button onClick={props.action} css={css`z-index: 1; min-width: auto;`} text={props.btn} icon={props.btn_icon} to={props.to}/>
             </div>
             <div
                 className="options"

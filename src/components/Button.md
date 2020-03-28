@@ -2,11 +2,19 @@ General purpose button. When clicked it will run any function passed to it as a 
 
 ```jsx
 import { Button } from "mvp-webapp";
-
+import logo from "../images/external/logo.png";
 
 <>
-<Button text="A button with a callback" onClick={() => {console.log('clicked')}}/>
+<Button 
+    // text="A button with a callback" 
+    icon={logo}
+    text='Cart'
+    onClick={() => {console.log('clicked')}}
+/>
 <br/><br/>
-<Button text="A link button" to='/link'/>
+<Button 
+    text="A link button" 
+    to='/link'
+/>
 </>
 ```

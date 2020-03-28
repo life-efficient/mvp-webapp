@@ -25,6 +25,12 @@ A standard, responsive navbar. When viewport becomes too small to fit in all lin
 - **required**: `false`
 - **description**: function called when action button on right of Navbar is clicked
 
+#### btn_icon
+- **type**: image 
+- **default**: `null`
+- **required**: `false`
+- **description**: Icon shown on button on top right
+
 #### logo 
 - **type**: image
 - **default**: `null`
@@ -54,7 +60,7 @@ import logo from "../images/external/logo.png";
     btn='Call to action' 
     back={'back a page'} 
     logo={logo}
-    btn_logo={logo}
+    btn_icon={logo}
     show_root_link={true}
 />;
 ```
