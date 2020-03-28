@@ -33,7 +33,6 @@ const style = css`
     }
 
     .options {
-        border: 1px solid red;
         max-width: 100%;
         height: 4vh;
         margin: 20px 0;
@@ -111,7 +110,7 @@ var Navbar = (props) => {
     
     //document.referrer
     // back_img = <img src={back_icon}/>
-    var content = root ? 'back' : <img src={props.logo} alt={props.name} /> // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
+    var content = root ? 'back' : <img style={{maxHeight:'100%',maxWidth:'100%'}}src={props.logo} alt={props.name} /> // case 1: back prop is not given -> set content of button to name of app. back_to remains as null
     // if (props.roots && props.roots.includes(window.pathname)) { // if array of roots contains this path
     if (root && window.location.pathname === root) { // if already at root // if array of roots contains this path
         content = props.name // back button should show name of app
