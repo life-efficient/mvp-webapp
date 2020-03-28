@@ -34,7 +34,15 @@ A standard, responsive navbar. When viewport becomes too small to fit in all lin
 
 ```jsx
 import { Navbar } from "mvp-webapp";
+import logo from "../images/external/logo.png";
 
 // <Navbar links={['about', 'work', 'team']} btn='Call to action' roots={[]}/>;
-<Navbar links={['about', 'work', 'team']} btn='Call to action' back={'back a page'} logo={'src/images/arrow.png'}/>;
+<Navbar 
+    links={['about', 'work', 'team']} 
+    btn='Call to action' 
+    back={'back a page'} 
+    logo={logo}
+    btn_logo={logo}
+    link_back={false}
+/>;
 ```
