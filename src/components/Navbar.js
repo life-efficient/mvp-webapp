@@ -27,9 +27,9 @@ const style = css`
         padding: 10px;
         boxSizing: border-box;
         max-height: 100%;
-        a {
-            min-width: auto;
-        }
+        // a {
+        //     min-width: auto;
+        // }
     }
 
     .options {

@@ -58,7 +58,8 @@ import logo from "../images/external/logo.png";
 <Navbar 
     links={['about', 'work', 'team']} 
     btn='Call to action' 
-    back={'back a page'} 
+    back={'back a page'}
+    to='/link'
     // logo={logo}
     btn_icon={logo}
     show_root_link={false}

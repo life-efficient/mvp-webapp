@@ -7,33 +7,23 @@ import Loading from "./Loading";
 import { css, jsx } from "@emotion/core"
 /** @jsx jsx */
 
-const Wrapper = styled.button`
-  ${font}
-  ${shape}
-  text-decoration: none;
-`;
-
 const style = css`
   border: 0;
   box-shadow: var(--shadow);
   border-radius: 3px;
-  border: yo;
   font-family: var(--font2);
   background-color: var(--color2);
   color: var(--color1);
-  // padding: 15px;
   cursor: pointer;
   min-width: 150px;
   position: relative;
   transition-duration: 1s;
   text-decoration: none;
   height: 50px;
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 
   img {
     height: 30px;
@@ -51,22 +41,22 @@ const style = css`
 class Button extends Component {
   render() {
     const text = this.props.text ? this.props.text : 'Pass a "text" prop to the Button!'
-    let content = <div>
+    let content = <>
       {this.props.icon ? <img src={this.props.icon} /> : null}
       {text}
-    </div>
+    </>
     content = this.props.loading ? <Loading/> : content
     const onClick = this.props.onClick ? this.props.onClick : () => {alert('Pass an "onClick" prop to the button!')}
     if (this.props.to) {
       return (
         <Link css={style} to={this.props.to} >
-          {content}
+          {/* <button> */}
+            {content}
+          {/* </button> */}
         </Link>
       )
     }
     return (
-      // <button css={}>
-
       <button css={style} onClick={onClick}>
         {content}
       </button>
