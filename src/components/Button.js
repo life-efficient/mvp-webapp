@@ -53,7 +53,7 @@ class Button extends Component {
     const text = this.props.text ? this.props.text : 'Pass a "text" prop to the Button!'
     let content = <div>
       {this.props.icon ? <img src={this.props.icon} /> : null}
-      text
+      {text}
     </div>
     content = this.props.loading ? <Loading/> : content
     const onClick = this.props.onClick ? this.props.onClick : () => {alert('Pass an "onClick" prop to the button!')}

@@ -59,8 +59,8 @@ import logo from "../images/external/logo.png";
     links={['about', 'work', 'team']} 
     btn='Call to action' 
     back={'back a page'} 
-    logo={logo}
+    // logo={logo}
     btn_icon={logo}
-    show_root_link={true}
+    show_root_link={false}
 />;
 ```
