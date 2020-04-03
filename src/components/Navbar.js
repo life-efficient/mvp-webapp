@@ -125,7 +125,7 @@ var Navbar = (props) => {
     }
 
     return (
-        <div css={style}>
+        <div css={[style, this.props.style]}>
             <div className="navbar">
                 <Link to={to} className="logo_text">
                     {content}
