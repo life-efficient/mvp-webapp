@@ -61,7 +61,7 @@ import logo from "../images/external/logo.png";
     back={'back a page'}
     to='/link'
     // logo={logo}
-    btn_icon={logo}
-    show_root_link={false}
+    // btn_icon={logo}
+    // show_root_link={false}
 />;
 ```
