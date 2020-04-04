@@ -96,12 +96,12 @@ export default class extends Component {
 
     render() {
         return (
-            <div css={style}>
+            <div css={[style, this.props.style]}>
                 {this.props.items.map(i=>{return ( 
                     <div className="item">
                         <Link to={i.to} onClick={i.onClick} className="item-link"> 
                             {i.faIcon ? <FontAwesomeIcon icon={i.faIcon} className="faicon"/> : <img src={i.icon} />}
-                            {window.innerWidth > 1100 ? i.title : null}
+                            <div>{window.innerWidth > 1100 ? i.title : null}</div>
                         </Link>                        
                         {i.alert ? <div className="alert">{i.alert}</div> : null}
                     </div>
