@@ -36,6 +36,6 @@ export default (props) => {
             :
             null
         }
-        <Footer socials={props.socials}/>
+        {/* <Footer socials={props.socials}/> */}
     </>
 )}
