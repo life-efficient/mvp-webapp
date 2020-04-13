@@ -9,7 +9,7 @@ export default (props) => {
     console.log('HEROS:', props.heros)
     return (
     <>
-        <Navbar {...props.nav} btn='Login' />
+        {props.nav ? <Navbar {...props.nav} btn='Login' /> : null}
         <Fold 
             {...props.fold}
             // hero={props.hero} 
