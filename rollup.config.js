@@ -60,7 +60,6 @@ export default [
       'react-router-dom',
       'prop-types',
       'aws-amplify',
-      // '@material-ui/core'
     ],
   },
 ]
