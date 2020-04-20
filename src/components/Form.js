@@ -130,7 +130,15 @@ export default class Form extends Component {
             console.log('current slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
             try {
-                if (onSubmit) {await onSubmit(this.state)}                  // validate + do extra stuff
+                if (onSubmit) {
+                    var e = {}
+                    const exclude = ['slide_idx', 'loading']
+                    for (var k in this.state) {
+                        if (exclude.includes(k)) {continue}
+                        e[k] = this.state[k]
+                    }
+                    await onSubmit(e)
+                }                  // validate + do extra stuff
                 console.log('both internal and external validation successful')
                 
                 console.log('current slide idx in try', this.state.slide_idx)
