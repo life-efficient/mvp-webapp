@@ -4,7 +4,7 @@ import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -14,12 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { css, jsx } from "@emotion/core"
 /** @jsx jsx */
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
 
 const style = css`
 
@@ -202,12 +202,12 @@ export default class Form extends Component {
                                                 return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
-                                            case "location":
-                                                return <LocationField />
-                                            case "date":
-                                                return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
-                                            case "time":
-                                                return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            // case "location":
+                                            //     return <LocationField />
+                                            // case "date":
+                                            //     return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
+                                            // case "time":
+                                            //     return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -254,9 +254,9 @@ export const EmailField = (props) => {
     return <TextResponse {...props} />
 }
 
-export const LocationField = (props) => {
-    return <GooglePlacesAutocomplete onSelect={console.log} />
-}
+// export const LocationField = (props) => {
+//     return <GooglePlacesAutocomplete onSelect={console.log} />
+// }
 
 export class Password extends Component {
     constructor (props) {
@@ -354,33 +354,33 @@ export const DropDown = (props) => {
     )
 }
 
-export const DateField = (props) => {
-    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
-           <KeyboardDatePicker
-          margin="normal"
-          id={props.id}
-          label={props.title}
-          format="dd/MM/yyyy"
-          value={props.value ? props.value : null}
-          onChange={props.handleChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-    </MuiPickersUtilsProvider>
-}
+// export const DateField = (props) => {
+//     return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+//            <KeyboardDatePicker
+//           margin="normal"
+//           id={props.id}
+//           label={props.title}
+//           format="dd/MM/yyyy"
+//           value={props.value ? props.value : null}
+//           onChange={props.handleChange}
+//           KeyboardButtonProps={{
+//             'aria-label': 'change date',
+//           }}
+//         />
+//     </MuiPickersUtilsProvider>
+// }
 
-export const Time = (props) => {
-    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardTimePicker
-            margin="normal"
-            id={props.id}
-            label={props.title}
-            value={props.value ? props.value : null}
-            onChange={props.handleChange}
-            KeyboardButtonProps={{
-                'aria-label': 'change time',
-            }}
-        />
-    </MuiPickersUtilsProvider>
-}
+// export const Time = (props) => {
+//     return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+//         <KeyboardTimePicker
+//             margin="normal"
+//             id={props.id}
+//             label={props.title}
+//             value={props.value ? props.value : null}
+//             onChange={props.handleChange}
+//             KeyboardButtonProps={{
+//                 'aria-label': 'change time',
+//             }}
+//         />
+//     </MuiPickersUtilsProvider>
+// }
