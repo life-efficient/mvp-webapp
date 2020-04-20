@@ -14,12 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { css, jsx } from "@emotion/core"
 /** @jsx jsx */
 import 'date-fns';
-// import DateFnsUtils from '@date-io/date-fns';
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardTimePicker,
-//   KeyboardDatePicker,
-// } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const style = css`
 
@@ -84,7 +84,8 @@ export default class Form extends Component {
     }
     
     handleOptionChange = (e) => {
-        this.setState({[e.target.id]: e.target.value},
+        console.log(e)
+        this.setState({[e.target.name]: e.target.value},
             () =>{console.log(this.state)})
     }
 
@@ -204,10 +205,10 @@ export default class Form extends Component {
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
                                             // case "location":
                                             //     return <LocationField />
-                                            // case "date":
-                                            //     return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
-                                            // case "time":
-                                            //     return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            case "date":
+                                                return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
+                                            case "time":
+                                                return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -326,9 +327,9 @@ export class ConfirmPassword extends Component {
 }
 
 export const DropDown = (props) => {
-    return <FormControl className="field" css={'yo'}>
+    return <FormControl className="field" css={'yo'} >
         <InputLabel>{props.title}</InputLabel>
-        <Select id={props.id} value={props} onChange={props.handleChange}>
+        <Select id={props.id} name={props.id} value={props.value} onChange={props.handleChange}>
             {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
         </Select>
     </FormControl>
@@ -354,33 +355,33 @@ export const DropDown = (props) => {
     )
 }
 
-// export const DateField = (props) => {
-//     return <MuiPickersUtilsProvider utils={DateFnsUtils}>
-//            <KeyboardDatePicker
-//           margin="normal"
-//           id={props.id}
-//           label={props.title}
-//           format="dd/MM/yyyy"
-//           value={props.value ? props.value : null}
-//           onChange={props.handleChange}
-//           KeyboardButtonProps={{
-//             'aria-label': 'change date',
-//           }}
-//         />
-//     </MuiPickersUtilsProvider>
-// }
+export const DateField = (props) => {
+    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+           <KeyboardDatePicker
+          margin="normal"
+          id={props.id}
+          label={props.title}
+          format="dd/MM/yyyy"
+          value={props.value ? props.value : null}
+          onChange={props.handleChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+    </MuiPickersUtilsProvider>
+}
 
-// export const Time = (props) => {
-//     return <MuiPickersUtilsProvider utils={DateFnsUtils}>
-//         <KeyboardTimePicker
-//             margin="normal"
-//             id={props.id}
-//             label={props.title}
-//             value={props.value ? props.value : null}
-//             onChange={props.handleChange}
-//             KeyboardButtonProps={{
-//                 'aria-label': 'change time',
-//             }}
-//         />
-//     </MuiPickersUtilsProvider>
-// }
+export const Time = (props) => {
+    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardTimePicker
+            margin="normal"
+            id={props.id}
+            label={props.title}
+            value={props.value ? props.value : null}
+            onChange={props.handleChange}
+            KeyboardButtonProps={{
+                'aria-label': 'change time',
+            }}
+        />
+    </MuiPickersUtilsProvider>
+}
