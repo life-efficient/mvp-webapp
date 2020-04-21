@@ -165,7 +165,6 @@ export default class Form extends Component {
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
         console.log('go to new?', go_to_new)
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
-            console.log('reached end of slides')
             if (!this.props.stay) {
                 console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
