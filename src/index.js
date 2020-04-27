@@ -28,4 +28,6 @@ export { default as Chart } from "components/Chart"
 export { default as Pie } from "components/Pie"
 export { default as TableToGraph } from "components/TableToGraph"
 export { default as EmphasisBox } from "components/EmphasisBox" 
+export { default as Listing } from "components/Listing"
+export { default as Listings } from "components/Listings"
 

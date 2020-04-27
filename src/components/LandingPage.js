@@ -4,13 +4,15 @@ import LandingSection from "./LandingSection"
 import Navbar from "./Navbar"
 import { Background } from ".."
 import Footer from "./Footer"
+import { jsx, css } from "@emotion/core"
+/** @jsx jsx */
 
 export default (props) => { 
     console.log('HEROS:', props.heros)
     return (
     <>
         <Navbar {...props.nav} btn='Login' />
-        <Fold 
+        <Fold css={[props.style]}
             {...props.fold}
             // hero={props.hero} 
             // heading={props.heading ? props.heading : 'Add a `heading` prop!'} 
