@@ -84,6 +84,37 @@ Fuck the form component libraries you heard of
 import { Form } from "mvp-webapp";
 import { makePostRequest } from "../api_calls";
 
+<>
+<Form slides={[
+    {
+        questions: [
+            {
+                title: 'title',
+                id: 'title',
+                type: 'text'
+            },
+            {
+                title: 'dropdown',
+                type: 'dropdown',
+                id: 'dd',
+                options: [1, 2, 3]
+            },
+            {
+                title: 'Date',
+                type: 'date',
+                id: 'date'
+            },
+            {
+                title: 'Time',
+                type: 'time',
+                id: 'time'
+            }
+        ],
+        onSubmit: (e)=>{console.log(e)}
+    }
+    ]}
+/>
+
 <Form title="Join the network!"
     redirect='/redirection'
     slides={[
@@ -135,4 +166,5 @@ import { makePostRequest } from "../api_calls";
         }
      ]}
 />
+</>
 ```

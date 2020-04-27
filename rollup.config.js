@@ -48,7 +48,7 @@ export default [
           namedExports: {
             // seems to prevent error 'isValidElementType is not exported'
             'node_modules/react-is/index.js': ['isValidElementType'],
-            'react-is': ['isValidElementType']
+            'react-is': ['isValidElementType', 'ForwardRef', 'Memo', 'isFragment']
           }
         }
       )
@@ -59,7 +59,8 @@ export default [
       'react-redux',
       'react-router-dom',
       'prop-types',
-      'aws-amplify'
+      'aws-amplify',
+      '@material-ui/core'
     ],
   },
 ]

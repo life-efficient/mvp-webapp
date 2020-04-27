@@ -96,29 +96,51 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+    text: {
+        main: '#ff822e'
+    }
+  },
+});
+
 export default (props) => {
 
     return (
         <Router>
             <Provider store={store}>
-                <Global
-                    styles={css`
-                        a:link { color: black;text-decoration: none; }
-                        a​:visited {  color: black; text-decoration: none;}
-                        a​:hover {  color: black; }
-                        a { color: black;}
+                <ThemeProvider theme={theme}>
+                    <Global
+                        styles={css`
+                            a:link { color: black;text-decoration: none; }
+                            a​:visited {  color: black; text-decoration: none;}
+                            a​:hover {  color: black; }
+                            a { color: black;}
 
-                        // *{
-                        //     text-transform: uppercase;
-                        //     // font-size: 1.5em;
-                        //     font-weight: bold;
-                        //     letter-spacing: 4px;
-                        // }
-                    `}
-                />
-                {/* <ThemeProvider theme={store.getState().app.theme}> */}
+                            // *{
+                            //     text-transform: uppercase;
+                            //     // font-size: 1.5em;
+                            //     font-weight: bold;
+                            //     letter-spacing: 4px;
+                            // }
+                        `}
+                    />
                     {props.children}
-                {/* </ThemeProvider> */}
+                </ThemeProvider>
             </Provider>
         </Router>
     )

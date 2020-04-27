@@ -42,7 +42,7 @@ export default (props) => {
             z-index: -2;
         }
         .hero-filter {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+            // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
             z-index: -1;
 
             position: absolute;

@@ -11,8 +11,8 @@ export default (props) => {
     console.log('HEROS:', props.heros)
     return (
     <>
-        <Navbar {...props.nav} btn='Login' />
-        <Fold css={[props.style]}
+        {props.nav ? <Navbar {...props.nav} btn='Login' /> : null}
+        <Fold 
             {...props.fold}
             // hero={props.hero} 
             // heading={props.heading ? props.heading : 'Add a `heading` prop!'} 
@@ -38,6 +38,6 @@ export default (props) => {
             :
             null
         }
-        <Footer socials={props.socials}/>
+        {/* <Footer socials={props.socials}/> */}
     </>
 )}

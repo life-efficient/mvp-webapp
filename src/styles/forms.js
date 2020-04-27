@@ -2,6 +2,11 @@ import { css } from "@emotion/core"
 import theme from "../styles/theme"
 
 export const Form = css`
+
+    .field {
+        margin: 10px 0;
+    }
+
     .text-response {
         border: 0;
         border: 1px solid silver;
@@ -10,7 +15,6 @@ export const Form = css`
         background-color: white;
         width: 100%;
         box-sizing: border-box;
-        color: white;
 
         font-family: var(--font3);
         font-size: var(--small);

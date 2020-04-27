@@ -325,6 +325,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+  // alert('yoo')
     return {
         closeModal: () => {
             dispatch({

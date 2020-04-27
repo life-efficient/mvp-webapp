@@ -4,9 +4,29 @@ import React, { Component } from "react"
 import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import { css, jsx } from "@emotion/core"
+/** @jsx jsx */
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
+const style = css`
+
+    .submit {
+        margin: auto;
+    }
+`
 
 export default class Form extends Component {
     constructor(props) {
@@ -64,8 +84,17 @@ export default class Form extends Component {
     }
     
     handleOptionChange = (e) => {
-        this.setState({[e.target.id]: e.target.value},
+        console.log(e)
+        this.setState({[e.target.name]: e.target.value},
             () =>{console.log(this.state)})
+    }
+
+    handleDateChange = (e, id) => {
+        this.setState({[id]: e})
+    }
+
+    handleTimeChange = (e, id) => {
+        this.setState({[id]: e})
     }
 
     validate = () => {
@@ -73,6 +102,7 @@ export default class Form extends Component {
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
+            if (s[q.id] == ''){errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             if (q.type === 'text' || q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
@@ -100,7 +130,15 @@ export default class Form extends Component {
             console.log('current slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
             try {
-                if (onSubmit) {await onSubmit(this.state)}                  // validate + do extra stuff
+                if (onSubmit) {
+                    var e = {}
+                    const exclude = ['slide_idx', 'loading']
+                    for (var k in this.state) {
+                        if (exclude.includes(k)) {continue}
+                        e[k] = this.state[k]
+                    }
+                    await onSubmit(e)
+                }                  // validate + do extra stuff
                 console.log('both internal and external validation successful')
                 
                 console.log('current slide idx in try', this.state.slide_idx)
@@ -127,7 +165,6 @@ export default class Form extends Component {
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
         console.log('go to new?', go_to_new)
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
-            console.log('reached end of slides')
             if (!this.props.stay) {
                 console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
@@ -147,13 +184,14 @@ export default class Form extends Component {
                         // console.log('question slide:', s)
                         return <>  
                         <div style={{minWidth: '100%', padding: '0px', transform: `translateX(-${100 * this.state.slide_idx}%)`, transitionDuration: '0.5s', paddingRight: '20px'}}>
-                            <div css={FormStyle} >
+                            <div css={css`${FormStyle}; ${style}`} >
                                 <div style={{fontSize: '30px', marginBottom: '20px', fontWeight: '900'}}>
                                     {s.title}
                                     <div className='detail'>
                                         {s.subtitle}
                                     </div>
                                 </div>
+                                <div css={css`display: flex; flex-direction: column;`}>
                                 {
                                     s.questions.map((q) => {                         // map question slide (list of objects) to the questions
                                         q = {...q, value: this.state[q.id]}
@@ -172,20 +210,25 @@ export default class Form extends Component {
                                                 return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
-                                            case "location":
-                                                return <LocationField />
+                                            // case "location":
+                                            //     return <LocationField />
+                                            case "date":
+                                                return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
+                                            case "time":
+                                                return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
                                     })
                                 }
+                                </div>
                                 <div className="error">
                                     {this.state.error}
                                 </div>
                                 <div className='detail'>
                                     {s.detail}
                                 </div>
-                                <Button text='Submit' onClick={this.submit} loading={this.state.loading}/>
+                                <Button className="submit" text='Submit' onClick={this.submit} loading={this.state.loading}/>
                             </div>
                         </div>
                         </>
@@ -199,28 +242,29 @@ export default class Form extends Component {
 
 export const TextResponse = (props) => {
     // console.log('VALUE:', props.value)
-    return (
-        <div className="field-container">
-            <div className="field-title ">
-                <strong>{props.title}</strong>
-            </div>
-            <br/>
-            <div className="field-title detail">
-                {props.detail}
-            </div>
-            <br/>
-            <input type="text" id={props.id} value={props.value} className="text-response" placeholder="" onChange={props.handleChange}/>
-        </div>
-    )
+    return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
+    // return (
+    //     <div className="field-container">
+    //         <div className="field-title ">
+    //             <strong>{props.title}</strong>
+    //         </div>
+    //         <br/>
+    //         <div className="field-title detail">
+    //             {props.detail}
+    //         </div>
+    //         <br/>
+    //         <input type="text" id={props.id} value={props.value} className="text-response" placeholder="" onChange={props.handleChange}/>
+    //     </div>
+    // )
 }
 
 export const EmailField = (props) => {
     return <TextResponse {...props} />
 }
 
-export const LocationField = (props) => {
-    return <GooglePlacesAutocomplete onSelect={console.log} />
-}
+// export const LocationField = (props) => {
+//     return <GooglePlacesAutocomplete onSelect={console.log} />
+// }
 
 export class Password extends Component {
     constructor (props) {
@@ -290,6 +334,12 @@ export class ConfirmPassword extends Component {
 }
 
 export const DropDown = (props) => {
+    return <FormControl className="field" css={'yo'} >
+        <InputLabel>{props.title}</InputLabel>
+        <Select id={props.id} name={props.id} value={props.value} onChange={props.handleChange}>
+            {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
+        </Select>
+    </FormControl>
     return (
         <div className="field-container">
             <div className="field-title ">
@@ -310,4 +360,35 @@ export const DropDown = (props) => {
             </select>
         </div>
     )
+}
+
+export const DateField = (props) => {
+    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+           <KeyboardDatePicker
+          margin="normal"
+          id={props.id}
+          label={props.title}
+          format="dd/MM/yyyy"
+          value={props.value ? props.value : null}
+          onChange={props.handleChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+    </MuiPickersUtilsProvider>
+}
+
+export const Time = (props) => {
+    return <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardTimePicker
+            margin="normal"
+            id={props.id}
+            label={props.title}
+            value={props.value ? props.value : null}
+            onChange={props.handleChange}
+            KeyboardButtonProps={{
+                'aria-label': 'change time',
+            }}
+        />
+    </MuiPickersUtilsProvider>
 }
