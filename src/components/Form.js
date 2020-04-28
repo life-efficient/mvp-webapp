@@ -334,7 +334,7 @@ export class ConfirmPassword extends Component {
 }
 
 export const DropDown = (props) => {
-    return <FormControl className="field" css={'yo'} >
+    return <FormControl variant="outlined" className="field" css={'yo'} >
         <InputLabel>{props.title}</InputLabel>
         <Select id={props.id} name={props.id} value={props.value} onChange={props.handleChange}>
             {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
