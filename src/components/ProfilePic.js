@@ -80,7 +80,7 @@ class ProfilePic extends Component {
                 <div css={style}>
                     <label for="dp-input" className="dp-input">
                         <input onChange={this.uploadDP} id="dp-input" type="file" style={{display: 'none'}} />
-                        <img src={this.props.dp_url ? this.props.dp_url : "https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD+LOGO"} className="display-pic" alt=""/>
+                        <img src={this.props.dp_url ? this.props.dp_url : "https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD"} className="display-pic" alt=""/>
                         {/*https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD+LOGO*/}
                         {/*https://via.placeholder.com/200x200/ff822e/ffffff?text=Upload company logo*/}
                     </label>

@@ -52,6 +52,7 @@ var Signup = (props) => {
                                 console.log('confirming and logging in')
                                 await Auth.confirmSignUp(e.email, e.code)
                                 await Auth.signIn(e.email, e.password)
+                                props.post_signup_fn ? await props.post_signup_fn():null
                             }
                             catch (err) {
                                 console.log('sumbission error:', err)
