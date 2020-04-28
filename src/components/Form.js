@@ -239,19 +239,6 @@ export default class Form extends Component {
 export const TextResponse = (props) => {
     // console.log('VALUE:', props.value)
     return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
-    // return (
-    //     <div className="field-container">
-    //         <div className="field-title ">
-    //             <strong>{props.title}</strong>
-    //         </div>
-    //         <br/>
-    //         <div className="field-title detail">
-    //             {props.detail}
-    //         </div>
-    //         <br/>
-    //         <input type="text" id={props.id} value={props.value} className="text-response" placeholder="" onChange={props.handleChange}/>
-    //     </div>
-    // )
 }
 
 export const EmailField = (props) => {
@@ -336,26 +323,6 @@ export const DropDown = (props) => {
             {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
         </Select>
     </FormControl>
-    return (
-        <div className="field-container">
-            <div className="field-title ">
-                <strong>{props.title}</strong>
-            </div>
-            <br/>
-            <div className="field-title detail">
-                {props.detail}
-            </div>
-            <br/>
-            <select id={props.id} onChange={props.handleChange}>
-                <option disabled selected>Select</option>
-                {
-                    props.options.map((o)=>{return (
-                        <option value={o}>{o}</option>
-                    )})
-                }
-            </select>
-        </div>
-    )
 }
 
 export const DateField = (props) => {
