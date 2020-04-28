@@ -94,6 +94,15 @@ import { makePostRequest } from "../api_calls";
                 type: 'text'
             },
             {
+                title: 'conditional on title == "yo"',
+                id: 'cond',
+                type: 'text',
+                conditional: {
+                    id: 'title',
+                    value: 'yo'
+                }
+            },
+            {
                 title: 'dropdown',
                 type: 'dropdown',
                 id: 'dd',

@@ -190,6 +190,11 @@ export default class Form extends Component {
                                 <div css={css`display: flex; flex-direction: column;`}>
                                 {
                                     s.questions.map((q) => {                         // map question slide (list of objects) to the questions
+                                        if (Object.keys(q).includes('conditional')) { // if question is conditional on some other response
+                                            if (this.state[q.conditional.id] != q.conditional.value) {// if condition not satisfied
+                                                return null // don't render it
+                                            }
+                                        }
                                         q = {...q, value: this.state[q.id]}
                                         switch (q.type) {
                                             case "text":
