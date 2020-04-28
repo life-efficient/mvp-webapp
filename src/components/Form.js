@@ -102,8 +102,20 @@ export default class Form extends Component {
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
-            if (s[q.id] == ''){errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
-            if (q.type === 'text' || q.type === 'password') {
+            if (s[q.id] == '' && q.required !== false){ // if response to q not given, and is required (by default)
+                if (q.conditional){ // if conditional
+                    console.log('question is conditional')
+                    console.log(q.conditional.id)
+                    if (this.state[q.conditional.id] == q.conditional.value) { // if condition for being rendered is met
+                        console.log('question is being rendered!')
+                        errors.push(`Fill in the ${q.title.toLowerCase()} field`)
+                    } // if not being rendered, then don't prevent submitting because question is not filled in!
+                }
+                else { // if not conditional
+                    errors.push(`Fill in the ${q.title.toLowerCase()} field`) // well then it must be rendered
+                }
+            }
+            if (q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
@@ -169,9 +181,6 @@ export default class Form extends Component {
                 this.setState({slide_idx: this.state.slide_idx - 1})
             }
         }
-
-        var question_slides = this.question_slides
-        // console.log('All question slides:', question_slides)
         return (
             <>
             <div css={panel} style={{display: 'flex', flexDirection: 'row', overflowY: 'auto', overflowX: 'hidden', justifyContent: 'left', padding: '20px'}}>
