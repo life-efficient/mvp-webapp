@@ -386,6 +386,8 @@ const ratingStyle = css`
     margin: 10px;
 `
 
+
+
 const RatingField = props => {
     return <div css={ratingStyle}>
         <div>{props.title}</div>

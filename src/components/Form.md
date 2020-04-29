@@ -113,6 +113,12 @@ import { makePostRequest } from "../api_calls";
                 }
             },
             {
+                title: 'Not required',
+                type: 'text',
+                id: 'not-req',
+                required: false
+            },
+            {
                 title: 'Rating',
                 type: 'rating',
                 id: 'rating'
