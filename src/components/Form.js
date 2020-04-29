@@ -51,7 +51,7 @@ export default class Form extends Component {
         this.state = {
             ...question_ids, 
             slide_idx: 0,
-            loading: true
+            loading: false
         }
         // var question_slides = this.props.questions
         // if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
