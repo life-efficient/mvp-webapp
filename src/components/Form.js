@@ -6,7 +6,7 @@ import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
-import { Button, Fab } from "@material-ui/core"
+import { Button, Fab, CircularProgress } from "@material-ui/core"
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -51,7 +51,7 @@ export default class Form extends Component {
         this.state = {
             ...question_ids, 
             slide_idx: 0,
-            loading: false
+            loading: true
         }
         // var question_slides = this.props.questions
         // if (!question_slides.every((q) => {return q instanceof Array})) {      // if all elements are arrays then each of them represent a slide. if list of objects then convert to list of list of objects
