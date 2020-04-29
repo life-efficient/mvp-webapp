@@ -58,6 +58,16 @@ Fuck the form component libraries you heard of
                 * **`text`**: Checks that field is not empty
                 * **`number`**: Checks that the field contains numbers only
                 * **`email`**: Checks that the field is an email
+        
+        * **`conditional`**
+
+            - **type**: `object`
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: Allows for conditional logic. If condition value is not equal to current values for question of the given id, then this question will no be rendered. Should have the following keys and values:
+
+                * **`id`**: id of the question which the value will be tested against
+                * **`value`**: Value which the question with that id should be equal to
 
     * **`onSubmit`**
 
@@ -92,6 +102,26 @@ import { makePostRequest } from "../api_calls";
                 title: 'title',
                 id: 'title',
                 type: 'text'
+            },
+            {
+                title: 'conditional on title == "yo"',
+                id: 'cond',
+                type: 'text',
+                conditional: {
+                    id: 'title',
+                    value: 'yo'
+                }
+            },
+            {
+                title: 'Not required',
+                type: 'text',
+                id: 'not-req',
+                required: false
+            },
+            {
+                title: 'Rating',
+                type: 'rating',
+                id: 'rating'
             },
             {
                 title: 'dropdown',

@@ -1,12 +1,13 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
-import Button from "./Button"
 import UploadPic from "./UploadPic"
+// import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
+import { Button, Fab, CircularProgress } from "@material-ui/core"
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,6 +22,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Rating from '@material-ui/lab/Rating';
 
 const style = css`
 
@@ -102,13 +104,31 @@ export default class Form extends Component {
         this.setState({[e.id]: e.value})
     }
 
+    handleRatingChange = (newValue, id) => {
+        this.setState({
+            [id]: newValue
+        })
+    }
+
     validate = () => {
         var s = this.state
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
             console.log('verifying:', q)
-            if (s[q.id] == ''){errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
-            if (q.type === 'text' || q.type === 'password') {
+            if (s[q.id] == '' && q.required !== false){ // if response to q not given, and is required (by default)
+                if (q.conditional){ // if conditional
+                    console.log('question is conditional')
+                    console.log(q.conditional.id)
+                    if (this.state[q.conditional.id] == q.conditional.value) { // if condition for being rendered is met
+                        console.log('question is being rendered!')
+                        errors.push(`Fill in the ${q.title.toLowerCase()} field`)
+                    } // if not being rendered, then don't prevent submitting because question is not filled in!
+                }
+                else { // if not conditional
+                    errors.push(`Fill in the ${q.title.toLowerCase()} field`) // well then it must be rendered
+                }
+            }
+            if (q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
@@ -137,9 +157,10 @@ export default class Form extends Component {
             try {
                 if (onSubmit) {
                     var e = {}
-                    const exclude = ['slide_idx', 'loading']
+                    const exclude = ['slide_idx', 'loading', 'error']
                     for (var k in this.state) {
                         if (exclude.includes(k)) {continue}
+                        if (this.state[k] == '') {continue}
                         e[k] = this.state[k]
                     }
                     await onSubmit(e)
@@ -164,11 +185,7 @@ export default class Form extends Component {
 
     render () {
         // console.log('STATE:', this.state)
-        console.log('slide idx:', this.state.slide_idx)
-        console.log('slides len:', this.props.slides.length)
-        console.log(this.state.slide_idx > this.props.slides.length - 1)
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
-        console.log('go to new?', go_to_new)
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
             if (!this.props.stay) {
                 console.log('redirecting to:', this.props.redirect)
@@ -178,9 +195,6 @@ export default class Form extends Component {
                 this.setState({slide_idx: this.state.slide_idx - 1})
             }
         }
-
-        var question_slides = this.question_slides
-        // console.log('All question slides:', question_slides)
         return (
             <>
             <div css={panel} style={{display: 'flex', flexDirection: 'row', overflowY: 'auto', overflowX: 'hidden', justifyContent: 'left', padding: '20px'}}>
@@ -199,6 +213,11 @@ export default class Form extends Component {
                                 <div css={css`display: flex; flex-direction: column;`}>
                                 {
                                     s.questions.map((q) => {                         // map question slide (list of objects) to the questions
+                                        if (Object.keys(q).includes('conditional')) { // if question is conditional on some other response
+                                            if (this.state[q.conditional.id] != q.conditional.value) {// if condition not satisfied
+                                                return null // don't render it
+                                            }
+                                        }
                                         q = {...q, value: this.state[q.id]}
                                         switch (q.type) {
                                             case "text":
@@ -223,6 +242,8 @@ export default class Form extends Component {
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             case "image":
                                                 return <UploadPic {...q} handleChange={this.handlePicChange}/>
+                                            case "rating":
+                                                return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -235,7 +256,13 @@ export default class Form extends Component {
                                 <div className='detail'>
                                     {s.detail}
                                 </div>
-                                <Button className="submit" text='Submit' onClick={this.submit} loading={this.state.loading}/>
+
+                                {/* <Fab  */}
+                                <Button 
+                                color="secondary" size="large" variant="contained" className="submit" text='Submit' onClick={this.submit} >
+                                    {this.state.loading ? <CircularProgress/> : 'Submit'}
+                                </Button>
+                                {/* </Fab> */}
                             </div>
                         </div>
                         </>
@@ -250,19 +277,6 @@ export default class Form extends Component {
 export const TextResponse = (props) => {
     // console.log('VALUE:', props.value)
     return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
-    // return (
-    //     <div className="field-container">
-    //         <div className="field-title ">
-    //             <strong>{props.title}</strong>
-    //         </div>
-    //         <br/>
-    //         <div className="field-title detail">
-    //             {props.detail}
-    //         </div>
-    //         <br/>
-    //         <input type="text" id={props.id} value={props.value} className="text-response" placeholder="" onChange={props.handleChange}/>
-    //     </div>
-    // )
 }
 
 export const EmailField = (props) => {
@@ -341,32 +355,12 @@ export class ConfirmPassword extends Component {
 }
 
 export const DropDown = (props) => {
-    return <FormControl className="field" css={'yo'} >
+    return <FormControl variant="outlined" className="field" css={'yo'} >
         <InputLabel>{props.title}</InputLabel>
         <Select id={props.id} name={props.id} value={props.value} onChange={props.handleChange}>
             {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
         </Select>
     </FormControl>
-    return (
-        <div className="field-container">
-            <div className="field-title ">
-                <strong>{props.title}</strong>
-            </div>
-            <br/>
-            <div className="field-title detail">
-                {props.detail}
-            </div>
-            <br/>
-            <select id={props.id} onChange={props.handleChange}>
-                <option disabled selected>Select</option>
-                {
-                    props.options.map((o)=>{return (
-                        <option value={o}>{o}</option>
-                    )})
-                }
-            </select>
-        </div>
-    )
 }
 
 export const DateField = (props) => {
@@ -398,4 +392,20 @@ export const Time = (props) => {
             }}
         />
     </MuiPickersUtilsProvider>
+}
+
+const ratingStyle = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+`
+
+
+
+const RatingField = props => {
+    return <div css={ratingStyle}>
+        <div>{props.title}</div>
+        <Rating value={props.value} onChange={(e, newValue)=>{props.handleChange(newValue, props.id)}} size="large"/>
+    </div>
 }

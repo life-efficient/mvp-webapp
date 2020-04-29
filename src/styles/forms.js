@@ -85,8 +85,9 @@ export const Form = css`
     }
     
     > button {
-        background-color: var(--color1);
-        color: var(--color2);
+        align-self: flex-end;
+        display: flex;
+        justify-content: flex-end;
     }
 
     select {
