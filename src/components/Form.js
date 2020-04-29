@@ -155,6 +155,7 @@ export default class Form extends Component {
                     const exclude = ['slide_idx', 'loading', 'error']
                     for (var k in this.state) {
                         if (exclude.includes(k)) {continue}
+                        if (this.state[k] == '') {continue}
                         e[k] = this.state[k]
                     }
                     await onSubmit(e)
