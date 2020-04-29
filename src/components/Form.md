@@ -113,6 +113,11 @@ import { makePostRequest } from "../api_calls";
                 }
             },
             {
+                title: 'Rating',
+                type: 'rating',
+                id: 'rating'
+            },
+            {
                 title: 'dropdown',
                 type: 'dropdown',
                 id: 'dd',

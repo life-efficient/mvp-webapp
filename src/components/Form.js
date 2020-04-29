@@ -20,6 +20,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Rating from '@material-ui/lab/Rating';
 
 const style = css`
 
@@ -95,6 +96,12 @@ export default class Form extends Component {
 
     handleTimeChange = (e, id) => {
         this.setState({[id]: e})
+    }
+
+    handleRatingChange = (e, newValue) => {
+        console.log(e)
+        console.log(newValue)
+        // this.setState({})
     }
 
     validate = () => {
@@ -226,6 +233,8 @@ export default class Form extends Component {
                                                 return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            case "rating":
+                                                return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
@@ -368,4 +377,11 @@ export const Time = (props) => {
             }}
         />
     </MuiPickersUtilsProvider>
+}
+
+const RatingField = props => {
+    return <div>
+        <div>{props.title}</div>
+        <Rating value={props.value} onChange={props.handleChange} size="large"/>
+    </div>
 }
