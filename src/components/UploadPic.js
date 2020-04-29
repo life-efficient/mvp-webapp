@@ -18,8 +18,12 @@ const style = css`
         opacity: 0.5;
     }
 
+    p{
+        margin:3px;
+    }
+
     background-color: var(--color2);
-    //border: 10px solid var(--color2);
+    //border: 2px solid var(--color1);
     //border-radius: 50vw;
     height: 50vw;
     width: 50vw;
@@ -28,6 +32,10 @@ const style = css`
     // width: 200px;
     margin: 30px auto;
     overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
 
     @media (max-width: 600px) {
         max-height: 100px;
@@ -38,13 +46,41 @@ const style = css`
     }
 `
 
-class ProfilePic extends Component {
+class UploadPic extends Component {
 
-    uploadDP = async (e) => {
+    constructor(props) {
+        super(props)
+        this.state = {
+            imgsrc: props.default?props.default:"https://dummyimage.com/400x352/ff822e/fff.png&text=UPLOAD"
+        }
+    }
+
+    onimgchange = async (e)=>{
+        var file = e.target.files[0]
+        console.log(file)
+
+        if(this.props.bucket_filepath && this.bucket_url){
+            url = await this.uploadDP(file)
+            this.setState({imgsrc: url})
+        }else{
+            var reader = new FileReader();
+            reader.onload = ()=>{this.setState({imgsrc: event.target.result})}
+            reader.readAsDataURL(file);
+        }
+    }
+
+    componentDidUpdate = ()=>{
+        if(this.props.id){
+            this.props.handleChange({id:this.props.id, value:this.state.imgsrc})
+        }else{
+            this.props.handleChange(this.state.imgsrc)
+        }
+    }
+
+    uploadDP = async (file) => {
         var type
         var url
         var fp
-        var file = e.target.files[0]
         type = file.type.split('/')[1]
         //this.props.bucket_filepath = enterprise_users/${uuid.v4()}/profile_pic
         //this.props.bucket_url = https://theaicore-data.s3.eu-west-2.amazonaws.com/public/
@@ -68,7 +104,7 @@ class ProfilePic extends Component {
         console.log(resp)
         url =`${this.props.bucket_url}${fp}`
         //url =`https://theaicore-data.s3.eu-west-2.amazonaws.com/public/${fp}`
-        var update = {img: url}
+        return url
         this.props.set_dp(update)
         this.props.on_update(update)
         //makePostRequest('app/user/info', update)
@@ -77,10 +113,11 @@ class ProfilePic extends Component {
     render() {
         return (
             <>
-                <div css={style}>
+                <div css={[style, this.props.style]}>
+                    {this.props.label ?<p>{this.props.label}</p>:null }
                     <label for="dp-input" className="dp-input">
-                        <input onChange={this.uploadDP} id="dp-input" type="file" style={{display: 'none'}} />
-                        <img src={this.props.dp_url ? this.props.dp_url : "https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD"} className="display-pic" alt=""/>
+                        <input onChange={this.onimgchange} id="dp-input" type="file" style={{display: 'none'}} />
+                        <img src={this.state.imgsrc} className="display-pic" alt=""/>
                         {/*https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD+LOGO*/}
                         {/*https://via.placeholder.com/200x200/ff822e/ffffff?text=Upload company logo*/}
                     </label>
@@ -91,4 +128,4 @@ class ProfilePic extends Component {
 }
 
 
-export default ProfilePic
+export default UploadPic
