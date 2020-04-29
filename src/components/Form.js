@@ -2,6 +2,7 @@ import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import Button from "./Button"
+import UploadPic from "./UploadPic"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
@@ -95,6 +96,10 @@ export default class Form extends Component {
 
     handleTimeChange = (e, id) => {
         this.setState({[id]: e})
+    }
+    
+    handlePicChange = (e) => {
+        this.setState({[e.id]: e.value})
     }
 
     validate = () => {
@@ -216,6 +221,8 @@ export default class Form extends Component {
                                                 return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            case "image":
+                                                return <UploadPic {...q} handleChange={this.handlePicChange}/>
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }
