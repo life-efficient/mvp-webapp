@@ -1,11 +1,12 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
-import Button from "./Button"
+// import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
+import { Button, Fab } from "@material-ui/core"
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -247,7 +248,13 @@ export default class Form extends Component {
                                 <div className='detail'>
                                     {s.detail}
                                 </div>
-                                <Button className="submit" text='Submit' onClick={this.submit} loading={this.state.loading}/>
+
+                                {/* <Fab  */}
+                                <Button 
+                                size="large" variant="contained" className="submit" text='Submit' onClick={this.submit} >
+                                    {this.state.loading ? <CircularProgress/> : 'Submit'}
+                                </Button>
+                                {/* </Fab> */}
                             </div>
                         </div>
                         </>
