@@ -98,10 +98,10 @@ export default class Form extends Component {
         this.setState({[id]: e})
     }
 
-    handleRatingChange = (e, newValue) => {
-        console.log(e)
-        console.log(newValue)
-        // this.setState({})
+    handleRatingChange = (newValue, id) => {
+        this.setState({
+            [id]: newValue
+        })
     }
 
     validate = () => {
@@ -379,9 +379,16 @@ export const Time = (props) => {
     </MuiPickersUtilsProvider>
 }
 
+const ratingStyle = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+`
+
 const RatingField = props => {
-    return <div>
+    return <div css={ratingStyle}>
         <div>{props.title}</div>
-        <Rating value={props.value} onChange={props.handleChange} size="large"/>
+        <Rating value={props.value} onChange={(e, newValue)=>{props.handleChange(newValue, props.id)}} size="large"/>
     </div>
 }
