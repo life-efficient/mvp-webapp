@@ -241,7 +241,7 @@ export default class Form extends Component {
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             case "image":
-                                                return <UploadPic {...q} handleChange={this.handlePicChange}/>
+                                                return new (<UploadPic {...q} handleChange={this.handlePicChange}/>)
                                             case "rating":
                                                 return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             default:

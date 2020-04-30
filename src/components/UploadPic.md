@@ -30,12 +30,13 @@ An upload file input designed for images. Displays the uploaded image and can up
 import logo from '../images/external/logo.png';
 import { UploadPic } from "mvp-webapp";
 
-<UploadPic //bucket_filepath={`enterprise_users/test/profile_pic`}
+new <UploadPic  //bucket_filepath="enterprise_users/test/profile_pic"
             id="inputpicc"
             label='Company Logo'
             //bucket_url = "https://theaicore-data.s3.eu-west-2.amazonaws.com/public/"
             //dp_url = {null}
             handleChange = {(update)=>{
+                console.log('just updated dat image')
                 console.log(update)
             }
             }

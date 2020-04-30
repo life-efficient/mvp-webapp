@@ -50,6 +50,7 @@ class UploadPic extends Component {
 
     constructor(props) {
         super(props)
+        console.log(this.props)
         this.state = {
             imgsrc: props.default?props.default:"https://dummyimage.com/400x352/ff822e/fff.png&text=UPLOAD"
         }
@@ -58,9 +59,9 @@ class UploadPic extends Component {
     onimgchange = async (e)=>{
         var file = e.target.files[0]
         console.log(file)
-
-        if(this.props.bucket_filepath && this.bucket_url){
-            url = await this.uploadDP(file)
+        if(this.props.bucket_filepath && this.props.bucket_url){
+            var url = await this.uploadDP(file)
+            console.log('uploaded success', url)
             this.setState({imgsrc: url})
         }else{
             var reader = new FileReader();
@@ -77,40 +78,44 @@ class UploadPic extends Component {
         }
     }
 
-    uploadDP = async (file) => {
-        var type
-        var url
-        var fp
-        type = file.type.split('/')[1]
-        //this.props.bucket_filepath = enterprise_users/${uuid.v4()}/profile_pic
-        //this.props.bucket_url = https://theaicore-data.s3.eu-west-2.amazonaws.com/public/
-        fp = `${this.props.bucket_filepath}.${type}`
-        //fp = `enterprise_users/${uuid.v4()}/profile_pic.${type}`
-        console.log(fp)
-        var mimeType 
-        if (type == 'png') {
-            mimeType = 'image/png'
-        }
-        else if (type == 'jpg' || type == 'jpeg') {
-            mimeType = 'image/jpeg'
-        }
-        else {
-            alert('image type invalid (use .PNG, .JPG or .JPEG images)\nYou used type ' + type)
-            return null
-        }
-        console.log('puttin')
+    uploadDP = (file) => {
+        return new Promise (async (resolve, reject)=>{
+            var type
+            var url
+            var fp
+            type = file.type.split('/')[1]
+            //this.props.bucket_filepath = enterprise_users/${uuid.v4()}/profile_pic
+            //this.props.bucket_url = https://theaicore-data.s3.eu-west-2.amazonaws.com/public/
+            fp = `${this.props.bucket_filepath}.${type}`
+            //fp = `enterprise_users/${uuid.v4()}/profile_pic.${type}`
+            var mimeType 
+            if (type == 'png') {
+                mimeType = 'image/png'
+            }
+            else if (type == 'jpg' || type == 'jpeg') {
+                mimeType = 'image/jpeg'
+            }
+            else {
+                alert('image type invalid (use .PNG, .JPG or .JPEG images)\nYou used type ' + type)
+                return null
+            }
+            console.log('puttin in s3')
 
-        var resp = await Storage.put(fp, file, {contentType: mimeType})
-        console.log(resp)
-        url =`${this.props.bucket_url}${fp}`
-        //url =`https://theaicore-data.s3.eu-west-2.amazonaws.com/public/${fp}`
-        return url
-        this.props.set_dp(update)
-        this.props.on_update(update)
-        //makePostRequest('app/user/info', update)
+            try{
+                var resp = await Storage.put(fp, file, {contentType: mimeType})
+                console.log(resp)
+                url =`${this.props.bucket_url}${fp}`
+                //url =`https://theaicore-data.s3.eu-west-2.amazonaws.com/public/${fp}`
+                resolve(url)
+            }catch(e){
+                console.log(e)
+                reject()
+            }
+        })
     }
 
     render() {
+        console.log('render props', this.props)
         return (
             <>
                 <div css={[style, this.props.style]}>
