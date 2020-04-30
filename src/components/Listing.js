@@ -55,14 +55,14 @@ const listing_style = css`
         max-width: 45vw;
         width:90%;
     }
-    div:nth-of-type(1){
+    div.imgcontainer{
         flex:1;
         display:flex;
         align-items: center;
         justify-content: center;
         background:white;
     }
-    div:nth-of-type(2){
+    div.maincontent{
         position: relative;
         flex:5;
         h4{
@@ -163,13 +163,12 @@ class Listing extends Component {
                         // onMouseEnter={() => {this.i = setInterval(this.tilt, 100)}} 
                         //style={{transform: `rotateX(${k*this.state.x}rad) rotateY(${k*this.state.y}rad)`, order: '3px solid red'}}
                         >
-                        <div>
-                            <img src={this.props.img} alt="company_logo"></img>
-                        </div>
-                        <div>
-                            <h4>{this.props.title}</h4>
-                            <p class='subheading'>{this.props.subheading}</p>
-                            <p>{this.props.description}</p>
+                        
+                            {this.props.img ? <div className="imgcontainer"><img src={this.props.img} alt="company_logo"></img></div>: null}
+                        <div className="maincontent">
+                            {this.props.title? <h4>{this.props.title}</h4>:null}
+                            {this.props.subheading ? <p class='subheading'>{this.props.subheading}</p>: null}
+                            {this.props.description ? <p>{this.props.description}</p>:null}
                             {this.props.edit_fn ? <Fab color="primary" aria-label="edit" className="editbtn" onClick={this.props.edit_fn}><EditIcon /></Fab>:null}
                             {this.props.delete_fn ? <Fab color="primary" aria-label="delete" className="deletebtn" onClick={this.props.delete_fn}><DeleteIcon /></Fab>:null}
                             {/*<Button color="primary"></Button>*/}

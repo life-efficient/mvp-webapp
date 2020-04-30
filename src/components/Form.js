@@ -1,6 +1,7 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
+import UploadPic from "./UploadPic"
 // import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
@@ -97,6 +98,10 @@ export default class Form extends Component {
 
     handleTimeChange = (e, id) => {
         this.setState({[id]: e})
+    }
+    
+    handlePicChange = (e) => {
+        this.setState({[e.id]: e.value})
     }
 
     handleRatingChange = (newValue, id) => {
@@ -235,6 +240,8 @@ export default class Form extends Component {
                                                 return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            case "image":
+                                                return <UploadPic {...q} handleChange={this.handlePicChange}/>
                                             case "rating":
                                                 return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             default:

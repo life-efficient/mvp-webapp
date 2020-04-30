@@ -171,6 +171,11 @@ import { makePostRequest } from "../api_calls";
                     type: 'number',   
                     id: 'id3, slide 1',
                     detail: 'Some detail'
+                },
+                {
+                    type: 'image',   
+                    label: ' Company Logo',
+                    id: 'image'
                 }
             ],
             onSubmit: ()=>{console.log('slide 1 submitted')}
