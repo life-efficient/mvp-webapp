@@ -70,12 +70,14 @@ class UploadPic extends Component {
         }
     }
 
-    componentDidUpdate = ()=>{
+    componentDidUpdate = (prevProps, prevState)=>{
         console.log('updating')
-        if(this.props.id){
-            this.props.handleChange({id:this.props.id, value:this.state.imgsrc})
-        }else{
-            this.props.handleChange(this.state.imgsrc)
+        if(prevState.imgsrc != this.state.imgsrc){
+            if(this.props.id){
+                this.props.handleChange({id:this.props.id, value:this.state.imgsrc})
+            }else{
+                this.props.handleChange(this.state.imgsrc)
+            }
         }
     }
 

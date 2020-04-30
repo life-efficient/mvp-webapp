@@ -101,6 +101,7 @@ export default class Form extends Component {
     }
     
     handlePicChange = (e) => {
+        console.log({[e.id]: e.value})
         this.setState({[e.id]: e.value})
     }
 
@@ -241,7 +242,7 @@ export default class Form extends Component {
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             case "image":
-                                                return new (<UploadPic {...q} handleChange={this.handlePicChange}/>)
+                                                return <UploadPic {...q} handleChange={this.handlePicChange}/>
                                             case "rating":
                                                 return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             default:
