@@ -330,7 +330,7 @@ export class ConfirmPassword extends Component {
                 <br/>
                 <div className="password">
                     <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                    <img src={ eye } onClick={ this.toggleHidden } alt="" />
+                    <img src={eye} onClick={ this.toggleHidden } alt="" />
                 </div>
             </div>
             <div className="field-container ">
@@ -348,7 +348,7 @@ export class ConfirmPassword extends Component {
 }
 
 export const DropDown = (props) => {
-    return <FormControl variant="outlined" className="field" css={'yo'} >
+    return <FormControl variant="outlined" className="field" >
         <InputLabel>{props.title}</InputLabel>
         <Select id={props.id} name={props.id} value={props.value} onChange={props.handleChange}>
             {props.options.map(o=>{return <MenuItem value={o}>{o}</MenuItem>})}
