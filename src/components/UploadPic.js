@@ -71,11 +71,12 @@ class UploadPic extends Component {
     }
 
     componentDidUpdate = ()=>{
-        /*if(this.props.id){
+        console.log('updating')
+        if(this.props.id){
             this.props.handleChange({id:this.props.id, value:this.state.imgsrc})
         }else{
             this.props.handleChange(this.state.imgsrc)
-        }*/
+        }
     }
 
     uploadDP = (file) => {
