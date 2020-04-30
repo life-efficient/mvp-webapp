@@ -7,6 +7,7 @@ import { css, Global } from "@emotion/core"
 import logo from "../images/external/logo.png"
 import { combineReducers } from 'redux'
 
+/*
 import Amplify from 'aws-amplify';
 Amplify.configure({
     Auth: {
@@ -37,7 +38,7 @@ Amplify.configure({
         }
     }
 });
-
+*/
 //Amplify.Auth.signIn('haron@theaicore.com', 'password').then((response)=>(console.log(response)))
 
 
