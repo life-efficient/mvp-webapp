@@ -82,11 +82,13 @@ Fuck the form component libraries you heard of
 - **required**: `false`
 - **description**: Pathname that the form is redirected to after the final slide's `onSubmit` is called successfully
 
+<!-- 
+REMOVED FOR NOW # TODO ADD TO MAKE FORM REMAIN AFTER COMPLETION
 #### **`stay`**
 - **type**: `bool`
 - **default**: `null`
 - **required**: `false`
-- **description**: if true, the form will not disappear (render null) upon completion
+- **description**: if true, the form will not disappear (render null) upon completion -->
 
 
 

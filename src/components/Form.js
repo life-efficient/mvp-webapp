@@ -193,7 +193,9 @@ export default class Form extends Component {
                 return <Redirect to={this.props.redirect}/>
             }
             else {
-                this.setState({slide_idx: this.state.slide_idx - 1})
+                if (this.props.stay) {this.setState({slide_idx: this.state.slide_idx - 1})}
+                else {return null}
+                
             }
         }
         return (
