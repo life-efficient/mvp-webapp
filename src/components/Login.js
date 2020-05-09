@@ -32,7 +32,7 @@ class Login extends Component {
       username: params.u ? params.u : "",
       password: params.p ? params.p : "",
       passwordFieldType: "password",
-      redirect: null,
+      redirect: props.redirect,
       panel: "login",
       user: null,
       loading: false,
@@ -140,7 +140,7 @@ class Login extends Component {
         return (
           <>
           <Form
-            redirect="/app"
+            redirect={this.state.redirect}
             slides={[
               {
                 title: 'Log in',
@@ -258,6 +258,7 @@ class Login extends Component {
               {
                 title: 'Forgot your password?',
                 subtitle: 'Enter your email to get a confirmation code',
+                redirect: '/',
                 questions: [
                   {
                     title: 'Email',
