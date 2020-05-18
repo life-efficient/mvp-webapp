@@ -66,6 +66,7 @@ class Login extends Component {
   handleSubmit = async event => {
     this.setState({loading: true})
     console.log('handling submit on panel:', this.state.panel)
+    console.log(event)
     switch(this.state.panel) {
       case 'login': 
         try {
