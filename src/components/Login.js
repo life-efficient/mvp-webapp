@@ -74,9 +74,14 @@ class Login extends Component {
             event.email,
             event.password
           )
+          if (user.challengeName) {
+            if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+                this.setState({panel: "set-password"})
+            }
+          }
         }
         catch (err) {
-          console.error(err)
+          console.error('error:', err)
           if (err.name === "UserNotConfirmedException") {// if they haven't confirmed yet, 
             Auth.resendSignUp(event.email)    // send them an email
             this.props.openModal(     // prompt them to enter code
@@ -124,12 +129,6 @@ class Login extends Component {
           }
         }
         
-        if (user.challengeName) {
-          if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-              this.setState({panel: "set-password"})
-          }
-
-        }
         this.setState({loading: false})
         return
       case 'get-details':
