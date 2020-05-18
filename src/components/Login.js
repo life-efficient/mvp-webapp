@@ -65,8 +65,7 @@ class Login extends Component {
 
   handleSubmit = async event => {
     this.setState({loading: true})
-    console.log('submitting')
-    event.preventDefault();
+    console.log('handling submit on panel:', this.state.panel)
     switch(this.state.panel) {
       case 'login': 
         try {
