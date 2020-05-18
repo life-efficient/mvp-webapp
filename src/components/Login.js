@@ -77,7 +77,10 @@ class Login extends Component {
           console.log('user:', user)
           if (user.challengeName) {
             if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-                this.setState({panel: "set-password"})
+                this.setState({
+                  user,
+                  panel: "set-password"
+                })
             }
           }
         } 
@@ -137,9 +140,9 @@ class Login extends Component {
         return
       case 'set-password':
         this.setState({loading: true})
-        var user = await Auth.currentUserPoolUser()
+        // var user = await Auth.currentUserPoolUser() # TODO make work
         Auth.completeNewPassword(
-            this.props.user,
+            this.state.user,
             event.password
         )
         .then(
