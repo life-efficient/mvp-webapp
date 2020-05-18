@@ -116,7 +116,6 @@ class Login extends Component {
           //     // Please check the Forgot Password part.
           } 
           else if (err.code === 'NotAuthorizedException') {
-            alert('not authorized not handled')
             throw err
           //     // The error happens when the incorrect password is provided
           } 
@@ -220,15 +219,6 @@ class Login extends Component {
           </>
         )
       case "set-password":
-        alert('setting password')
-        if (!this.state.user) {
-            var user = Auth.signIn(this.state.username, this.state.password)
-            .then(
-              (user) => {
-                this.setState({user: user})
-              }
-            )
-        }
         return <Form slides={[
           {
             title: 'Set password',
