@@ -9,7 +9,7 @@ import queryString from "query-string"
 import styled from "@emotion/styled"
 import { jsx, css, keyframes } from "@emotion/core"
 import { Form as FormStyle } from "../styles/forms"
-import { panel, button } from "../styles/theme"
+import { panel } from "../styles/theme"
 import { expand_in } from "../styles/animations"
 import { Auth } from "aws-amplify"
 import { makeid } from "../utils"
@@ -74,8 +74,11 @@ class Login extends Component {
             this.state.username,
             this.state.password
           )
-          if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-              this.setState({panel: "set-password"})
+          if (user.challengeName) {
+            if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+                this.setState({panel: "set-password"})
+            }
+
           }
           else {
             this.props.dispatchLogin()
@@ -213,47 +216,48 @@ class Login extends Component {
             />
           </>
         )
-      // case "set-password":
-      //   if (!this.state.user) {
-      //       var user = Auth.signIn(this.state.username, this.state.password)
-      //       .then(
-      //         (user) => {
-      //           this.setState({user: user})
-      //         }
-      //       )
-      //   }
-      //   return (
-      //     <>
-      //       {this.renderRedirect()}
-      //         <div css={Form} className="form-container">
-      //             <div className="field-container long-field-title">
-      //               <div className="field-title ">
-      //                   <strong>New password</strong>
-      //               </div>
-      //               <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
-      //             </div>
-      //             <div className="field-container long-field-title">
-      //               <div className="field-title">
-      //                   <strong>Confirm new password</strong>
-      //               </div>
-      //                 <div css={password_field}>
-      //                   <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
-      //                   <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
-      //                 </div>
-      //             </div>
-      //             <div className='error'>
-      //                 {this.getError()}
-      //             </div>
-      //             <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
-      //               {
-      //                 this.state.loading ?
-      //                 <Loading /> :
-      //                 "Submit"
-      //               }
-      //             </button>
-      //         </div>
-      //     </>
-      // //   )
+      case "set-password":
+        alert('setting password')
+        if (!this.state.user) {
+            var user = Auth.signIn(this.state.username, this.state.password)
+            .then(
+              (user) => {
+                this.setState({user: user})
+              }
+            )
+        }
+        return (
+          <>
+            {this.renderRedirect()}
+              <div css={Form} className="form-container">
+                  <div className="field-container long-field-title">
+                    <div className="field-title ">
+                        <strong>New password</strong>
+                    </div>
+                    <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
+                  </div>
+                  <div className="field-container long-field-title">
+                    <div className="field-title">
+                        <strong>Confirm new password</strong>
+                    </div>
+                      <div css={password_field}>
+                        <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
+                        <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
+                      </div>
+                  </div>
+                  <div className='error'>
+                      {this.getError()}
+                  </div>
+                  <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
+                    {
+                      this.state.loading ?
+                      <Loading /> :
+                      "Submit"
+                    }
+                  </button>
+              </div>
+          </>
+        )
       case "get-details":
         return (
           <Form             
