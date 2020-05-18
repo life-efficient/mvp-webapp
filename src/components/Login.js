@@ -74,43 +74,66 @@ class Login extends Component {
             this.state.username,
             this.state.password
           )
-          if (user.challengeName) {
-            if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-                this.setState({panel: "set-password"})
-            }
-
-          }
-          else {
-            this.props.dispatchLogin()
-            console.log(this.props.logged_in)
-            await Auth.currentSession()
-            this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'})
-          }
-        } 
-        catch (err) {
-        //   if (err.code === 'UserNotConfirmedException') {
-        if (err.code === 'UserNotFoundException') {
-            this.setState({error: 'Account not found, try signing up first'})
-        //     // The error happens if the user didn't finish the confirmation step when signing up
-        //     // In this case you need to resend the code and confirm the user
-        //     // About how to resend the code and confirm the user, please check the signUp part
-        // } else if (err.code === 'PasswordResetRequiredException') {
-        //     // The error happens when the password is reset in the Cognito console
-        //     // In this case you need to call forgotPassword to reset the password
-        //     // Please check the Forgot Password part.
-        // } else if (err.code === 'NotAuthorizedException') {
-        //     // The error happens when the incorrect password is provided
-        // } else if (err.code === 'UserNotFoundException') {
-            // The error happens when the supplied username/email does not exist in the Cognito user pool
-        } else {
-            this.setState({error: 'Incorrect username or password'})
-            console.log(err);
         }
+        catch (err) {
+          console.error(err)
+          if (err.name === "UserNotConfirmedException") {// if they haven't confirmed yet, 
+            Auth.resendSignUp(event.email)    // send them an email
+            this.props.openModal(     // prompt them to enter code
+              <Form
+                slides={[
+                  {
+                    title: 'Confirm email',
+                    onSubmit: async (e) => {
+                      await Auth.confirmSignUp(event.email, e.code)     // confirm the code
+                      // console.log('confirmed')
+                      this.props.closeModal()   // close the modal
+                      // await Auth.signIn(event.email, event.password)
+                    },
+                    questions: [{title: 'code', type: 'text', id: 'code'}]
+                  }
+                ]}
+              />
+            )
+          }
+          //   if (err.code === 'UserNotConfirmedException') {
+          if (err.code === 'UserNotFoundException') {
+              this.setState({error: 'Account not found, try signing up first'})
+          //     // The error happens if the user didn't finish the confirmation step when signing up
+          //     // In this case you need to resend the code and confirm the user
+          //     // About how to resend the code and confirm the user, please check the signUp part
+          } 
+          else if (err.code === 'PasswordResetRequiredException') {
+            alert('pw reset not handled')
+          //     // The error happens when the password is reset in the Cognito console
+          //     // In this case you need to call forgotPassword to reset the password
+          //     // Please check the Forgot Password part.
+          } 
+          else if (err.code === 'NotAuthorizedException') {
+            alert('not authorized not handled')
+          //     // The error happens when the incorrect password is provided
+          } 
+          else if (err.code === 'UserNotFoundException') {
+            alert('user not found not handled')
+              // The error happens when the supplied username/email does not exist in the Cognito user pool
+          } 
+          else {
+              alert('error not handled')
+              this.setState({error: 'Incorrect username or password'})
+              console.log(err);
+          }
+        }
+        
+        if (user.challengeName) {
+          if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+              this.setState({panel: "set-password"})
+          }
+
         }
         this.setState({loading: false})
         return
       case 'get-details':
-        console.log('submitting email')
+        alert('get-details should be handled in the form as a prop')
         return
       // case 'set-password':
       //   console.log('user:', this.props.user)
@@ -148,43 +171,22 @@ class Login extends Component {
             slides={[
               {
                 title: 'Log in',
-                onSubmit: async (event) => {
-                  // console.log('logging in')
-                  alert('yo')
-                  try {
-                    var r = await Auth.signIn(event.email, event.password);   // try to sign in
-                    console.log('successfully signed in')
-                    console.log(r)
-                    return      // successful sign in
-                  }
-                  catch (err) {
-                    console.log('Failed to sign in:', err)
-                    if (err.name === "UserNotConfirmedException") {// if they haven't confirmed yet, 
-                      Auth.resendSignUp(event.email)    // send them an email
-                      this.props.openModal(     // prompt them to enter code
-                        <Form
-                          slides={[
-                            {
-                              title: 'Confirm email',
-                              onSubmit: async (e) => {
-                                await Auth.confirmSignUp(event.email, e.code)     // confirm the code
-                                // console.log('confirmed')
-                                this.props.closeModal()   // close the modal
-                                // await Auth.signIn(event.email, event.password)
-                              },
-                              questions: [{title: 'code', type: 'text', id: 'code'}]
-                            }
-                          ]}
-                        />
-                      )
-                    }
-                    else if (err.name === "NotAuthorizedException") {
-                      throw err
-                    }
-                  }
-                  throw 'Error'
-                  console.log('response:', r)
-                },
+                onSubmit: this.handleSubmit,
+                // async (event) => {
+                //   // console.log('logging in')
+                //   alert('yo')
+                //   try {
+                //     var r = await Auth.signIn(event.email, event.password);   // try to sign in
+                //     console.log('successfully signed in')
+                //     console.log(r)
+                //     return      // successful sign in
+                //   }
+                //   catch (err) {
+                //     console.log('Failed to sign in:', err)
+                //   }
+                //   throw 'Error'
+                //   console.log('response:', r)
+                // },
                 questions:[
                   {
                     title: 'Email',
@@ -226,38 +228,47 @@ class Login extends Component {
               }
             )
         }
-        return (
-          <>
-            {this.renderRedirect()}
-              <div css={Form} className="form-container">
-                  <div className="field-container long-field-title">
-                    <div className="field-title ">
-                        <strong>New password</strong>
-                    </div>
-                    <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
-                  </div>
-                  <div className="field-container long-field-title">
-                    <div className="field-title">
-                        <strong>Confirm new password</strong>
-                    </div>
-                      <div css={password_field}>
-                        <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
-                        <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
-                      </div>
-                  </div>
-                  <div className='error'>
-                      {this.getError()}
-                  </div>
-                  <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
-                    {
-                      this.state.loading ?
-                      <Loading /> :
-                      "Submit"
-                    }
-                  </button>
-              </div>
-          </>
-        )
+        return <Form slides={[
+          {
+            title: 'Set password',
+            questions: [
+              {
+                type: 'confirm-password',
+              }
+            ],
+            onSubmit: this.handleSubmit
+          }
+        ]}/>
+        //   <>
+        //     <div css={Form} className="form-container">
+        //         <div className="field-container long-field-title">
+        //           <div className="field-title ">
+        //               <strong>New password</strong>
+        //           </div>
+        //           <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
+        //         </div>
+        //         <div className="field-container long-field-title">
+        //           <div className="field-title">
+        //               <strong>Confirm new password</strong>
+        //           </div>
+        //             <div css={password_field}>
+        //               <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
+        //               <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
+        //             </div>
+        //         </div>
+        //         <div className='error'>
+        //             {this.getError()}
+        //         </div>
+        //         <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
+        //           {
+        //             this.state.loading ?
+        //             <Loading /> :
+        //             "Submit"
+        //           }
+        //         </button>
+        //     </div>
+        //   </>
+        // )
       case "get-details":
         return (
           <Form             
