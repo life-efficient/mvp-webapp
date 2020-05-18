@@ -1,6 +1,6 @@
 {
   "name": "mvp-webapp",
-  "version": "2.27.3",
+  "version": "2.27.4",
   "description": "",
   "main": "lib/index.js",
   "browser": "lib/index.umd.js",
