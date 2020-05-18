@@ -135,25 +135,22 @@ class Login extends Component {
       case 'get-details':
         alert('get-details should be handled in the form as a prop')
         return
-      // case 'set-password':
-      //   console.log('user:', this.props.user)
-      //   if (this.getError() == null) {console.log(this.props.user)
-      //       this.setState({loading: true})
-      //       Auth.completeNewPassword(
-      //           this.props.user,
-      //           this.state.newPassword
-      //       )
-      //       .then(
-      //           () => {
-      //               this.props.dispatchLogin()
-      //               this.setState({redirect: this.props.from ? this.props.from : '/app/home'},
-      //                   () => {
-      //                       console.log('redirected')
-      //                   }
-      //               )
-      //           }
-      //       )
-      //   }
+      case 'set-password':
+        this.setState({loading: true})
+        var user = await Auth.currentUserPoolUser()
+        Auth.completeNewPassword(
+            this.props.user,
+            event.password
+        )
+        .then(
+            () => {
+                this.setState({redirect: this.props.from ? this.props.from : this.props.redirect ? this.props.redirect : '/'},
+                    () => {
+                        console.log('redirected')
+                    }
+                )
+            }
+        )
     }
   }
 
@@ -172,21 +169,6 @@ class Login extends Component {
               {
                 title: 'Log in',
                 onSubmit: this.handleSubmit,
-                // async (event) => {
-                //   // console.log('logging in')
-                //   alert('yo')
-                //   try {
-                //     var r = await Auth.signIn(event.email, event.password);   // try to sign in
-                //     console.log('successfully signed in')
-                //     console.log(r)
-                //     return      // successful sign in
-                //   }
-                //   catch (err) {
-                //     console.log('Failed to sign in:', err)
-                //   }
-                //   throw 'Error'
-                //   console.log('response:', r)
-                // },
                 questions:[
                   {
                     title: 'Email',
@@ -231,36 +213,6 @@ class Login extends Component {
             onSubmit: this.handleSubmit
           }
         ]}/>
-        //   <>
-        //     <div css={Form} className="form-container">
-        //         <div className="field-container long-field-title">
-        //           <div className="field-title ">
-        //               <strong>New password</strong>
-        //           </div>
-        //           <input type={ this.state.passwordFieldType } id="newPassword" className="text-response" placeholder="" onChange={ this.handleChange }/>
-        //         </div>
-        //         <div className="field-container long-field-title">
-        //           <div className="field-title">
-        //               <strong>Confirm new password</strong>
-        //           </div>
-        //             <div css={password_field}>
-        //               <input type={ this.state.passwordFieldType } id="confirmNewPassword" className="text-response" placeholder=""  onChange={ this.handleChange }/>
-        //               <img src={ eye } id="passwordShow" css={passwordShow} onClick={ this.showPassword } alt="" />
-        //             </div>
-        //         </div>
-        //         <div className='error'>
-        //             {this.getError()}
-        //         </div>
-        //         <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type='submit' onClick={this.handleSubmit}>
-        //           {
-        //             this.state.loading ?
-        //             <Loading /> :
-        //             "Submit"
-        //           }
-        //         </button>
-        //     </div>
-        //   </>
-        // )
       case "get-details":
         return (
           <Form             
