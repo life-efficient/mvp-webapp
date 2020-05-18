@@ -104,7 +104,7 @@ class Login extends Component {
           }
           //   if (err.code === 'UserNotConfirmedException') {
           if (err.code === 'UserNotFoundException') {
-              this.setState({error: 'Account not found, try signing up first'})
+              throw err
           //     // The error happens if the user didn't finish the confirmation step when signing up
           //     // In this case you need to resend the code and confirm the user
           //     // About how to resend the code and confirm the user, please check the signUp part
@@ -117,6 +117,7 @@ class Login extends Component {
           } 
           else if (err.code === 'NotAuthorizedException') {
             alert('not authorized not handled')
+            throw err
           //     // The error happens when the incorrect password is provided
           } 
           else if (err.code === 'UserNotFoundException') {
