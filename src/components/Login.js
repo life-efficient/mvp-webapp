@@ -224,6 +224,7 @@ class Login extends Component {
             title: 'Set password',
             questions: [
               {
+                id: 'password',
                 type: 'confirm-password',
               }
             ],
