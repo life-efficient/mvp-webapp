@@ -65,7 +65,7 @@ class Login extends Component {
 
   handleSubmit = async event => {
     this.setState({loading: true})
-    console.log('handling submit on panel:', this.state.panel)
+    // console.log('handling submit on panel:', this.state.panel)
     console.log(event)
     switch(this.state.panel) {
       case 'login': 
@@ -122,17 +122,11 @@ class Login extends Component {
             throw err
           //     // The error happens when the incorrect password is provided
           } 
-          else if (err.code === 'UserNotFoundException') {
-            alert('user not found not handled')
-              // The error happens when the supplied username/email does not exist in the Cognito user pool
-          } 
           else {
               alert('error not handled')
-              this.setState({error: 'Incorrect username or password'})
-              console.log(err);
+              console.error(err);
           }
         }
-        
         this.setState({loading: false})
         return
       case 'get-details':
@@ -160,7 +154,6 @@ class Login extends Component {
   getPanel = () => {
     // console.log(this.state)
     console.log('login props:', this.props)
-
     console.log('case:', this.state.panel)
     switch (this.state.panel) {
       case "login":
@@ -258,16 +251,6 @@ class Login extends Component {
     }
   }
 
-  // getError = () => {
-  //   if ( ! (this.state.newPassword === this.state.confirmNewPassword) ) {
-  //       return "Passwords must match"
-  //   }
-  //   else if (this.state.newPassword.length < 8) {
-  //       return "Password should be longer"
-  //   }
-  //   else return null
-  // }
-
   render() {
     return (
       <>
@@ -281,16 +264,13 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state:', state)
-  console.log('APP:', state.app)
+  // console.log('state:', state)
   return {
-    // logged_in: state.user.logged_in,
     logo: state.app.logo
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  // alert('yoo')
     return {
         closeModal: () => {
             dispatch({
@@ -307,252 +287,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
-// class Login extends Component {
-//   constructor(props) {
-//     super(props);
-//     var params = queryString.parse(window.location.search)
-//     // console.log('params:', params)
-//     this.state = {
-//       username: params.u ? params.u : "",
-//       password: params.p ? params.p : "",
-//       passwordFieldType: "password",
-//       redirect: null,
-//       panel: "login",
-//       user: null,
-//       loading: false,
-//       error: null,
-//       email: '',
-//       oldPassword: '',
-//       newPassword: '',
-//       confirmNewPassword: '',
-//     };
-//   }
-
-// //   componentDidMount = () => {
-// //       window.analytics.page('login')
-// //   }
-
-//   validateForm = () => {
-//     return this.state.username.length > 0 && this.state.password.length > 0;
-//   }
-
-//   handleChange = event => {
-//     if (event.target.id !== 'password') {event.target.value = event.target.value.toLowerCase()}
-//     this.setState({
-//       [event.target.id]: event.target.value
-//     },
-//       () => {
-//           console.log(this.state)
-//       }
-//     );
-//   }
-
-//   sendCode = async event => {
-//     try {
-//       await Auth.forgotPassword(this.state.username)
-//       this.setState({panel: 'login-code'})
-//     }
-//     catch (err) {
-//       console.log('ERROR:', err)
-//       console.log(err.code)
-//       if (err.code === 'UserNotFoundException')
-//         this.setState({error: 'Account not found, try signing up first'})
-//     }
-//   }
-
-//   login = async event => {
-//     var p = makeid()
-//     await Auth.forgotPasswordSubmit(this.state.username, p, p)
-//     try {
-//       await Auth.signIn(this.state.username, p)
-//     }
-//     catch (err) {
-//       console.log(err)
-//     }
-//   }
-
-//   handleSubmit = async event => {
-//     this.setState({loading: true})
-//     console.log('submitting')
-//     event.preventDefault();
-//     switch(this.state.panel) {
-//       case 'login': 
-//         try {
-//           var user = await Auth.signIn(
-//             this.state.username,
-//             this.state.password
-//           )
-//           if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-//               this.setState({panel: "set-password"})
-//           }
-//           else {
-//             this.props.dispatchLogin()
-//             console.log(this.props.logged_in)
-//             Auth.currentSession()
-//             .then(
-//               data => {
-//                 // console.log('session data:', user)
-//               }
-//             )
-//             this.setState({redirect: this.props.location.state ? this.props.location.state.from : '/app'},
-//               () => {
-//                   console.log('redirected')
-//               }
-//             )
-//           }
-//         } 
-//         catch (err) {
-//         //   if (err.code === 'UserNotConfirmedException') {
-//         if (err.code === 'UserNotFoundException') {
-//             this.setState({error: 'Account not found, try signing up first'})
-//         //     // The error happens if the user didn't finish the confirmation step when signing up
-//         //     // In this case you need to resend the code and confirm the user
-//         //     // About how to resend the code and confirm the user, please check the signUp part
-//         // } else if (err.code === 'PasswordResetRequiredException') {
-//         //     // The error happens when the password is reset in the Cognito console
-//         //     // In this case you need to call forgotPassword to reset the password
-//         //     // Please check the Forgot Password part.
-//         // } else if (err.code === 'NotAuthorizedException') {
-//         //     // The error happens when the incorrect password is provided
-//         // } else if (err.code === 'UserNotFoundException') {
-//             // The error happens when the supplied username/email does not exist in the Cognito user pool
-//         } else {
-//             this.setState({error: 'Incorrect username or password'})
-//             console.log(err);
-//         }
-//         }
-//         this.setState({loading: false})
-//         return
-//     }
-//   }
-
-//   showPassword = () => {
-//     var type = this.state.passwordFieldType
-//     var newType = type === "password" ? "input" : "password"
-//     this.setState({passwordFieldType: newType})
-//     console.log(this.state)
-//   }
-
-//   renderRedirect = () => {
-//     if (this.state.redirect) {
-//       console.log('redirecting to:', this.state.redirect)
-//       return <Redirect to={this.state.redirect} />
-//     }
-//   }
-
-//   getPanel = () => {
-//     // console.log(this.state)
-//     console.log('login props:', this.props)
-
-//     switch (this.state.panel) {
-//       case "login":
-//         return (
-//           <>
-//           {this.renderRedirect()}
-//               <div css={Form} >
-//                 <div style={{fontWeight: 1000, fontSize: '35px', marginBottom: '20px'}} >Log in</div>
-//                 <div className="field-container long-field-title">
-//                     <div className="field-title ">
-//                         <strong>Email</strong>
-//                     </div>
-//                     <br/>
-//                     <input type="text" id="username" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
-//                 </div>
-//                 {/* <div className="field-container ">
-//                   <div className="field-title">
-//                     <strong>Password</strong>
-//                   </div>
-//                   <br/>
-//                   <div css={password_field}>
-//                     <input type={ this.state.passwordFieldType } id="password" value={this.state.password} className="text-response" placeholder=""  onChange={ this.handleChange }/>
-//                     <img src={ eye } css={passwordShow} onClick={ this.showPassword } alt="" />
-//                   </div>
-//                 </div> */}
-//                 <div className="form-error">{this.state.error}</div>
-//                 <div css={{cursor: 'pointer', textDecoration: 'underline', padding: '0 0 10px 0', fontSize: '12px', display: 'flex', justifyContent: 'space-between'}}>
-//                   {/* <div onClick={() => {this.setState({panel: 'get-details'})}}>
-//                     Don't know your details?
-//                   </div> */}
-//                   <div onClick={() => {this.setState({panel: 'redirect-to-signup'})}}>
-//                     Don't have an account? Sign up
-//                   </div>
-//                 </div>
-//                 <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.sendCode}>
-//                     {
-//                       this.state.loading ?
-//                       <Loading /> :
-//                       "Get login code"
-//                     }
-//                 </button>
-//               </div>
-//           </>
-//         )
-//       case 'login-code':
-//         return (
-//           <div css={Form} >
-//             <div style={{fontWeight: 1000, fontSize: '35px', marginBottom: '20px'}} >Log in</div>
-//             <div className="field-container long-field-title">
-//                 <div className="field-title ">
-//                     <strong>Enter the code we emailed you</strong>
-//                 </div>
-//                 <br/>
-//                 <input type="text" id="login-code" value={this.state.username} className="text-response" placeholder="" onChange={ this.handleChange }/>
-//             </div>
-//             <button css={button} style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}} type="submit" onClick={this.login}>
-//                 {
-//                   this.state.loading ?
-//                   <Loading /> :
-//                   "Get login code"
-//                 }
-//             </button>
-//           </div>
-//         )
-//       case 'redirect-to-signup':
-//         return <Redirect to="/signup" />
-//       default:
-//         return null
-//     }
-//   }
-
-//   getError = () => {
-//     if ( ! (this.state.newPassword === this.state.confirmNewPassword) ) {
-//         return "Passwords must match"
-//     }
-//     else if (this.state.newPassword.length < 8) {
-//         return "Password should be longer"
-//     }
-//     else return null
-//   }
-
-//   render() {
-//     return (
-//       <>
-//       {/* <Navbar /> */}
-//           <div css={panel} >
-//             <img src={this.props.logo} style={{height: '200px', margin: '40px'}} alt=""/>
-//           {/* // style={{backgroundColor: 'var(--green)', width: '400px', margin: 'auto', padding: '20px'}}> */}
-//             {this.getPanel()}
-//           </div>
-//       </>
-//     )
-//   }
-// }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     // logged_in: state.user.logged_in,
-//     logo: state.app.logo
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         dispatchLogin: () => {
-//             dispatch({
-//                 type: "LOG_IN"
-//             })
-//         }
-//     }
-// }
-
-// export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)
