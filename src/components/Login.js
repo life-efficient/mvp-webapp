@@ -135,6 +135,7 @@ class Login extends Component {
     // console.log(this.state)
     console.log('login props:', this.props)
 
+    console.log('case:', this.state.panel)
     switch (this.state.panel) {
       case "login":
         return (
@@ -146,9 +147,11 @@ class Login extends Component {
                 title: 'Log in',
                 onSubmit: async (event) => {
                   // console.log('logging in')
+                  alert('yo')
                   try {
                     var r = await Auth.signIn(event.email, event.password);   // try to sign in
-                    // console.log('successfully signed in')
+                    console.log('successfully signed in')
+                    console.log(r)
                     return      // successful sign in
                   }
                   catch (err) {
@@ -304,7 +307,6 @@ class Login extends Component {
   // }
 
   render() {
-    console.log('APP:', this.props.app)
     return (
       <>
           <div css={style} >
