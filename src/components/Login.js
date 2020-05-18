@@ -71,8 +71,8 @@ class Login extends Component {
       case 'login': 
         try {
           var user = await Auth.signIn(
-            this.state.username,
-            this.state.password
+            event.email,
+            event.password
           )
         }
         catch (err) {
