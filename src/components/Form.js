@@ -305,25 +305,14 @@ export class Password extends Component {
     }
 
     render(){
-        return (
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id={this.props.id} value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                    <img src={ eye } onClick={ this.toggleHidden } alt="" />
-                </div>
-            </div>
-        )
+    return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
     }
 }
 
 const ConfirmPassword = props => {
 
     return <>
-        <TextResponse {...props} id='password' title='Password' value={props.value} onChange={props.handleChange} />
+        <Password {...props} />
         <TextResponse {...props} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
     </>
         // (
