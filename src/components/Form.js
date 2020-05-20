@@ -43,9 +43,9 @@ export default class Form extends Component {
             console.log('S:', s)
             s.questions.map((q) => {
                 question_ids[q.id] = q.default ? q.default : ''
-                // if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
-                //     question_ids[`confirm-${q.id}`] = ''
-                // } 
+                if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
+                    question_ids[`confirm-password`] = ''
+                } 
             })
         }
         console.log('question ids:', question_ids)
@@ -77,6 +77,7 @@ export default class Form extends Component {
     }
 
     handleChange = (e) => {
+        console.log(e)
         this.setState({[e.target.id]: e.target.value},
             () =>{console.log(this.state)})
     }
@@ -151,6 +152,7 @@ export default class Form extends Component {
     }
 
     submit = async () => {
+        console.log(this.state)
         if (this.validate()) {      // do basic validation based on field type
             this.setState({loading: true})
             console.log('current slide idx', this.state.slide_idx)
@@ -185,7 +187,7 @@ export default class Form extends Component {
     }
 
     render () {
-        // console.log('STATE:', this.state)
+        console.log('STATE:', this.state)
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) { // if finished
             if (this.props.redirect) {
@@ -234,7 +236,7 @@ export default class Form extends Component {
                                             case "password":
                                                 return <Password {...q} handleChange={this.handleChange}/>
                                             case "confirm-password":
-                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
+                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-password`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
                                             // case "location":
@@ -318,43 +320,35 @@ export class Password extends Component {
     }
 }
 
-export class ConfirmPassword extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            hidden: true
-        }
-    }
+const ConfirmPassword = props => {
 
-    toggleHidden = () => {
-        this.setState({hidden: !this.state.hidden})
-    }
-
-    render(){
-        return (
-            <>
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                    <img src={eye} onClick={ this.toggleHidden } alt="" />
-                </div>
-            </div>
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Confirm Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.confirm_value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                </div>
-            </div>
-            </>
-        )
-    }
+    return <>
+        <TextResponse {...props} id='password' title='Password' value={props.value} onChange={props.handleChange} />
+        <TextResponse {...props} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
+    </>
+        // (
+        //     <>
+        //     <div className="field-container ">
+        //         <div className="field-title">
+        //             <strong>Password</strong>
+        //         </div>
+        //         <br/>
+        //         <div className="password">
+        //             <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+        //             <img src={eye} onClick={ this.toggleHidden } alt="" />
+        //         </div>
+        //     </div>
+        //     <div className="field-container ">
+        //         <div className="field-title">
+        //             <strong>Confirm Password</strong>
+        //         </div>
+        //         <br/>
+        //         <div className="password">
+        //             <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.confirm_value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
+        //         </div>
+        //     </div>
+        //     </>
+        // )
 }
 
 export const DropDown = (props) => {
