@@ -285,7 +285,6 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
-    console.log('pp', props)
     return <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} />
 }
 
@@ -298,9 +297,7 @@ export const EmailField = (props) => {
 // }
 
 const Password = props => {
-
     const [hidden, setHidden] = useState(true)
-
     return <TextResponse
         {...props}
         type={hidden ? 'password' : 'text'}
@@ -321,36 +318,11 @@ const Password = props => {
 }
 
 const ConfirmPassword = props => {
-
     const [hidden, setHidden] = useState(true)
-
     return <>
         <Password {...props} title='Password' setHidden={setHidden} />
         <TextResponse {...props} type={hidden ? 'password' : 'text'} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
     </>
-        // (
-        //     <>
-        //     <div className="field-container ">
-        //         <div className="field-title">
-        //             <strong>Password</strong>
-        //         </div>
-        //         <br/>
-        //         <div className="password">
-        //             <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-        //             <img src={eye} onClick={ this.toggleHidden } alt="" />
-        //         </div>
-        //     </div>
-        //     <div className="field-container ">
-        //         <div className="field-title">
-        //             <strong>Confirm Password</strong>
-        //         </div>
-        //         <br/>
-        //         <div className="password">
-        //             <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.confirm_value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-        //         </div>
-        //     </div>
-        //     </>
-        // )
 }
 
 export const DropDown = (props) => {
@@ -399,8 +371,6 @@ const ratingStyle = css`
     align-items: center;
     margin: 10px;
 `
-
-
 
 const RatingField = props => {
     return <div css={ratingStyle}>
