@@ -1,6 +1,6 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import UploadPic from "./UploadPic"
 // import Button from "./Button"
 import eye from "../images/see-icon.png"
@@ -23,6 +23,11 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import Rating from '@material-ui/lab/Rating';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
 
 const style = css`
 
@@ -280,8 +285,8 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
-    // console.log('VALUE:', props.value)
-    return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
+    console.log('pp', props)
+    return <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} />
 }
 
 export const EmailField = (props) => {
@@ -292,28 +297,36 @@ export const EmailField = (props) => {
 //     return <GooglePlacesAutocomplete onSelect={console.log} />
 // }
 
-export class Password extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            hidden: true
-        }
-    }
+const Password = props => {
 
-    toggleHidden = () => {
-        this.setState({hidden: !this.state.hidden})
-    }
+    const [hidden, setHidden] = useState(true)
 
-    render(){
-    return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
-    }
+    return <TextResponse
+        {...props}
+        type={hidden ? 'password' : 'text'}
+        InputProps={{
+            endAdornment: <InputAdornment position="end">
+                <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={()=>{
+                        setHidden(!hidden)
+                        props.setHidden ? props.setHidden(!hidden) : null
+                    }}
+                >
+                    {hidden ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+            </InputAdornment>
+        }}
+    />
 }
 
 const ConfirmPassword = props => {
 
+    const [hidden, setHidden] = useState(true)
+
     return <>
-        <Password {...props} />
-        <TextResponse {...props} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
+        <Password {...props} title='Password' setHidden={setHidden} />
+        <TextResponse {...props} type={hidden ? 'password' : 'text'} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
     </>
         // (
         //     <>
