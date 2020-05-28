@@ -2,6 +2,7 @@ import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component } from "react"
 import UploadPic from "./UploadPic"
+import ColourPicker from "./ColourPicker"
 // import Button from "./Button"
 import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
@@ -100,7 +101,7 @@ export default class Form extends Component {
         this.setState({[id]: e})
     }
     
-    handlePicChange = (e) => {
+    handleCustomChange = (e) => {
         console.log({[e.id]: e.value})
         this.setState({[e.id]: e.value})
     }
@@ -244,9 +245,11 @@ export default class Form extends Component {
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
                                             case "image":
-                                                return <UploadPic {...q} handleChange={this.handlePicChange}/>
+                                                return <UploadPic {...q} handleChange={this.handleCustomChange}/>
                                             case "rating":
                                                 return <RatingField {...q} handleChange={this.handleRatingChange} />
+                                            case "colour-picker":
+                                                return <ColourPicker {...q} handleChange={this.handleCustomChange} />
                                             default:
                                                 return `${q.type} IS NOT A VALID QUESTION TYPE`
                                         }

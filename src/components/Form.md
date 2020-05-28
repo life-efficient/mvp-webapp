@@ -115,6 +115,11 @@ import { makePostRequest } from "../api_calls";
                 }
             },
             {
+                title: 'Pick a colour',
+                id: 'my_colour',
+                type: 'colour-picker'
+            },
+            {
                 title: 'Not required',
                 type: 'text',
                 id: 'not-req',

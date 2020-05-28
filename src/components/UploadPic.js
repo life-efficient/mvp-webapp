@@ -122,7 +122,7 @@ class UploadPic extends Component {
         return (
             <>
                 <div css={[style, this.props.style]}>
-                    {this.props.label ?<p>{this.props.label}</p>:null }
+                    {this.props.title ?<p>{this.props.title}</p>:null }
                     <label for="dp-input" className="dp-input">
                         <input onChange={this.onimgchange} id="dp-input" type="file" style={{display: 'none'}} />
                         <img src={this.state.imgsrc} className="display-pic" alt=""/>
