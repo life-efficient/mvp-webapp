@@ -101,6 +101,17 @@ import { makePostRequest } from "../api_calls";
     {
         questions: [
             {
+                type: 'confirm-password',
+                id: 'password'
+            }
+        ]
+    }
+]}/>
+
+<Form slides={[
+    {
+        questions: [
+            {
                 title: 'title',
                 id: 'title',
                 type: 'text'

@@ -1,6 +1,6 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import UploadPic from "./UploadPic"
 import ColourPicker from "./ColourPicker"
 // import Button from "./Button"
@@ -24,6 +24,11 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import Rating from '@material-ui/lab/Rating';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
 
 const style = css`
 
@@ -44,9 +49,9 @@ export default class Form extends Component {
             console.log('S:', s)
             s.questions.map((q) => {
                 question_ids[q.id] = q.default ? q.default : ''
-                // if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
-                //     question_ids[`confirm-${q.id}`] = ''
-                // } 
+                if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
+                    question_ids[`confirm-password`] = ''
+                } 
             })
         }
         console.log('question ids:', question_ids)
@@ -78,6 +83,7 @@ export default class Form extends Component {
     }
 
     handleChange = (e) => {
+        console.log(e)
         this.setState({[e.target.id]: e.target.value},
             () =>{console.log(this.state)})
     }
@@ -152,6 +158,7 @@ export default class Form extends Component {
     }
 
     submit = async () => {
+        console.log(this.state)
         if (this.validate()) {      // do basic validation based on field type
             this.setState({loading: true})
             console.log('current slide idx', this.state.slide_idx)
@@ -169,9 +176,9 @@ export default class Form extends Component {
                 }                  // validate + do extra stuff
                 console.log('both internal and external validation successful')
                 
-                console.log('current slide idx in try', this.state.slide_idx)
+                // console.log('current slide idx in try', this.state.slide_idx)
                 const new_slide_idx = this.state.slide_idx + 1
-                console.log('setting slide idx to:', new_slide_idx)
+                // console.log('setting slide idx to:', new_slide_idx)
                 this.setState({slide_idx: new_slide_idx})    // if onSubmit doesn't return null
             }
             catch (error) {
@@ -186,9 +193,9 @@ export default class Form extends Component {
     }
 
     render () {
-        // console.log('STATE:', this.state)
+        console.log('STATE:', this.state)
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
-        if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) {
+        if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) { // if finished
             if (this.props.redirect) {
                 console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
@@ -235,7 +242,7 @@ export default class Form extends Component {
                                             case "password":
                                                 return <Password {...q} handleChange={this.handleChange}/>
                                             case "confirm-password":
-                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-${q.id}`]} handleChange={this.handleChange}/>
+                                                return <ConfirmPassword {...q} confirm_value={this.state[`confirm-password`]} handleChange={this.handleChange}/>
                                             case "dropdown":
                                                 return <DropDown {...q} handleChange={this.handleOptionChange} />
                                             // case "location":
@@ -281,8 +288,7 @@ export default class Form extends Component {
 }
 
 export const TextResponse = (props) => {
-    // console.log('VALUE:', props.value)
-    return <TextField className="field" variant="outlined" id={props.id} label={props.title} value={props.value} onChange={props.handleChange} />
+    return <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} />
 }
 
 export const EmailField = (props) => {
@@ -293,71 +299,33 @@ export const EmailField = (props) => {
 //     return <GooglePlacesAutocomplete onSelect={console.log} />
 // }
 
-export class Password extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            hidden: true
-        }
-    }
-
-    toggleHidden = () => {
-        this.setState({hidden: !this.state.hidden})
-    }
-
-    render(){
-        return (
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id={this.props.id} value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                    <img src={ eye } onClick={ this.toggleHidden } alt="" />
-                </div>
-            </div>
-        )
-    }
+const Password = props => {
+    const [hidden, setHidden] = useState(true)
+    return <TextResponse
+        {...props}
+        type={hidden ? 'password' : 'text'}
+        InputProps={{
+            endAdornment: <InputAdornment position="end">
+                <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={()=>{
+                        setHidden(!hidden)
+                        props.setHidden ? props.setHidden(!hidden) : null
+                    }}
+                >
+                    {hidden ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+            </InputAdornment>
+        }}
+    />
 }
 
-export class ConfirmPassword extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            hidden: true
-        }
-    }
-
-    toggleHidden = () => {
-        this.setState({hidden: !this.state.hidden})
-    }
-
-    render(){
-        return (
-            <>
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="password" value={this.props.value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                    <img src={eye} onClick={ this.toggleHidden } alt="" />
-                </div>
-            </div>
-            <div className="field-container ">
-                <div className="field-title">
-                    <strong>Confirm Password</strong>
-                </div>
-                <br/>
-                <div className="password">
-                    <input type={ this.state.hidden ? 'password' : 'input' } id="confirm-password" value={this.props.confirm_value} className="text-response" placeholder=""  onChange={ this.props.handleChange }/>
-                </div>
-            </div>
-            </>
-        )
-    }
+const ConfirmPassword = props => {
+    const [hidden, setHidden] = useState(true)
+    return <>
+        <Password {...props} title='Password' setHidden={setHidden} />
+        <TextResponse {...props} type={hidden ? 'password' : 'text'} value={props.confirm_value} className="field" variant="outlined" id='confirm-password' title='Confirm password'/>
+    </>
 }
 
 export const DropDown = (props) => {
@@ -406,8 +374,6 @@ const ratingStyle = css`
     align-items: center;
     margin: 10px;
 `
-
-
 
 const RatingField = props => {
     return <div css={ratingStyle}>
