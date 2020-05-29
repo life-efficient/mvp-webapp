@@ -25,14 +25,8 @@ var Signup = (props) => {
                             }
                         ],
                         onSubmit: async (e) => {
-                            try {
-                                console.log('signing up')
-                                await Auth.signUp(e.email, e.password)
-                            }
-                            catch (err) {
-                                console.log('sumbission error:', err)
-                                return err.message ? err.message : 'Something went wrong'
-                            }
+                            console.log('signing up')
+                            await Auth.signUp(e.email, e.password)
                         }
                     },
                     {
@@ -48,16 +42,10 @@ var Signup = (props) => {
                             Resend
                         </div>,
                         onSubmit: async (e) => {
-                            try {
-                                console.log('confirming and logging in')
-                                await Auth.confirmSignUp(e.email, e.code)
-                                await Auth.signIn(e.email, e.password)
-                                props.post_signup_fn ? await props.post_signup_fn(e):null
-                            }
-                            catch (err) {
-                                console.log('sumbission error:', err)
-                                return err.message ? err.message : 'Something went wrong'
-                            }
+                            console.log('confirming and logging in')
+                            await Auth.confirmSignUp(e.email, e.code)
+                            await Auth.signIn(e.email, e.password)
+                            props.post_signup_fn ? await props.post_signup_fn(e):null
                         }
                     },
                 ]}
