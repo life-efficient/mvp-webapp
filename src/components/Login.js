@@ -123,8 +123,8 @@ class Login extends Component {
           //     // The error happens when the incorrect password is provided
           } 
           else {
-              alert('error not handled')
               console.error(err);
+              alert('error not handled')
           }
         }
         this.setState({loading: false})
