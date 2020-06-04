@@ -168,8 +168,8 @@ export default class Form extends Component {
                     var e = {}
                     const exclude = ['slide_idx', 'loading', 'error']
                     for (var k in this.state) {
-                        if (exclude.includes(k)) {continue}
-                        if (this.state[k] == '') {continue}
+                        if (exclude.includes(k)) {continue} // remove state values which are not from the users response 
+                        if (this.state[k] == '') {continue} // remove empty responses
                         e[k] = this.state[k]
                     }
                     await onSubmit(e)

@@ -3,6 +3,8 @@ import { connect } from "react-redux"
 import cross from "../images/cross-filled.png"
 import { css } from "@emotion/core"
 import { expand_in } from "../styles/animations"
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from "@material-ui/core"
 
 const style = css`
     height: 100vh;
@@ -60,41 +62,47 @@ const style = css`
     // }
 `
 
-class Modal extends Component {
+const Modal = props => {
 
-    handleClick = (e) => {
-        e.stopPropagation()
-        if (this.node.contains(e.target)) {
-            return
-        }
-        else {this.props.closeModal()}
+    const useStyles = makeStyles((theme) => ({
+        backdrop: {
+            zIndex: 1,
+            // transition: 'opacity 1s',
+            // // visibility: 'visible !important',
+            // backgroundColor: 'red',//'rgba(1, 1, 1, 0.5)',
+            // opacity: props.open ? 1 : 0,
+            // zIndex: props.open ? 1 : -1
+        },
+    }));
+
+    const classes = useStyles();
+
+    if (!props.content) { // if no content to show
+        props.closeModal() // close modal
     }
 
-    render() {
-        console.log('rendering modal')
-        if (!this.props.content) { // if no content to show
-            this.props.closeModal() // close modal
-        }
-        return (
-            <div css={css`
-                    ${style}
-                    ${this.props.modalOpen ? css`opacity: 1; z-index: 10; .modal {animation-name: ${expand_in}; animation-duration: 1s;}` : css`opacity: 0; z-index: -1;`}
-                `} 
-                onClick={this.handleClick}>
-                <div className="modal" ref={node => this.node=node}>
-                    {/* <img className="modal-closebtn" onClick={this.props.closeModal} src={cross} alt="" /> */}
-                    <div className="modal-closebtn" onClick={this.props.closeModal}>close</div>
-                    {this.props.content}                
-                </div>
-            </div>
-        )
-    }
+    return (
+        <Backdrop className={classes.backdrop} open={props.open} onClick={props.closeModal} >
+            {props.content}
+        </Backdrop>
+        // <div css={css`
+        //         ${style}
+        //         ${props.modalOpen ? css`opacity: 1; z-index: 10; .modal {animation-name: ${expand_in}; animation-duration: 1s;}` : css`opacity: 0; z-index: -1;`}
+        //     `} 
+        //     onClick={handleClick}>
+            // <div className="modal" ref={node => this.node=node}>
+            //     <img className="modal-closebtn" onClick={this.props.closeModal} src={cross} alt="" /> 
+            //     <div className="modal-closebtn" onClick={this.props.closeModal}>close</div>
+            //     {this.props.content}                
+            // </div>
+        // </div>
+    )
 }
 
 const mapStateToProps = (state) => {
     // console.log(state.modal)
     return {
-        modalOpen: state.modal.open,
+        open: state.modal.open,
         content: state.modal.content
     }
 }
@@ -107,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default Modal = connect(mapStateToProps, mapDispatchToProps)(Modal)
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)

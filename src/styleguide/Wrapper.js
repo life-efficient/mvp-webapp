@@ -6,6 +6,7 @@ import { ThemeProvider } from 'emotion-theming'
 import { css, Global } from "@emotion/core"
 import logo from "../images/external/logo.png"
 import { combineReducers } from 'redux'
+import Modal from "../components/Modal"
 
 /*
 import Amplify from 'aws-amplify';
@@ -174,6 +175,7 @@ export default (props) => {
                             // }
                         `}
                     />
+                    <Modal />
                     {props.children}
                 </ThemeProvider>
             </Provider>
