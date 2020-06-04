@@ -66,12 +66,7 @@ const Modal = props => {
 
     const useStyles = makeStyles((theme) => ({
         backdrop: {
-            zIndex: 1,
-            // transition: 'opacity 1s',
-            // // visibility: 'visible !important',
-            // backgroundColor: 'red',//'rgba(1, 1, 1, 0.5)',
-            // opacity: props.open ? 1 : 0,
-            // zIndex: props.open ? 1 : -1
+            zIndex: 1200,
         },
     }));
 
@@ -85,17 +80,6 @@ const Modal = props => {
         <Backdrop className={classes.backdrop} open={props.open} onClick={props.closeModal} >
             {props.content}
         </Backdrop>
-        // <div css={css`
-        //         ${style}
-        //         ${props.modalOpen ? css`opacity: 1; z-index: 10; .modal {animation-name: ${expand_in}; animation-duration: 1s;}` : css`opacity: 0; z-index: -1;`}
-        //     `} 
-        //     onClick={handleClick}>
-            // <div className="modal" ref={node => this.node=node}>
-            //     <img className="modal-closebtn" onClick={this.props.closeModal} src={cross} alt="" /> 
-            //     <div className="modal-closebtn" onClick={this.props.closeModal}>close</div>
-            //     {this.props.content}                
-            // </div>
-        // </div>
     )
 }
 
