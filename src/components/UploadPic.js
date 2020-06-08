@@ -8,7 +8,7 @@ const style = css`
         box-shadow: var(--shadow);
         overflow: hidden;
         max-height: 100%;
-    }
+     }
 
     .dp-input {
         cursor: pointer;
@@ -118,7 +118,6 @@ class UploadPic extends Component {
     }
 
     render() {
-        console.log('render props', this.props)
         return (
             <>
                 <div css={[style, this.props.style]}>
