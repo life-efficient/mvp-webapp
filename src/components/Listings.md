@@ -7,6 +7,12 @@ A grid of tile components
 - **required**: `false`
 - **description**: A list of objects that specify the props of each listing which you want to render.
 
+#### **`size`**
+- **type**: `number`
+- **default**: `null`
+- **required**: `false`
+- **description**: The size of the listing. Specifically, height in pixels.
+
 
 ``` jsx
 import logo from "../images/external/logo.png";

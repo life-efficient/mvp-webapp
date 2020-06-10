@@ -14,7 +14,7 @@ const style = css`
 export default (props) => {
     return (
         <div css={[style, props.style]}>
-            {props.tiles.map((t) =>{ return (<Listing {...t}/>)})}
+            {props.tiles.map((t) =>{ return (<Listing size={props.size} {...t}/>)})}
         </div>
     )
 }
