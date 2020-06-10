@@ -59,7 +59,7 @@ import { Listing } from "mvp-webapp";
         img: logo,
         description: "This is the description text for this listing.",
         edit_fn: ()=>{},
-        delete_fn: ()=>{},
+        delete_fn: ()=>{}
     },
     {
         type: "add",
