@@ -70,14 +70,6 @@ const style = css`
 
 const Modal = props => {
 
-    // const useStyles = makeStyles((theme) => ({
-    //     backdrop: {
-    //         zIndex: 1200,
-    //     },
-    // }));
-
-    // const classes = useStyles();
-
     if (!props.content) { // if no content to show
         props.closeModal() // close modal
     }

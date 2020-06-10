@@ -203,7 +203,6 @@ export default class Form extends Component {
             else {
                 if (this.props.stay) {this.setState({slide_idx: this.state.slide_idx - 1})}
                 else {return null}
-                
             }
         }
         return (
