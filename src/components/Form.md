@@ -21,6 +21,13 @@ Fuck the form component libraries you heard of
         - **required**: `false`
         - **description**: Subtitle shown below title
 
+    * **`submit_label`** 
+        
+        - **type**: `string` 
+        - **default**: 'Submit'
+        - **required**: `false`
+        - **description**: Label shown on submit button of all slides
+
     * **`questions`** 
         
         - **type**: `string` 

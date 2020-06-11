@@ -91,7 +91,7 @@ class FileUpload extends Component {
         super(props)
         console.log(this.props)
         this.state = {
-            imgsrc: null
+            imgsrc: props.value ? props.value : null
         }
     }
 
