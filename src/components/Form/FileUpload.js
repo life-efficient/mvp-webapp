@@ -35,8 +35,8 @@ const getStyle = props => {
                         opacity: 0.5;
                     }
 
-                    // background-color: ${props.theme.palette.primary.main};
-                    border: 10px solid ${props.theme.palette.primary.main};
+                    // background-color: ${props.theme.palette.secondary.main};
+                    border: 10px solid ${props.theme.palette.secondary.main};
                     border-radius: 50vw;
                     height: 50vw;
                     width: 50vw;
