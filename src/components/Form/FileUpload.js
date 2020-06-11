@@ -183,7 +183,7 @@ class FileUpload extends Component {
                                 this.state.imgsrc ?
                                 <img src={this.state.imgsrc} className="display-pic" alt=""/>
                                 : <div className="placeholder">
-                                    {this.props.icon ? this.props.icon : <GetAppIcon color={props.color ? props.color : "primary"} style={{transform: 'rotateZ(180deg)'}}/>}
+                                    {this.props.icon ? this.props.icon : <GetAppIcon color={this.props.color ? this.props.color : "primary"} style={{transform: 'rotateZ(180deg)'}}/>}
                                 </div>
                             }
                         </label>
