@@ -173,37 +173,38 @@ import PersonIcon from '@material-ui/icons/Person';
             title: 'Slide 1',
             subtitle: 'subtitle 1',
             questions: [
-                {
-                    title: 'Title 1, Slide 1',
-                    type: 'text',   
-                    id: 'id1, slide1',
-                    detail: 'Some extra detail',
-                    default: 'Some default value'
-                },
-                {
-                    title: 'A dropdown field',
-                    type: 'dropdown',
-                    options: ['first option', 'second option', 'third option'],
-                    id: 'id2, slide 1',
-                    detail: 'Some detail'
-                },
-                {
-                    title: 'A number field',
-                    type: 'number',   
-                    id: 'id3, slide 1',
-                    detail: 'Some detail'
-                },
-                {
-                    type: 'image',   
-                    title: 'Row image upload',
-                    id: 'image_form',
-                    // multiple: true
-                    icon: <PhotoCameraIcon/>
-                },
+                // {
+                //     title: 'Title 1, Slide 1',
+                //     type: 'text',   
+                //     id: 'id1, slide1',
+                //     detail: 'Some extra detail',
+                //     default: 'Some default value'
+                // },
+                // {
+                //     title: 'A dropdown field',
+                //     type: 'dropdown',
+                //     options: ['first option', 'second option', 'third option'],
+                //     id: 'id2, slide 1',
+                //     detail: 'Some detail'
+                // },
+                // {
+                //     title: 'A number field',
+                //     type: 'number',   
+                //     id: 'id3, slide 1',
+                //     detail: 'Some detail'
+                // },
+                // {
+                //     type: 'image',   
+                //     title: 'Row image upload',
+                //     id: 'image_form',
+                //     // multiple: true
+                //     icon: <PhotoCameraIcon/>
+                // },
                 {
                     type: 'image', 
                     variant: 'circular',  
                     title: 'Circular image upload',
+                    // show_title: 'bottom',
                     id: 'circular_image',
                     icon: <PersonIcon />
                 },

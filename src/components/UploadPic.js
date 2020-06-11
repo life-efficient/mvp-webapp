@@ -147,7 +147,6 @@ class UploadPic extends Component {
                 var resp = await Storage.put(fp, file, {contentType: mimeType})
                 console.log(resp)
                 url =`${this.props.bucket_url}${fp}`
-                //url =`https://theaicore-data.s3.eu-west-2.amazonaws.com/public/${fp}`
                 resolve(url)
             }catch(e){
                 console.log(e)
@@ -160,9 +159,14 @@ class UploadPic extends Component {
         switch (this.props.variant) {
             case "circular":
                 return <div css={[getStyle(this.props), this.props.style]}>
-                    <div className="title">
-                        {this.props.title}
-                    </div>
+
+                    {
+                        this.props.show_title == 'top' ?
+                        <div className="title">
+                            {this.props.title}
+                        </div>
+                        : null
+                    }
                     <div className="circle">
                         <label for="dp-input" className="dp-input">
                             <input onChange={this.onimgchange} id="dp-input" type="file" style={{display: 'none'}} />
@@ -175,6 +179,13 @@ class UploadPic extends Component {
                             }
                         </label>
                     </div>
+                    {
+                        this.props.show_title == 'bottom' ?
+                        <div className="title">
+                            {this.props.title}
+                        </div>
+                        : null
+                    }
                 </div>
             case "row":
             default:
