@@ -58,6 +58,7 @@ Fuck the form component libraries you heard of
                 * **`text`**: Checks that field is not empty
                 * **`number`**: Checks that the field contains numbers only
                 * **`email`**: Checks that the field is an email
+                * **`image`**: Allows a user to upload an image
         
         * **`conditional`**
 
@@ -68,6 +69,36 @@ Fuck the form component libraries you heard of
 
                 * **`id`**: id of the question which the value will be tested against
                 * **`value`**: Value which the question with that id should be equal to
+
+        * **`variant`**
+
+            - **type**: `string`
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: Some types of questions can be displayed in different ways. Below are the possible variants for those question types with different variants.
+
+                - **image type question variants**
+
+                    - **circular**: Shows a preview of the image in a circle. Before an image is uploaded it will show a default icon. When clicked it prompts the user to upload an image. Use case: profile page display pic.
+                    - **row**: Shows a row with the question title and an upload button. Once uploaded, the image is shown as a preview below the question row.
+
+        * **`icon`**
+
+            - **type**: Material-ui icon
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: The icon that will be shown. This will be shown in different ways depending on the question type.
+
+        * **`show_title`**
+
+            - **type**: Material-ui icon
+            - **default**: `null`
+            - **required**: `false`
+            - **description**: Works only for the image type question when its variant is 'circular'. Can take a value of:
+
+                - **`null`**: No title will be shown for this question
+                - **`bottom`**: The title will be shown below the circular image holder. 
+                - **`top`**: The title will be shown above the circular image holder. 
 
     * **`onSubmit`**
 
@@ -204,7 +235,7 @@ import PersonIcon from '@material-ui/icons/Person';
                     type: 'image', 
                     variant: 'circular',  
                     title: 'Circular image upload',
-                    // show_title: 'bottom',
+                    show_title: 'bottom',
                     id: 'circular_image',
                     icon: <PersonIcon />
                 },
