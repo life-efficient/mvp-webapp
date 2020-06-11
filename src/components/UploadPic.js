@@ -136,36 +136,45 @@ class UploadPic extends Component {
     }
 
     render() {
-        return (
-            <>
-                <div css={[style, this.props.style]}>
-                    <input
-                        accept="image/*"
-                        id="contained-button-file"
-                        multiple={this.props.multiple}
-                        type="file"
-                        style={{display: 'none'}}
-                        onChange={this.onimgchange}
-                    />
-                    <div className="row">
-                        {this.props.title ?<p>{this.props.title}</p>:null }
-                        <label htmlFor="contained-button-file">
-                            <Button variant="outlined" color="primary" component="span" endIcon={this.props.icon ? this.props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
-                                Upload
-                            </Button>
-                        </label>
-                    </div>
-                    {
-                        this.state.imgsrc ?
-
-                        <div className="preview">
-                            <img src={this.state.imgsrc} alt=""/>
-                        </div>
-                        : null
-                    }
+        switch (this.props.variant) {
+            case "circular":
+                return <div css={[style, this.props.style]}>
+                    {this.props.title}
+                    
                 </div>
-            </>
-        )
+            case "row":
+            default:
+                return (
+                    <>
+                        <div css={[style, this.props.style]}>
+                            <input
+                                accept="image/*"
+                                id="contained-button-file"
+                                multiple={this.props.multiple}
+                                type="file"
+                                style={{display: 'none'}}
+                                onChange={this.onimgchange}
+                            />
+                            <div className="row">
+                                {this.props.title ?<p>{this.props.title}</p>:null }
+                                <label htmlFor="contained-button-file">
+                                    <Button variant="outlined" color="primary" component="span" endIcon={this.props.icon ? this.props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
+                                        Upload
+                                    </Button>
+                                </label>
+                            </div>
+                            {
+                                this.state.imgsrc ?
+
+                                <div className="preview">
+                                    <img src={this.state.imgsrc} alt=""/>
+                                </div>
+                                : null
+                            }
+                        </div>
+                    </>
+                )
+        }
     }   
 }
 
