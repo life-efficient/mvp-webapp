@@ -22,7 +22,7 @@ const getStyle = props => {
                     .display-pic {
                         box-shadow: var(--shadow);
                         overflow: hidden;
-                        max-height: 100%;
+                        height: 100%;
                     }
 
                     .dp-input {
