@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import { css } from "@emotion/core"
 /** @jsx jsx */ import { jsx } from '@emotion/core'
 import { Storage } from "aws-amplify"
-import { Button } from "@material-ui/core"
+import { Button, withTheme } from "@material-ui/core"
 import GetAppIcon from '@material-ui/icons/GetApp';
 
 const style = css`
@@ -51,6 +51,16 @@ const style = css`
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .preview {
+        img {
+            height: 100px;
+            border-radius: 7px;
+        }
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 `
 
@@ -135,6 +145,7 @@ class UploadPic extends Component {
                         multiple={this.props.multiple}
                         type="file"
                         style={{display: 'none'}}
+                        onChange={this.onimgchange}
                     />
                     <div className="row">
                         {this.props.title ?<p>{this.props.title}</p>:null }
@@ -146,7 +157,10 @@ class UploadPic extends Component {
                     </div>
                     {
                         this.state.imgsrc ?
-                        <img src={this.state.imgsrc} className="display-pic" alt=""/>
+
+                        <div className="preview">
+                            <img src={this.state.imgsrc} alt=""/>
+                        </div>
                         : null
                     }
                 </div>
@@ -156,4 +170,4 @@ class UploadPic extends Component {
 }
 
 
-export default UploadPic
+export default withTheme(UploadPic)
