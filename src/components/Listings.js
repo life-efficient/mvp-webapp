@@ -6,7 +6,6 @@ import { css, jsx } from "@emotion/core"
 const style = css`
     display: flex;
     max-width: 1000px;
-    margin: 40px auto;
     flex-wrap: wrap;
     flex-direction: column;
 `
