@@ -112,7 +112,7 @@ const get_listing_style = (props)=>{
     }
     `
 }
-const add_listing_style = css`
+const add_listing_style = props => css`
     //justify-content: space-between;
     width: 95%;
     //cursor: pointer;
@@ -143,7 +143,7 @@ class Listing extends Component {
         switch(this.props.type){
             case "add":
                 return (
-                    <div css={[get_style(this.props), add_listing_style, this.props.style]} onClick={this.props.onClick}>
+                    <div css={[get_style(this.props), add_listing_style(this.props), this.props.style]} onClick={this.props.onClick}>
                         <FontAwesomeIcon icon={faPlus} className="faicon"/>
                     </div>
                 )
