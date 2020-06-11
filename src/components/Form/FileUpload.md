@@ -34,6 +34,7 @@ new <FileUpload
         variant="circular"
         id="inputpicc"
         label='Company Logo'
+        color='primary'
         //bucket_filepath="enterprise_users/test/profile_pic"
         //bucket_url = "https://theaicore-data.s3.eu-west-2.amazonaws.com/public/"
         //dp_url = {null}

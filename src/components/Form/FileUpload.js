@@ -6,6 +6,13 @@ import { Button, withTheme } from "@material-ui/core"
 import GetAppIcon from '@material-ui/icons/GetApp';
 
 const getStyle = props => {
+    let primary = props.theme.palette.primary.main
+    let secondary = props.theme.palette.secondary.main
+    if (props.color == 'primary') {
+        let temp = primary
+        primary = secondary
+        secondary = temp
+    }
     switch (props.variant) {
         case "circular":
             return css`
@@ -35,8 +42,8 @@ const getStyle = props => {
                         opacity: 0.5;
                     }
 
-                    // background-color: ${props.theme.palette.secondary.main};
-                    border: 10px solid ${props.theme.palette.secondary.main};
+                    // background-color: ${secondary};
+                    border: 10px solid ${secondary};
                     border-radius: 50vw;
                     height: 50vw;
                     width: 50vw;
@@ -59,7 +66,7 @@ const getStyle = props => {
                         align-items: center;
                         svg {
                             font-size: 120px;
-                            color: ${props.theme.palette.secondary.main};
+                            color: ${secondary};
                         }
                     }
                 }
@@ -176,7 +183,7 @@ class FileUpload extends Component {
                                 this.state.imgsrc ?
                                 <img src={this.state.imgsrc} className="display-pic" alt=""/>
                                 : <div className="placeholder">
-                                    {this.props.icon ? this.props.icon : <GetAppIcon color="primary" style={{transform: 'rotateZ(180deg)'}}/>}
+                                    {this.props.icon ? this.props.icon : <GetAppIcon color={props.color ? props.color : "primary"} style={{transform: 'rotateZ(180deg)'}}/>}
                                 </div>
                             }
                         </label>
