@@ -8,6 +8,7 @@ const style = css`
     max-width: 1000px;
     flex-wrap: wrap;
     flex-direction: column;
+    width:100%;
 `
 
 export default (props) => {
