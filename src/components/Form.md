@@ -95,6 +95,8 @@ REMOVED FOR NOW # TODO ADD TO MAKE FORM REMAIN AFTER COMPLETION
 ``` jsx
 import { Form } from "mvp-webapp";
 import { makePostRequest } from "../api_calls";
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 <>
 <Form slides={[
@@ -192,8 +194,11 @@ import { makePostRequest } from "../api_calls";
                 },
                 {
                     type: 'image',   
-                    label: ' Company Logo',
-                    id: 'image_form'
+                    title: ' Company Logo',
+                    id: 'image_form',
+                    // multiple: true
+                    icon: <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>
+                    // icon: <PhotoCameraIcon/>
                 }
             ],
             onSubmit: ()=>{console.log('slide 1 submitted')}

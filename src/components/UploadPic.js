@@ -2,47 +2,55 @@ import React, {Component} from "react"
 import { css } from "@emotion/core"
 /** @jsx jsx */ import { jsx } from '@emotion/core'
 import { Storage } from "aws-amplify"
+import { Button } from "@material-ui/core"
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 const style = css`
-    .display-pic {
-        box-shadow: var(--shadow);
-        overflow: hidden;
-        max-height: 100%;
-     }
+    // .display-pic {
+    //     box-shadow: var(--shadow);
+    //     overflow: hidden;
+    //     max-height: 100%;
+    //  }
 
-    .dp-input {
-        cursor: pointer;
-    }
+    // .dp-input {
+    //     cursor: pointer;
+    // }
 
-    .dp-input :hover {
-        opacity: 0.5;
-    }
+    // .dp-input :hover {
+    //     opacity: 0.5;
+    // }
 
-    p{
-        margin:3px;
-    }
+    // p{
+    //     margin:3px;
+    // }
 
-    background-color: var(--color2);
-    //border: 2px solid var(--color1);
-    //border-radius: 50vw;
-    height: 50vw;
-    width: 50vw;
-    max-height: 200px;
-    max-width: 200px;
-    // width: 200px;
-    margin: 30px auto;
-    overflow: hidden;
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
+    // background-color: var(--color2);
+    // //border: 2px solid var(--color1);
+    // //border-radius: 50vw;
+    // height: 50vw;
+    // width: 50vw;
+    // max-height: 200px;
+    // max-width: 200px;
+    // // width: 200px;
+    // margin: 30px auto;
+    // overflow: hidden;
+    // display:flex;
+    // flex-direction: column;
+    // align-items:center;
+    // justify-content: center;
 
-    @media (max-width: 600px) {
-        max-height: 100px;
-        max-width: 100px;
-    }
-    img{
-        max-width: 100%;
+    // @media (max-width: 600px) {
+    //     max-height: 100px;
+    //     max-width: 100px;
+    // }
+    // img{
+    //     max-width: 100%;
+    // }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 `
 
@@ -52,7 +60,7 @@ class UploadPic extends Component {
         super(props)
         console.log(this.props)
         this.state = {
-            imgsrc: props.default?props.default:"https://dummyimage.com/400x352/ff822e/fff.png&text=UPLOAD"
+            imgsrc: null//props.default ? props.default:"https://dummyimage.com/400x352/ff822e/fff.png&text=UPLOAD"
         }
     }
 
@@ -121,13 +129,26 @@ class UploadPic extends Component {
         return (
             <>
                 <div css={[style, this.props.style]}>
-                    {this.props.title ?<p>{this.props.title}</p>:null }
-                    <label for="dp-input" className="dp-input">
-                        <input onChange={this.onimgchange} id="dp-input" type="file" style={{display: 'none'}} />
+                    <input
+                        accept="image/*"
+                        id="contained-button-file"
+                        multiple={this.props.multiple}
+                        type="file"
+                        style={{display: 'none'}}
+                    />
+                    <div className="row">
+                        {this.props.title ?<p>{this.props.title}</p>:null }
+                        <label htmlFor="contained-button-file">
+                            <Button variant="outlined" color="primary" component="span" endIcon={this.props.icon ? this.props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
+                                Upload
+                            </Button>
+                        </label>
+                    </div>
+                    {
+                        this.state.imgsrc ?
                         <img src={this.state.imgsrc} className="display-pic" alt=""/>
-                        {/*https://dummyimage.com/400x400/ff822e/fff.png&text=UPLOAD+LOGO*/}
-                        {/*https://via.placeholder.com/200x200/ff822e/ffffff?text=Upload company logo*/}
-                    </label>
+                        : null
+                    }
                 </div>
             </>
         )
