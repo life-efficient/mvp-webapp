@@ -97,6 +97,7 @@ import { Form } from "mvp-webapp";
 import { makePostRequest } from "../api_calls";
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import PersonIcon from '@material-ui/icons/Person';
 
 <>
 <Form slides={[
@@ -204,7 +205,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
                     variant: 'circular',  
                     title: 'Circular image upload',
                     id: 'circular_image',
-                    icon: <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>
+                    icon: <PersonIcon />
                 },
                 
             ],

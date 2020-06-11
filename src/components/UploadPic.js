@@ -57,6 +57,10 @@ const getStyle = props => {
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        svg {
+                            font-size: 120px;
+                            color: ${props.theme.palette.primary.main};
+                        }
                     }
                 }
             `
@@ -166,7 +170,7 @@ class UploadPic extends Component {
                                 this.state.imgsrc ?
                                 <img src={this.state.imgsrc} className="display-pic" alt=""/>
                                 : <div className="placeholder">
-                                    {this.props.defaultIcon ? this.props.defaultIcon : <GetAppIcon color="primary" style={{transform: 'rotateZ(180deg)', fontSize: '120px'}}/>}
+                                    {this.props.icon ? this.props.icon : <GetAppIcon color="primary" style={{transform: 'rotateZ(180deg)'}}/>}
                                 </div>
                             }
                         </label>
