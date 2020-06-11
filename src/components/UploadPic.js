@@ -5,65 +5,82 @@ import { Storage } from "aws-amplify"
 import { Button, withTheme } from "@material-ui/core"
 import GetAppIcon from '@material-ui/icons/GetApp';
 
-const style = css`
-    // .display-pic {
-    //     box-shadow: var(--shadow);
-    //     overflow: hidden;
-    //     max-height: 100%;
-    //  }
+const getStyle = props => {
+    switch (props.variant) {
+        case "circular":
+            return css`
 
-    // .dp-input {
-    //     cursor: pointer;
-    // }
+                .title {
+                    width: 100%;
+                    justify-content: center;
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: 100; // override font-weight: 900; for .panel>.title elements
+                }
 
-    // .dp-input :hover {
-    //     opacity: 0.5;
-    // }
+                .circle {
+                    .display-pic {
+                        box-shadow: var(--shadow);
+                        overflow: hidden;
+                        max-height: 100%;
+                    }
 
-    // p{
-    //     margin:3px;
-    // }
+                    .dp-input {
+                        cursor: pointer;
+                        height: 100%;
+                        width: 100%;
+                    }
 
-    // background-color: var(--color2);
-    // //border: 2px solid var(--color1);
-    // //border-radius: 50vw;
-    // height: 50vw;
-    // width: 50vw;
-    // max-height: 200px;
-    // max-width: 200px;
-    // // width: 200px;
-    // margin: 30px auto;
-    // overflow: hidden;
-    // display:flex;
-    // flex-direction: column;
-    // align-items:center;
-    // justify-content: center;
+                    .dp-input :hover {
+                        opacity: 0.5;
+                    }
 
-    // @media (max-width: 600px) {
-    //     max-height: 100px;
-    //     max-width: 100px;
-    // }
-    // img{
-    //     max-width: 100%;
-    // }
+                    // background-color: ${props.theme.palette.primary.main};
+                    border: 10px solid ${props.theme.palette.primary.main};
+                    border-radius: 50vw;
+                    height: 50vw;
+                    width: 50vw;
+                    max-height: 200px;
+                    max-width: 200px;
+                    // width: 200px;
+                    margin: 30px auto;
+                    overflow: hidden;
 
-    .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+                    @media (max-width: 600px) {
+                        max-height: 100px;
+                        max-width: 100px;
+                    }
+
+                    .placeholder {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            `
+        case "row":
+        default:
+            return css`
+                .row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .preview {
+                    img {
+                        height: 100px;
+                        border-radius: 7px;
+                    }
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }
+            `
     }
-
-    .preview {
-        img {
-            height: 100px;
-            border-radius: 7px;
-        }
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-`
-
+} 
 class UploadPic extends Component {
 
     constructor(props) {
@@ -138,15 +155,28 @@ class UploadPic extends Component {
     render() {
         switch (this.props.variant) {
             case "circular":
-                return <div css={[style, this.props.style]}>
-                    {this.props.title}
-                    
+                return <div css={[getStyle(this.props), this.props.style]}>
+                    <div className="title">
+                        {this.props.title}
+                    </div>
+                    <div className="circle">
+                        <label for="dp-input" className="dp-input">
+                            <input onChange={this.onimgchange} id="dp-input" type="file" style={{display: 'none'}} />
+                            {
+                                this.state.imgsrc ?
+                                <img src={this.state.imgsrc} className="display-pic" alt=""/>
+                                : <div className="placeholder">
+                                    {this.props.defaultIcon ? this.props.defaultIcon : <GetAppIcon color="primary" style={{transform: 'rotateZ(180deg)', fontSize: '120px'}}/>}
+                                </div>
+                            }
+                        </label>
+                    </div>
                 </div>
             case "row":
             default:
                 return (
                     <>
-                        <div css={[style, this.props.style]}>
+                        <div css={[getStyle(this.props), this.props.style]}>
                             <input
                                 accept="image/*"
                                 id="contained-button-file"

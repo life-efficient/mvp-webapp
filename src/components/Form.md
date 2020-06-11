@@ -194,12 +194,19 @@ import GetAppIcon from '@material-ui/icons/GetApp';
                 },
                 {
                     type: 'image',   
-                    title: ' Company Logo',
+                    title: 'Row image upload',
                     id: 'image_form',
                     // multiple: true
+                    icon: <PhotoCameraIcon/>
+                },
+                {
+                    type: 'image', 
+                    variant: 'circular',  
+                    title: 'Circular image upload',
+                    id: 'circular_image',
                     icon: <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>
-                    // icon: <PhotoCameraIcon/>
-                }
+                },
+                
             ],
             onSubmit: ()=>{console.log('slide 1 submitted')}
         },
