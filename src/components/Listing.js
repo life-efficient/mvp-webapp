@@ -56,6 +56,10 @@ const get_listing_style = (props)=>{
         max-height:95%;
         object-fit:contain;
     }
+    svg{
+        width:90%;
+        height:90%;
+    }
     div.imgcontainer{
         flex:1;
         display:flex;
@@ -147,7 +151,7 @@ class Listing extends Component {
                 return (
                     <div css={[get_style(this.props), get_listing_style(this.props), this.props.style]} onClick={this.props.onClick}>
                             {this.props.img ? <div className="imgcontainer"><img src={this.props.img} alt="company_logo"></img></div>: null}
-                            {this.props.icon ? <div className="imgcontainer">{props.icon}</div>: null}
+                            {this.props.icon ? <div className="imgcontainer">{this.props.icon}</div>: null}
                         <div className="maincontent">
                             {this.props.title? <h4>{this.props.title}</h4>:null}
                             {this.props.subheading ? <p class='subheading'>{this.props.subheading}</p>: null}

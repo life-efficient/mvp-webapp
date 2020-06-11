@@ -52,14 +52,19 @@ A listing
 ``` jsx
 import logo from '../images/external/logo.png';
 import { Listing } from "mvp-webapp";
+import HomeIcon from '@material-ui/icons/Home';
 
 [
     {
         title: "Listing title",
-        img: logo,
+        img: logo,      
         description: "This is the description text for this listing.",
         edit_fn: ()=>{},
         delete_fn: ()=>{}
+    },
+    {   
+        title: "Listing title",
+        icon:<HomeIcon/>
     },
     {
         type: "add",
