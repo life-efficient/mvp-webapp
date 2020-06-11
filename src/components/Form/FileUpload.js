@@ -59,7 +59,7 @@ const getStyle = props => {
                         align-items: center;
                         svg {
                             font-size: 120px;
-                            color: ${props.theme.palette.primary.main};
+                            color: ${props.theme.palette.secondary.main};
                         }
                     }
                 }
