@@ -263,13 +263,16 @@ import PersonIcon from '@material-ui/icons/Person';
      ]}
 />;
 
-<Form slides={[{
-    questions: [{
-        type: 'image',   
-        title: 'Row image upload',
-        id: 'image_form',
-        icon: <PhotoCameraIcon/>
-    }]
-}]}/>;
+<Form 
+    submit_label='Complete'
+    slides={[{
+        questions: [{
+            type: 'image',   
+            title: 'Row image upload',
+            id: 'image_form',
+            icon: <PhotoCameraIcon/>
+        }]
+    }]}
+/>;
 </>
 ```

@@ -275,7 +275,10 @@ export default class Form extends Component {
                                 {/* <Fab  */}
                                 <Button 
                                 color="secondary" size="large" variant="contained" className="submit" text='Submit' onClick={this.submit} >
-                                    {this.state.loading ? <CircularProgress/> : 'Submit'}
+                                    {
+                                        this.state.loading ? <CircularProgress/> : 
+                                        this.props.submit_label ? this.props.submit_label : 'Submit'
+                                    }
                                 </Button>
                                 {/* </Fab> */}
                             </div>
