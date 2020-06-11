@@ -116,7 +116,7 @@ const add_listing_style = css`
     //justify-content: space-between;
     width: 95%;
     //cursor: pointer;
-    font-size: 100px;
+    font-size: ${props.size?props.size/2:100}px;
     align-items: center;
     cursor: pointer;
     svg{
