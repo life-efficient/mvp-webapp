@@ -30,7 +30,7 @@ export { default as TableToGraph } from "components/TableToGraph"
 export { default as EmphasisBox } from "components/EmphasisBox" 
 export { default as Listing } from "components/Listing"
 export { default as Listings } from "components/Listings"
-export { default as UploadPic } from "components/UploadPic"
+export { default as FileUpload } from "components/Form/FileUpload"
 export { default as ColourPicker } from "components/ColourPicker"
 export { default as TG } from "components/TG"
 

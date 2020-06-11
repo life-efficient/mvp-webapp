@@ -268,7 +268,7 @@ import PersonIcon from '@material-ui/icons/Person';
             onSubmit: ()=>{console.log('slide 2 submitted')}
         }
      ]}
-/>;
+/>
 
 <Form 
     submit_label='Complete'
@@ -280,6 +280,6 @@ import PersonIcon from '@material-ui/icons/Person';
             icon: <PhotoCameraIcon/>
         }]
     }]}
-/>;
+/>
 </>
 ```

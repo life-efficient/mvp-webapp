@@ -1,7 +1,6 @@
 import { Form as FormStyle } from "../styles/forms"
 import { panel } from "../styles/theme"
 import React, { Component, useState } from "react"
-import UploadPic from "./UploadPic"
 import ColourPicker from "./ColourPicker"
 // import Button from "./Button"
 import eye from "../images/see-icon.png"
@@ -29,7 +28,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
-import FileUpload from "./Form/FileUpload"
+import FileUpload from "./Form/FileUpload";
 
 const style = css`
 

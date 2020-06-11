@@ -27,18 +27,20 @@ An upload file input designed for images. Displays the uploaded image and can up
 - **description**: The url to the bucket
 
 ``` jsx
-import logo from '../images/external/logo.png';
-import { UploadPic } from "mvp-webapp";
+import { FileUpload } from "mvp-webapp";
 
-new <UploadPic  //bucket_filepath="enterprise_users/test/profile_pic"
-            id="inputpicc"
-            label='Company Logo'
-            //bucket_url = "https://theaicore-data.s3.eu-west-2.amazonaws.com/public/"
-            //dp_url = {null}
-            handleChange = {(update)=>{
-                console.log('just updated dat image')
-                console.log(update)
-            }
-            }
-></UploadPic>
+new <FileUpload  
+        type='image'
+        variant="circular"
+        id="inputpicc"
+        label='Company Logo'
+        //bucket_filepath="enterprise_users/test/profile_pic"
+        //bucket_url = "https://theaicore-data.s3.eu-west-2.amazonaws.com/public/"
+        //dp_url = {null}
+        handleChange = {(update)=>{
+            console.log('just updated dat image')
+            console.log(update)
+        }
+        }
+></FileUpload>
 ```

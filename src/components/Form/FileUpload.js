@@ -84,7 +84,8 @@ const getStyle = props => {
                 }
             `
     }
-} 
+}
+
 class FileUpload extends Component {
 
     constructor(props) {
