@@ -29,6 +29,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Input from '@material-ui/core/Input';
+import FileUpload from "./Form/FileUpload"
 
 const style = css`
 
@@ -250,8 +251,10 @@ export default class Form extends Component {
                                                 return <DateField {...q} handleChange={(e)=>{this.handleDateChange(e, q.id)}} />
                                             case "time":
                                                 return <Time {...q} handleChange={(e)=>{this.handleTimeChange(e, q.id)}} />
+                                            case "file":
+                                                return <FileUpload {...q} handleChange={this.handleCustomChange}/>
                                             case "image":
-                                                return <UploadPic {...q} handleChange={this.handleCustomChange}/>
+                                                return <FileUpload {...q} handleChange={this.handleCustomChange}/>
                                             case "rating":
                                                 return <RatingField {...q} handleChange={this.handleRatingChange} />
                                             case "colour-picker":

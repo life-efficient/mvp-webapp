@@ -225,11 +225,9 @@ import PersonIcon from '@material-ui/icons/Person';
                 //     detail: 'Some detail'
                 // },
                 // {
-                //     type: 'image',   
-                //     title: 'Row image upload',
-                //     id: 'image_form',
-                //     // multiple: true
-                //     icon: <PhotoCameraIcon/>
+                //     type: 'file',   
+                //     title: 'File upload',
+                //     id: 'file_upload',
                 // },
                 {
                     type: 'image', 
@@ -263,6 +261,15 @@ import PersonIcon from '@material-ui/icons/Person';
             onSubmit: ()=>{console.log('slide 2 submitted')}
         }
      ]}
-/>
+/>;
+
+<Form slides={[{
+    questions: [{
+        type: 'image',   
+        title: 'Row image upload',
+        id: 'image_form',
+        icon: <PhotoCameraIcon/>
+    }]
+}]}/>;
 </>
 ```
