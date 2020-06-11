@@ -83,8 +83,10 @@ const get_listing_style = (props)=>{
             position: absolute;
             top: 5px;
             right: 5px;
-            height: ${props.size?props.size/2.5:56}px;
-            width: ${props.size?props.size/2.5:56}px;
+            min-height: ${props.size?props.size/2.5:56}px;
+            max-height: ${props.size?props.size/2.5:56}px;
+            min-width: ${props.size?props.size/2.5:56}px;
+            max-width: ${props.size?props.size/2.5:56}px;
             min-width: 0px;
             //border-radius: 0;
         }
@@ -93,8 +95,10 @@ const get_listing_style = (props)=>{
             top: 5px;
             right: ${props.size?(10+(props.size/2.5)):70}px;
             background-color: #ff3333;
-            height: ${props.size?props.size/2.5:56}px;
-            width: ${props.size?props.size/2.5:56}px;
+                min-height: ${props.size?props.size/2.5:56}px;
+                max-height: ${props.size?props.size/2.5:56}px;
+                min-width: ${props.size?props.size/2.5:56}px;
+                max-width: ${props.size?props.size/2.5:56}px;
             min-width: 0px;
             //border-radius: 0;
         }
