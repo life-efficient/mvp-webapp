@@ -7,7 +7,7 @@ import eye from "../images/see-icon.png"
 import { Redirect } from "react-router-dom"
 // import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // import 'react-google-places-autocomplete/dist/assets/index.css'; Build breaking!!
-import { Button, Fab, CircularProgress } from "@material-ui/core"
+import { Button, Fab, CircularProgress, withTheme } from "@material-ui/core"
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -37,7 +37,53 @@ const style = css`
     }
 `
 
-export default class Form extends Component {
+const getStyle = props => {
+    return css`
+        font-family: var(--font1);
+        width: 100%;
+        margin: 20px auto;
+        // width: 80%;
+        width: 400px; 
+        // max-width: 400px;
+        max-width: 80%;
+        border-radius: 3px;
+        padding: 20px;
+            
+        position: relative;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: ${props.theme.palette.primary.main};
+        // background: linear-gradient(var(--color2), var(--color2g)); // doesn't work because forms have backgrounds and are placed on a panel in the login component so there is a color mismatch
+        color: var(--color1);
+
+        > button {
+            background-color: var(--color1);
+            color: var(--color2);
+        }
+
+        > panel {
+            padding: 0px;
+        }
+
+        .title {
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        > .edit {
+            position: absolute;
+            height: 25px;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+    `
+}
+
+class Form extends Component {
     constructor(props) {
         super(props)
 
@@ -207,7 +253,7 @@ export default class Form extends Component {
         }
         return (
             <>
-            <div css={panel} style={{display: 'flex', flexDirection: 'row', overflowY: 'auto', overflowX: 'hidden', justifyContent: 'left', padding: '20px'}}>
+            <div css={getStyle(this.props)} style={{display: 'flex', flexDirection: 'row', overflowY: 'auto', overflowX: 'hidden', justifyContent: 'left', padding: '20px'}}>
                 {
                     this.props.slides.map((s) => {              // map question slides to that form slide
                         // console.log('question slide:', s)
@@ -290,6 +336,8 @@ export default class Form extends Component {
         )
     }
 }
+
+export default withTheme(Form)
 
 export const TextResponse = (props) => {
     return <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} />
