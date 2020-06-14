@@ -8,7 +8,6 @@ import logo from "../images/external/logo.png"
 import { combineReducers } from 'redux'
 import Modal from "../components/Modal"
 
-/*
 import Amplify from 'aws-amplify';
 Amplify.configure({
     Auth: {
@@ -39,8 +38,7 @@ Amplify.configure({
         }
     }
 });
-*/
-//Amplify.Auth.signIn('haron@theaicore.com', 'password').then((response)=>(console.log(response)))
+Amplify.Auth.signIn('harry@theaicore.com', 'password').then((response)=>(console.log(response)))
 
 
 const app = () => {

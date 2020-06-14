@@ -236,15 +236,14 @@ import PersonIcon from '@material-ui/icons/Person';
                 //     title: 'File upload',
                 //     id: 'file_upload',
                 // },
-                {
-                    type: 'image', 
-                    variant: 'circular',  
-                    title: 'Circular image upload',
-                    show_title: 'bottom',
-                    id: 'circular_image',
-                    icon: <PersonIcon />
-                },
-                
+                // {
+                //     type: 'image', 
+                //     variant: 'circular',  
+                //     title: 'Circular image upload',
+                //     show_title: 'bottom',
+                //     id: 'circular_image',
+                //     icon: <PersonIcon />
+                // },
             ],
             onSubmit: ()=>{console.log('slide 1 submitted')}
         },
@@ -270,16 +269,16 @@ import PersonIcon from '@material-ui/icons/Person';
      ]}
 />
 
-<Form 
-    submit_label='Complete'
-    slides={[{
-        questions: [{
-            type: 'image',   
-            title: 'Row image upload',
-            id: 'image_form',
-            icon: <PhotoCameraIcon/>
-        }]
-    }]}
-/>
+// <Form 
+//     submit_label='Complete'
+//     slides={[{
+//         questions: [{
+//             type: 'image',   
+//             title: 'Row image upload',
+//             id: 'image_form',
+//             icon: <PhotoCameraIcon/>
+//         }]
+//     }]}
+// />
 </>
 ```
