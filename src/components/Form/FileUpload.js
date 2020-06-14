@@ -124,7 +124,9 @@ class FileUpload extends Component {
             // if(this.props.id){
             //     this.props.handleChange({id: this.props.id, value: this.state.imgsrc})
             // }else{
-                this.props.handleChange(this.state.imgsrc)
+                if (this.props.handleChange) {
+                    this.props.handleChange(this.state.imgsrc)
+                }
             // }
         }
     }
