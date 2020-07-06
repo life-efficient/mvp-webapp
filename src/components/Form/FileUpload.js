@@ -119,7 +119,7 @@ class FileUpload extends Component {
     }
 
     componentDidUpdate = (prevProps, prevState)=>{
-        console.log('updating')
+        //console.log('updating')
         if(prevState.imgsrc != this.state.imgsrc){
             if (this.props.handleChange) {
                 if(this.props.id){
