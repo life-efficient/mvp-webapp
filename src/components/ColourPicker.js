@@ -98,8 +98,8 @@ class ColourPicker extends Component {
     }
 
     componentDidUpdate = (prevProps, prevState)=>{
-        console.log('updating')
-        console.log(this.state.selected_col)
+        //console.log('updating')
+        //console.log(this.state.selected_col)
         if(prevState.selected_col != this.state.selected_col){
             if(this.props.id){
                 this.props.handleChange({id:this.props.id, value:this.state.selected_col})
