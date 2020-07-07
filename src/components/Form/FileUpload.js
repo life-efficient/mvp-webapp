@@ -99,7 +99,8 @@ class FileUpload extends Component {
         super(props)
         console.log(this.props)
         this.state = {
-            imgsrc: props.value ? props.value : null
+            imgsrc: props.value ? props.value : null,
+            preview_img : props.preview ? true : false
         }
     }
 
@@ -224,11 +225,12 @@ class FileUpload extends Component {
                                     </Button>
                                 </label>
                             </div>
-                            {
-                                this.state.filename
+                            {this.props.preview ? 
+                                this.state.filename :
+                                null
                             }
                             {
-                                this.props.type == 'image' && this.state.imgsrc ?
+                                this.props.type == 'image' && this.state.imgsrc && this.props.preview ?
                                 <div className="preview">
                                     <img src={this.state.imgsrc} alt=""/>
                                 </div>
