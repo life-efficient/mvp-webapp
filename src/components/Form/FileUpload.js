@@ -106,11 +106,8 @@ class FileUpload extends Component {
 
     onimgchange = async (e)=>{
         var file = e.target.files[0]
-        console.log(e.target.files)
-        console.log('file:', file)
         if(this.props.bucket_filepath && this.props.bucket_url){
             var url = await this.uploadDP(file)
-            console.log('uploaded success', url)
             this.setState({imgsrc: url, filename: file.name})
          }else{
              var reader = new FileReader();
@@ -122,7 +119,6 @@ class FileUpload extends Component {
     componentDidUpdate = (prevProps, prevState)=>{
         //console.log('updating')
         if(prevState.imgsrc != this.state.imgsrc){
-            console.log('img src', this.state.imgsrc)
             if (this.props.handleChange) {
                 if(this.props.id){
                     this.props.handleChange({id: this.props.id, value: this.state.imgsrc})
@@ -134,9 +130,6 @@ class FileUpload extends Component {
     }
 
     uploadDP = (file) => {
-        console.log(this.props)
-        console.log('custom image;', this.props.custom_image)
-        if(!this.props.custom_image){
         return new Promise (async (resolve, reject)=>{
             var type
             var url
@@ -146,9 +139,6 @@ class FileUpload extends Component {
             //this.props.bucket_url = https://theaicore-data.s3.eu-west-2.amazonaws.com/public/
             fp = `${this.props.bucket_filepath}.${type}`
             //fp = `enterprise_users/${uuid.v4()}/profile_pic.${type}`
-            console.log('bfp;', this.props.bucket_filepath)
-            console.log('fp;', fp)
-            console.log('type;', type)
             var mimeType 
             if (type == 'png') {
                 mimeType = 'image/png'
@@ -171,10 +161,7 @@ class FileUpload extends Component {
                     console.error(e)
                     reject()
                 }
-        })}
-        else{
-            this.props.handleChange(file)
-        }
+        })
     }
 
     render() {
