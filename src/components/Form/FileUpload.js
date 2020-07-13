@@ -108,20 +108,21 @@ class FileUpload extends Component {
         var file = e.target.files[0]
         console.log(e.target.files)
         console.log('file:', file)
-        // if(this.props.bucket_filepath && this.props.bucket_url){
+        if(this.props.bucket_filepath && this.props.bucket_url){
             var url = await this.uploadDP(file)
             console.log('uploaded success', url)
             this.setState({imgsrc: url, filename: file.name})
-        // }else{
-        //     var reader = new FileReader();
-        //     reader.onload = ()=>{this.setState({imgsrc: event.target.result, filename: file.name})}
-        //     reader.readAsDataURL(file);
-        // }
+         }else{
+             var reader = new FileReader();
+             reader.onload = ()=>{this.setState({imgsrc: event.target.result, filename: file.name})}
+             reader.readAsDataURL(file);
+         }
     }
 
     componentDidUpdate = (prevProps, prevState)=>{
         console.log('updating')
         if(prevState.imgsrc != this.state.imgsrc){
+            console.log('img src', this.state.imgsrc)
             if (this.props.handleChange) {
                 if(this.props.id){
                     this.props.handleChange({id: this.props.id, value: this.state.imgsrc})
