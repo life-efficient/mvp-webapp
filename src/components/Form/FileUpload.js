@@ -157,6 +157,7 @@ class FileUpload extends Component {
                 alert('image type invalid (use .PNG, .JPG or .JPEG images)\nYou used type ' + type)
                 return null
             }
+            console.log(this.props.custom_image)
             if(!this.props.custom_image) {
                 try{
                     console.log('puttin in s3')
