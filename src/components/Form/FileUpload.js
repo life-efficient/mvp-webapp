@@ -134,6 +134,8 @@ class FileUpload extends Component {
 
     uploadDP = (file) => {
         console.log(this.props)
+        console.log('custom image;', this.props.custom_image)
+        if(!this.props.custom_image){
         return new Promise (async (resolve, reject)=>{
             var type
             var url
@@ -157,8 +159,6 @@ class FileUpload extends Component {
                 alert('image type invalid (use .PNG, .JPG or .JPEG images)\nYou used type ' + type)
                 return null
             }
-            console.log(this.props.custom_image)
-            if(!this.props.custom_image) {
                 try{
                     console.log('puttin in s3')
                     console.log('S3 key:', fp)
@@ -170,11 +170,10 @@ class FileUpload extends Component {
                     console.error(e)
                     reject()
                 }
-            }
-            else{
-                this.props.handleChange(file)
-            }
-        })
+        })}
+        else{
+            this.props.handleChange(file)
+        }
     }
 
     render() {
