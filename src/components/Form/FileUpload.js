@@ -159,7 +159,7 @@ class FileUpload extends Component {
             }
             console.log('puttin in s3')
             console.log('S3 key:', fp)
-            if(!props.custom_image) {
+            if(!this.props.custom_image) {
                 try{
                     var resp = await Storage.put(fp, file, {contentType: mimeType})
                     console.log(resp)
