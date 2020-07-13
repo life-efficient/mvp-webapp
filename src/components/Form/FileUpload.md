@@ -26,6 +26,11 @@ An upload file input designed for images. Displays the uploaded image and can up
 - **required**: `false`
 - **description**: The url to the bucket
 
+#### preview
+- **type**: `boolean`
+- **default**: `false`
+- **required**: `false`
+- **description**: Determines whether you want to have a preview of the file once uploaded
 ``` jsx
 import { FileUpload } from "mvp-webapp";
 

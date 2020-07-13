@@ -182,6 +182,12 @@ class Form extends Component {
                     errors.push(`Fill in the ${q.title.toLowerCase()} field`) // well then it must be rendered
                 }
             }
+            if (q.validate_answer){
+                console.log('question has custom validation')
+                if(q.validate_answer.validation(s[q.id]) != true){ //if the validation logic is not fulfilled
+                    errors.push(q.validate_answer.error_message) //push on the custom error message
+                }               
+            }
             if (q.type === 'password') {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }

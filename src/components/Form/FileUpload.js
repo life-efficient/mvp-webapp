@@ -99,7 +99,8 @@ class FileUpload extends Component {
         super(props)
         console.log(this.props)
         this.state = {
-            imgsrc: props.value ? props.value : null
+            imgsrc: props.value ? props.value : null,
+            preview_img : props.preview ? true : false
         }
     }
 
@@ -158,15 +159,16 @@ class FileUpload extends Component {
             }
             console.log('puttin in s3')
             console.log('S3 key:', fp)
-
-            try{
-                var resp = await Storage.put(fp, file, {contentType: mimeType})
-                console.log(resp)
-                url =`${this.props.bucket_url}${fp}`
-                resolve(url)
-            }catch(e){
-                console.error(e)
-                reject()
+            if(!props.custom_image) {
+                try{
+                    var resp = await Storage.put(fp, file, {contentType: mimeType})
+                    console.log(resp)
+                    url =`${this.props.bucket_url}${fp}`
+                    resolve(url)
+                }catch(e){
+                    console.error(e)
+                    reject()
+                }
             }
         })
     }
@@ -224,11 +226,12 @@ class FileUpload extends Component {
                                     </Button>
                                 </label>
                             </div>
-                            {
-                                this.state.filename
+                            {this.props.preview ? 
+                                this.state.filename :
+                                null
                             }
                             {
-                                this.props.type == 'image' && this.state.imgsrc ?
+                                this.props.type == 'image' && this.state.imgsrc && this.props.preview ?
                                 <div className="preview">
                                     <img src={this.state.imgsrc} alt=""/>
                                 </div>
