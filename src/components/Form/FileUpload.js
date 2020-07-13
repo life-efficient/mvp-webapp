@@ -157,10 +157,10 @@ class FileUpload extends Component {
                 alert('image type invalid (use .PNG, .JPG or .JPEG images)\nYou used type ' + type)
                 return null
             }
-            console.log('puttin in s3')
-            console.log('S3 key:', fp)
             if(!this.props.custom_image) {
                 try{
+                    console.log('puttin in s3')
+                    console.log('S3 key:', fp)
                     var resp = await Storage.put(fp, file, {contentType: mimeType})
                     console.log(resp)
                     url =`${this.props.bucket_url}${fp}`
@@ -169,6 +169,9 @@ class FileUpload extends Component {
                     console.error(e)
                     reject()
                 }
+            }
+            else{
+                this.props.handleChange(file)
             }
         })
     }
