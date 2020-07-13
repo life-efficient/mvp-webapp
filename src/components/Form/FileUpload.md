@@ -40,8 +40,8 @@ import { FileUpload } from "mvp-webapp";
         id="inputpicc"
         label='Company Logo'
         color='primary'
-        bucket_filepath="public/test/profile_pic"
-        bucket_url="https://theaicore-data.s3.eu-west-2.amazonaws.com/"
+        //bucket_filepath="public/test/profile_pic"
+        //bucket_url="https://theaicore-data.s3.eu-west-2.amazonaws.com/"
         handleChange={(remote_url)=>{
             console.log('just updated dat image')
             console.log(remote_url)
