@@ -97,7 +97,6 @@ class FileUpload extends Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props)
         this.state = {
             imgsrc: props.value ? props.value : null,
             preview_img : props.preview ? true : false
@@ -151,10 +150,7 @@ class FileUpload extends Component {
                 return null
             }
                 try{
-                    console.log('puttin in s3')
-                    console.log('S3 key:', fp)
                     var resp = await Storage.put(fp, file, {contentType: mimeType})
-                    console.log(resp)
                     url =`${this.props.bucket_url}${fp}`
                     resolve(url)
                 }catch(e){

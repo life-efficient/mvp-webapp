@@ -92,7 +92,7 @@ class Form extends Component {
 
         var question_ids = {}
         for (var s of this.props.slides) {
-            console.log('S:', s)
+            //console.log('S:', s)
             s.questions.map((q) => {
                 question_ids[q.id] = q.default ? q.default : ''
                 if (q.type == 'confirm-password') {              // confirm-<value> key is automatically put into state when its value is changed in input
@@ -100,7 +100,7 @@ class Form extends Component {
                 } 
             })
         }
-        console.log('question ids:', question_ids)
+        //console.log('question ids:', question_ids)
         this.state = {
             ...question_ids, 
             slide_idx: 0,
@@ -129,20 +129,20 @@ class Form extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e)
+        //console.log(e)
         this.setState({[e.target.id]: e.target.value},
-            () =>{console.log(this.state)})
+            () =>{}//console.log(this.state)})
     }
 
     handleNumChange = (e) => {
         this.setState({[e.target.id]: e.target.value.replace(/\D/g,'')},
-            () =>{console.log(this.state)})
+            () =>{}//console.log(this.state)})
     }
     
     handleOptionChange = (e) => {
-        console.log(e)
+        //console.log(e)
         this.setState({[e.target.name]: e.target.value},
-            () =>{console.log(this.state)})
+            () =>{}//console.log(this.state)})
     }
 
     handleDateChange = (e, id) => {
@@ -154,7 +154,7 @@ class Form extends Component {
     }
     
     handleCustomChange = (e) => {
-        console.log({[e.id]: e.value})
+        //console.log({[e.id]: e.value})
         this.setState({[e.id]: e.value})
     }
 
@@ -168,13 +168,13 @@ class Form extends Component {
         var s = this.state
         var errors = []
         for (var q of this.props.slides[this.state.slide_idx].questions) {
-            console.log('verifying:', q)
+            //console.log('verifying:', q)
             if (s[q.id] == '' && q.required !== false){ // if response to q not given, and is required (by default)
                 if (q.conditional){ // if conditional
-                    console.log('question is conditional')
-                    console.log(q.conditional.id)
+                    //console.log('question is conditional')
+                    //console.log(q.conditional.id)
                     if (this.state[q.conditional.id] == q.conditional.value) { // if condition for being rendered is met
-                        console.log('question is being rendered!')
+                        //console.log('question is being rendered!')
                         errors.push(`Fill in the ${q.title.toLowerCase()} field`)
                     } // if not being rendered, then don't prevent submitting because question is not filled in!
                 }
@@ -183,7 +183,7 @@ class Form extends Component {
                 }
             }
             if (q.validate_answer){
-                console.log('question has custom validation')
+                //console.log('question has custom validation')
                 if(q.validate_answer.validation(s[q.id]) != true){ //if the validation logic is not fulfilled
                     errors.push(q.validate_answer.error_message) //push on the custom error message
                 }               
@@ -192,7 +192,7 @@ class Form extends Component {
                 if (s[q.id] == '') {errors.push(`Fill in the ${q.title.toLowerCase()} field`)}
             }
             if (q.type === 'confirm-password') {
-                console.log('confirm', s[q.id])
+                //console.log('confirm', s[q.id])
                 if (s[q.id].length < 8) {errors.push('Password should be atleast 8 characters long')}
                 if (s[q.id] != s[`confirm-${q.id}`]) {errors.push(`Passwords need to match`)}
             }
@@ -204,16 +204,16 @@ class Form extends Component {
                 if (!re.test(String(s[q.id]).toLowerCase())) {errors.push('Email is not valid')}
             }
         }
-        console.log('FORM ERRORS:', errors)
+        console.debug('FORM ERRORS:', errors)
         this.setState({error: errors[0]})       // either null or some error
         return errors.length > 0 ? false : true
     }
 
     submit = async () => {
-        console.log(this.state)
+        //console.log(this.state)
         if (this.validate()) {      // do basic validation based on field type
             this.setState({loading: true})
-            console.log('current slide idx', this.state.slide_idx)
+            //console.log('current slide idx', this.state.slide_idx)
             var onSubmit = this.props.slides[this.state.slide_idx].onSubmit
             try {
                 if (onSubmit) {
@@ -226,7 +226,7 @@ class Form extends Component {
                     }
                     await onSubmit(e)
                 }                  // validate + do extra stuff
-                console.log('both internal and external validation successful')
+                //console.log('both internal and external validation successful')
                 
                 // console.log('current slide idx in try', this.state.slide_idx)
                 const new_slide_idx = this.state.slide_idx + 1
@@ -234,22 +234,22 @@ class Form extends Component {
                 this.setState({slide_idx: new_slide_idx})    // if onSubmit doesn't return null
             }
             catch (error) {
-                console.log('An external error occured:', error)
+                console.debug('An external error occured:', error)
                 this.setState({error: error.message})
             }
             this.setState({loading: false})
         }
         else {
-            console.log('internal validation failed')
+            console.debug('internal validation failed')
         }
     }
 
     render () {
-        console.log('STATE:', this.state)
+        //console.log('STATE:', this.state)
         const go_to_new = typeof(this.state.slide_idx) == NaN || typeof(this.state.slide_idx) == undefined
         if (this.state.slide_idx > this.props.slides.length - 1 || go_to_new) { // if finished
             if (this.props.redirect) {
-                console.log('redirecting to:', this.props.redirect)
+                //console.log('redirecting to:', this.props.redirect)
                 return <Redirect to={this.props.redirect}/>
             }
             else {
