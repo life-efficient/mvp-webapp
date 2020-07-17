@@ -131,18 +131,18 @@ class Form extends Component {
     handleChange = (e) => {
         //console.log(e)
         this.setState({[e.target.id]: e.target.value},
-            () =>{}//console.log(this.state)})
+            () =>{})//console.log(this.state)})
     }
 
     handleNumChange = (e) => {
         this.setState({[e.target.id]: e.target.value.replace(/\D/g,'')},
-            () =>{}//console.log(this.state)})
+            () =>{})//console.log(this.state)})
     }
     
     handleOptionChange = (e) => {
         //console.log(e)
         this.setState({[e.target.name]: e.target.value},
-            () =>{}//console.log(this.state)})
+            () =>{})//console.log(this.state)})
     }
 
     handleDateChange = (e, id) => {
