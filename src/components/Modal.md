@@ -3,6 +3,7 @@ A modal.
 Content is updated any time the modal is opened. Content is wiped when the modal closes.
 
 ### props
+#### no_click_off: If true, then you cannot click off the backdrop
 #### content
 - **type**: jsx
 - **default**: `null`
@@ -18,7 +19,8 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => {
     return {
         isOpen: state.modal.open,
-        content: state.modal.content
+        content: state.modal.content,
+        no_click_off: state.modal.no_click_off
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -28,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
         },
         onClick: () => dispatch({
             type: "OPEN_MODAL",
-            content: <Form slides={[{title: 'Congrats', questions: [{type: 'text', id: 'demo', title: 'Nice'}]}]}/>
+            content: <Form slides={[{title: 'Congrats', questions: [{type: 'text', id: 'demo', title: 'Nice'}],}]}/>,
+            no_click_off: true
         })
     }
 }

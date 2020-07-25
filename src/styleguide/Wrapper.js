@@ -84,13 +84,14 @@ const slideIn = (state={open: false, content: null}, action) => {
     }
 }
 
-const modal = (state={open: false, content: null}, action) => {
+const modal = (state={open: false, content: null, no_click_off: null}, action) => {
     switch (action.type) {
         case "OPEN_MODAL": 
             console.log('opening modal')
             return {
                 open: true,
-                content: action.content
+                content: action.content,
+                no_click_off: action.no_click_off
             }
         case "CLOSE_MODAL":
             console.log('closing modal')

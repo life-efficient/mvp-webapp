@@ -75,8 +75,8 @@ const Modal = props => {
     }
 
     return (
-        <Backdrop style={{zIndex: 1200}} open={props.open} onClick={props.closeModal}>
-            <div onClick={e=>e.stopPropagation()}>
+        <Backdrop style={{zIndex: 1200}} open={props.open} onClick={!props.no_click_off ? props.closeModal : null}>
+            <div onClick= {e=>e.stopPropagation()}>
                 {props.content}
             </div>
         </Backdrop>
@@ -87,7 +87,8 @@ const mapStateToProps = (state) => {
     // console.log(state.modal)
     return {
         open: state.modal.open,
-        content: state.modal.content
+        content: state.modal.content,
+        no_click_off: state.modal.no_click_off
     }
 }
 
