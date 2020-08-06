@@ -350,7 +350,6 @@ export const TextResponse = (props) => {
     const KeyDown = keyEvent => {
         if (keyEvent.getModifierState("CapsLock")) {
           setWarning(true);
-          console.log('caps')
         } else {
           setWarning(false);
         }
@@ -371,7 +370,6 @@ export const EmailField = (props) => {
 
 const Password = props => {
     const [hidden, setHidden] = useState(true)
-
     return <TextResponse
         {...props}
         type={hidden ? 'password' : 'text'}
