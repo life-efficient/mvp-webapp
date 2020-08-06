@@ -1,7 +1,7 @@
 {
   "name": "mvp-webapp",
   "version": "2.28.17",
-  "description": "A UI library for hackers that want to build Minimum Viable Products (MVPs) quickly.",
+  "description": "",
   "main": "lib/index.js",
   "browser": "lib/index.umd.js",
   "module": "lib/index.es.js",
@@ -90,13 +90,5 @@
     "react-cursor-position": "^3.0.3",
     "react-router-dom": "^5.2.0",
     "react-spinners": "^0.6.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/life-efficient/mvp-webapp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/life-efficient/mvp-webapp/issues"
-  },
-  "homepage": "https://github.com/life-efficient/mvp-webapp#readme"
+  }
 }
