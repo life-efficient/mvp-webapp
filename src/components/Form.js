@@ -346,7 +346,19 @@ class Form extends Component {
 export default withTheme(Form)
 
 export const TextResponse = (props) => {
-    return <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} />
+    const [warning, setWarning] = useState(false)
+    const KeyDown = keyEvent => {
+        if (keyEvent.getModifierState("CapsLock")) {
+          setWarning(true);
+          console.log('caps')
+        } else {
+          setWarning(false);
+        }
+      };
+    return <>
+    <TextField className="field" variant="outlined" {...props} label={props.title} onChange={props.handleChange} inputProps={{onKeyDown:KeyDown}}/>
+    {warning && <div>Caps Lock On!</div>}
+    </>
 }
 
 export const EmailField = (props) => {
@@ -359,6 +371,7 @@ export const EmailField = (props) => {
 
 const Password = props => {
     const [hidden, setHidden] = useState(true)
+
     return <TextResponse
         {...props}
         type={hidden ? 'password' : 'text'}
