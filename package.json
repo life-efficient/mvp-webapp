@@ -88,7 +88,6 @@
     "query-string": "^6.12.1",
     "react-chartjs-2": "^2.9.0",
     "react-cursor-position": "^3.0.3",
-    "react-router-dom": "^5.2.0",
     "react-spinners": "^0.6.1"
   }
 }
